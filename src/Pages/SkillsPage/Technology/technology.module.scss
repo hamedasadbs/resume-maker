@@ -1,0 +1,143 @@
+@import '../../../index.module.scss';
+
+.technology {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 25px;
+
+    .addServer {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        margin: auto;
+
+        .save {
+            margin: auto;
+            width: 160px;
+            font-size: $fontSize2;
+            font-family: titleFont;
+            background-color: $mainBlueColor2;
+        }
+
+        .addField {
+            width: 23%;
+            margin: auto 5px;
+
+            .addInput {
+                font-size: $fontSize2;
+                width: 100%;
+            }
+        }
+    }
+
+    .table {
+        margin: 20px auto 0 auto;
+        width: 100%;
+
+        .tbl {
+            font-family: titleFont;
+            font-size: $fontSize2;
+            direction: rtl;
+
+            h1 {
+                font-size: $fontSize2;
+                margin: auto;
+            }
+        }
+
+        .icon {
+            color: $mainBlueColor2;
+            font-size: $fontSize4;
+            transition: all 0.5s;
+        }
+
+        .UserLogo {
+            width: 30px;
+        }
+    }
+
+    .btnContainer {
+        display: flex;
+        width: 100%;
+        margin: 40px auto;
+
+        .save {
+            margin: auto 0;
+            display: flex;
+            background-color: $mainRedColor1;
+            color: $mainBlueColor2;
+            padding: 5px 25px;
+
+            span {
+                font-size: $fontSize2;
+                font-family: titleFont;
+                margin: auto;
+            }
+
+            .icon {
+                margin: auto;
+                margin-left: 5px;
+                font-size: $fontSize3;
+            }
+        }
+
+        .remove {
+            margin: auto;
+            margin-left: 10px;
+            display: flex;
+            background-color: $mainRedColor3;
+            padding: 5px 25px;
+
+            span {
+                font-size: $fontSize2;
+                font-family: titleFont;
+                margin: auto;
+            }
+
+            .icon {
+                margin: auto;
+                margin-left: 5px;
+                font-size: $fontSize3;
+                color: whitesmoke;
+            }
+        }
+    }
+
+    .addServer {
+        display: flex;
+        width: 100%;
+        margin: 10px auto;
+
+        .addInput {
+            width: 20%;
+        }
+    }
+}
+
+@media only screen and (max-width: $tablet_screen) {
+    .technology {
+        margin-top: 20px;
+
+        .addServer {
+            flex-wrap: wrap;
+
+            select {
+                width: 45%;
+            }
+
+            .save {
+                width: 95%;
+                margin: 10px auto;
+            }
+
+            .addField {
+                width: 45%;
+                margin: 10px auto;
+            }
+        }
+    }
+}

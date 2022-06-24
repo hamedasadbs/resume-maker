@@ -56,7 +56,7 @@
         margin-left: 0;
         width: 35%;
 
-        .Button {
+        .button {
             margin: auto 5px;
             display: flex;
 
@@ -71,6 +71,19 @@
                 margin-left: 5px;
                 font-size: $fontSize3;
             }
+        }
+
+        .fill {
+            background-color: $mainBlueColor2;
+        }
+
+        .outlined {
+            border: 1px solid $mainBlueColor2;
+            color: $mainBlueColor2;
+        }
+
+        .texted {
+            color: $mainBlueColor2;
         }
     }
 }

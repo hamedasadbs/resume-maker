@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import style from "./navBar.module.scss";
 /*MUI*/
 import SchoolOutlinedIcon from "@mui/icons-material/SchoolOutlined";
+import SchoolIcon from "@mui/icons-material/School";
 
 import LocalLibraryOutlinedIcon from "@mui/icons-material/LocalLibraryOutlined";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
@@ -17,6 +18,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 
 import IntegrationInstructionsOutlinedIcon from "@mui/icons-material/IntegrationInstructionsOutlined";
+import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 
 export const NavBar = (props) => {
   /*variables*/
@@ -108,7 +110,11 @@ export const NavBar = (props) => {
           to="/education_history"
         >
           <span>سوابق تحصیلی</span>
-          <SchoolOutlinedIcon className={style.icon} />
+          {location.pathname === "/education_history" ? (
+            <SchoolIcon className={style.icon} />
+          ) : (
+            <SchoolOutlinedIcon className={style.icon} />
+          )}
         </Link>
         <Link
           id="مهارت ها"
@@ -117,7 +123,11 @@ export const NavBar = (props) => {
           to="/skills"
         >
           <span>مهارت ها</span>
-          <IntegrationInstructionsOutlinedIcon className={style.icon} />
+          {location.pathname === "/skills" ? (
+            <IntegrationInstructionsIcon className={style.icon} />
+          ) : (
+            <IntegrationInstructionsOutlinedIcon className={style.icon} />
+          )}
         </Link>
         <Link
           id="پروژه ها"

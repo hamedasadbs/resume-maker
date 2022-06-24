@@ -35,7 +35,7 @@ export const PersonalPage = (props) => {
               <span>آپلود تصویر پروفایل</span>
               <FileUploadOutlinedIcon className={style.icon} />
             </Button>
-            <img src={userPhoto} alt="profile-image" />
+            <img src={userPhoto} alt="profile" />
           </div>
           <Input
             onchange={(e, newValue) => {
@@ -127,7 +127,7 @@ export const PersonalPage = (props) => {
           />
           <div className={style.saveBtnContainer}>
             <Button className={style.save} variant="contained">
-              <span>ذخیره</span>
+              <span>ذخیره تغییرات</span>
               <SaveOutlinedIcon className={style.icon} />
             </Button>
           </div>

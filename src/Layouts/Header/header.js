@@ -1,10 +1,5 @@
-/*inner components*/
-import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 /*css*/
 import style from "./header.module.scss";
-/*child components*/
-import { users } from "../../Middleware/Data/profileData";
 import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
 import logo from "../../Assets/Images/dade-baan.png";
@@ -29,15 +24,22 @@ export const Header = (props) => {
   return (
     <header className={style.header}>
       <div className={style.headerLeftSide}>
-        <Button className={style.Button} variant="contained">
+        <Button className={`${style.button} ${style.fill}`} variant="contained">
           <span>دریافت فایل رزومه</span>
           <CloudDownloadOutlinedIcon className={style.icon} />
         </Button>
-        <Button className={style.Button} variant="outlined">
+        <Button
+          className={`${style.button} ${style.outlined}`}
+          variant="outlined"
+        >
           <span>مشاهده رزومه</span>
           <RemoveRedEyeOutlinedIcon className={style.icon} />
         </Button>
-        <Button onClick={logoutHandler} className={style.Button} variant="text">
+        <Button
+          onClick={logoutHandler}
+          className={`${style.button} ${style.texted}`}
+          variant="text"
+        >
           <span>خروج</span>
           <LogoutOutlinedIcon className={style.icon} />
         </Button>

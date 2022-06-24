@@ -9,6 +9,8 @@ import {
 /*child components*/
 import { PersonalPage } from "./Pages/PersonalPage/personalPage";
 import { LearningPage } from "./Pages/LearningPage/learningPage";
+import { EducationPage } from "./Pages/EducationPage/educationPage";
+import { SkillsPage } from "./Pages/SkillsPage/skillsPage";
 import { LoginPage } from "./Pages/LoginPage/loginPage";
 import { LoadingPage } from "./Pages/LoadingPage/loadingPage";
 /*css*/
@@ -46,6 +48,15 @@ export const App = () => {
                 </Route>
                 <Route path="/learning_info">
                   <LearningPage setDashboard={setDashboard} title={dashboard} />
+                </Route>
+                <Route path="/education_history">
+                  <EducationPage
+                    setDashboard={setDashboard}
+                    title={dashboard}
+                  />
+                </Route>
+                <Route path="/skills">
+                  <SkillsPage setDashboard={setDashboard} title={dashboard} />
                 </Route>
                 <Route path="/">
                   <Redirect to="/personal_info" />

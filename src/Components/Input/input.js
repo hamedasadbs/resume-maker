@@ -2,8 +2,6 @@
 import { useEffect, useRef } from "react";
 /*css*/
 import style from "./input.module.scss";
-/*library*/
-import * as dark from "../../Middleware/Library/darkMode";
 
 export const Input = (props) => {
   const inputContainer = useRef();
@@ -43,6 +41,7 @@ export const Input = (props) => {
 
   useEffect(() => {
     inputContainer.current.style.margin = props.margin;
+    inputContainer.current.style.width = props.width;
     input.current.style.textAlign = props.align;
     input.current.style.direction = props.direction;
   }, []);
