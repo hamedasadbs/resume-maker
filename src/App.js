@@ -1,25 +1,71 @@
-import logo from './logo.svg';
-import './App.css';
+/*inner components*/
+import { useState, useEffect } from "react";
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  Redirect,
+} from "react-router-dom";
+/*child components*/
+import { PersonalPage } from "./Pages/PersonalPage/personalPage";
+import { LearningPage } from "./Pages/LearningPage/learningPage";
+import { LoginPage } from "./Pages/LoginPage/loginPage";
+import { LoadingPage } from "./Pages/LoadingPage/loadingPage";
+/*css*/
+import style from "./app.module.scss";
+/*library*/
+import * as cookie from "./Middleware/Library/cookie";
 
-function App() {
+export const App = () => {
+  /*states*/
+  const [loaded, setLoaded] = useState(false);
+  const [dashboard, setDashboard] = useState("صفحه اصلی");
+  /*loading screen*/
+  useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+  }, []);
+  /*when refresh page go to root*/
+  window.onbeforeunload = function () {
+    window.setTimeout(function () {
+      window.location = "/";
+    }, 0);
+    window.onbeforeunload = null;
+  };
+  /*render component*/
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={style.app}>
+      <Router>
+        <Switch>
+          {cookie.getCookie("login") ? (
+            loaded ? (
+              <>
+                <Route path="/personal_info">
+                  <PersonalPage setDashboard={setDashboard} title={dashboard} />
+                </Route>
+                <Route path="/learning_info">
+                  <LearningPage setDashboard={setDashboard} title={dashboard} />
+                </Route>
+                <Route path="/">
+                  <Redirect to="/personal_info" />
+                </Route>
+              </>
+            ) : (
+              <LoadingPage />
+            )
+          ) : (
+            <>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/">
+                <Redirect to="/login" />
+              </Route>
+            </>
+          )}
+        </Switch>
+      </Router>
     </div>
   );
-}
-
-export default App;
+};

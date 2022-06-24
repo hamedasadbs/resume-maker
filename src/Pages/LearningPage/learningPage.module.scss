@@ -1,0 +1,113 @@
+@import '../../index.module.scss';
+
+.learningPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: $backgroundColor;
+    min-height: 100vh;
+    margin: 10px auto;
+
+    .title {
+        display: none;
+    }
+
+    main {
+        width: 70%;
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+
+        .information {
+            width: 100%;
+            background-color: $mainBrightBox;
+            box-shadow: $brightBoxShadow1;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            padding: 10px 0 50px 0;
+
+            .profileImage {
+                margin: 10px auto;
+                width: 95%;
+                display: flex;
+                justify-content: flex-end;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: cover;
+                    border-radius: 100%;
+                    margin: auto 0;
+                    margin-left: 10px;
+                }
+
+                .button {
+                    margin: auto 5px;
+                    display: flex;
+
+                    span {
+                        font-size: $fontSize2;
+                        font-family: titleFont;
+                        margin: auto;
+                    }
+
+                    .icon {
+                        margin: auto;
+                        margin-left: 5px;
+                        font-size: $fontSize3;
+                    }
+                }
+            }
+
+            .saveBtnContainer {
+                display: flex;
+                width: 95%;
+                margin: 20px auto;
+
+                .save {
+                    margin: auto;
+                    margin-left: 0;
+                    display: flex;
+                    background-color: $mainRedColor1;
+                    color: black;
+
+                    &:hover {
+                        background-color: $mainRedColor2;
+                    }
+
+                    span {
+                        font-size: $fontSize2;
+                        font-family: titleFont;
+                        margin: auto;
+                    }
+
+                    .icon {
+                        margin: auto;
+                        margin-left: 5px;
+                        font-size: $fontSize3;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .learningPage {
+        padding-right: 70px;
+    }
+}
+
+@media only screen and (max-width: $tablet_screen) {
+    .learningPage {
+        .title {
+            display: block;
+            margin: 20px auto;
+            margin-right: 20px;
+            font-size: $fontSize2_5;
+        }
+    }
+}

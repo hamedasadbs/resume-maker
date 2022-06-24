@@ -1,0 +1,197 @@
+/*box shadows*/
+$brightBoxShadow1:0px 3px 8px rgba(0, 0, 0, 0.24);
+$brightBoxShadow2:rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+/*bright theme colors*/
+$mainBrightBox:white;
+$mainBrightBack:whitesmoke;
+$inputBrightBack:whitesmoke;
+$mainBrightText:rgb(54, 54, 54);
+/*dark theme colors*/
+$mainDarkBox:rgb(48, 48, 48);
+$mainDarkBack:#202124;
+$inputDarkBack:rgb(25, 25, 25);
+$mainDarkText:#EEEEEE;
+////////////////////////////////////////////////////////
+$backgroundColor:whitesmoke;
+$mainBlueColor1:#2568FB;
+$mainBlueColor2:rgb(5, 103, 175);
+$mainBlueColor3:rgb(26, 127, 184);
+$mainBlueColor4:rgb(67, 149, 191);
+$mainBlueColor5:rgb(86, 192, 245);
+$mainRedColor1:rgb(226, 154, 39);
+$mainRedColor2:rgb(226, 117, 39);
+$mainRedColor3:rgb(226, 39, 39);
+/*font sizes*/
+$fontSize1:10px;
+$fontSize1_5:13px;
+$fontSize2:15px;
+$fontSize2_5:18px;
+$fontSize3:20px;
+$fontSize3_5:23px;
+$fontSize4:25px;
+$fontSize4_5:28px;
+$fontSize5:30px;
+$fontSize5_5:33px;
+$fontSize6:35px;
+$fontSize6_5:38px;
+$fontSize7:40px;
+$fontSize8:50px;
+$fontSize9:60px;
+$fontSize10:70px;
+$fontSize11:80px;
+/*media query sizes*/
+$mobile_screen:600px;
+$tablet_screen:768px;
+$laptop_screen:992px;
+$large_screen:1200px;
+
+@mixin chartTitle {
+  font-size: $fontSize2_5;
+  color: $mainBrightText;
+  text-align: center;
+  margin: 20px auto 30px auto;
+}
+
+@mixin input {
+  text-align: center;
+  outline: none;
+  border: none;
+  background-color: $mainBrightBack;
+  font-size: $fontSize3;
+  margin-right: 10px;
+  border: 1px solid lightgray;
+  color: $mainBrightText;
+  transition: all 0.5s;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:focus {
+    background-color: $mainBrightBox;
+    color: $mainBrightText;
+    border: 1px solid $mainBrightText;
+  }
+}
+
+@mixin select {
+  text-align: center;
+  width: auto;
+  outline: none;
+  border: none;
+  background-color: $inputBrightBack;
+  font-family: paragraphFont;
+  font-size: $fontSize2;
+  border-radius: 5px;
+  margin-right: 10px;
+  border: 1px solid gray;
+  color: $mainBrightText;
+  padding: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    background-color: $mainBrightBox;
+    color: $mainBrightText;
+  }
+}
+
+/*global tags style*/
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: none;
+  outline: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  background-color: $mainBrightBack;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $mainBrightText;
+  border-radius: 0px;
+  transition: all 0.5s;
+
+  &:hover {
+    background: $mainBrightText;
+  }
+}
+
+/*font declare*/
+@font-face {
+  font-family: titleFont;
+  src: url("./Assets/Fonts/Shabnam.ttf");
+}
+
+@font-face {
+  font-family: finglishFont;
+  src: url("./Assets/Fonts/Mikhak-Black.ttf");
+}
+
+@font-face {
+  font-family: paragraphFont;
+  src: url("./Assets/Fonts/Samim.ttf");
+}
+
+/*global tags font family set*/
+h1,
+h2,
+button,
+table {
+  font-family: titleFont;
+
+  thead {
+    tr {
+      th {
+        font-family: titleFont;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        font-family: finglishFont;
+      }
+    }
+  }
+}
+
+label {
+  font-family: finglishFont;
+}
+
+input {
+  font-family: finglishFont;
+}
+
+p {
+  font-family: paragraphFont;
+}

@@ -1,0 +1,45 @@
+@import '../../index.module.scss';
+
+.footer {
+    background-color: $backgroundColor;
+    display: none;
+    width: 100%;
+    z-index: 6;
+    margin: 30px auto -10px auto;
+    padding: 20px 10px;
+
+    .license {
+        width: 50%;
+        display: flex;
+        margin: auto;
+        margin-right: 2%;
+
+        h1 {
+            font-size: $fontSize2;
+            color: whitesmoke;
+            margin: auto;
+            margin-right: 0;
+            text-align: right;
+        }
+    }
+
+    .version {
+        margin: auto;
+        font-family: titleFont;
+        font-size: $fontSize2;
+        text-align: center;
+        color: whitesmoke;
+        width: 50%;
+    }
+
+}
+
+.footer_dark {
+    background-color: $mainDarkBox;
+}
+
+@media only screen and (max-width: 1060px) {
+    .footer {
+        display: flex;
+    }
+}

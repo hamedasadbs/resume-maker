@@ -1,0 +1,90 @@
+@import '../../index.module.scss';
+
+.header {
+    display: flex;
+    margin: 0 auto;
+    margin-top: -10px;
+    margin-bottom: 0;
+    width: 100%;
+    padding: 0 40px;
+    background-color: $backgroundColor;
+    z-index: 5;
+    box-shadow: $brightBoxShadow1;
+
+    .titleContainer {
+        display: flex;
+        justify-content: flex-end;
+        width: fit-content;
+        margin: auto;
+        margin-right: 0;
+        width: 35%;
+
+        .title {
+            color: rgb(75, 75, 75);
+            margin: auto;
+            font-size: $fontSize3;
+            font-weight: bold;
+            text-align: right;
+            width: 100%;
+        }
+    }
+
+    .mainLogo {
+        margin: 0 auto;
+        padding: 5px 85px;
+        font-size: $fontSize4;
+        color: whitesmoke;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s;
+        display: flex;
+        width: 300px;
+        width: 30%;
+
+        img {
+            width: 80px;
+            object-fit: cover;
+            margin: auto 0;
+        }
+    }
+
+    .headerLeftSide {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        margin: auto;
+        margin-left: 0;
+        width: 35%;
+
+        .Button {
+            margin: auto 5px;
+            display: flex;
+
+            span {
+                font-size: $fontSize2;
+                font-family: titleFont;
+                margin: auto;
+            }
+
+            .icon {
+                margin: auto;
+                margin-left: 5px;
+                font-size: $fontSize3;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .header {
+        padding: 2px;
+    }
+}
+
+@media only screen and (max-width: $tablet_screen) {
+    .header {
+        .titleContainer {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,76 @@
+@import '../../../index.module.scss';
+
+.heartRate {
+    max-width: 170px;
+    height: 65px;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 30px;
+    display: flex;
+
+    .fadeIn {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: $mainBlueColor1;
+        top: 0;
+        right: 0;
+        margin-right: -10px;
+        animation: heartRateIn 4s linear infinite;
+    }
+
+    .fadeOut {
+        position: absolute;
+        width: 120%;
+        height: 100%;
+        top: 0;
+        left: -120%;
+        animation: heartRateOut 4s linear infinite;
+        background: $mainBlueColor1;
+        background: -moz-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -o-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -ms-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(to right, $mainBlueColor1 0%, $mainBlueColor1 80%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .delay {
+        animation-delay: 2s;
+    }
+
+    @keyframes heartRateIn {
+        0% {
+            width: 100%;
+        }
+
+        50% {
+            width: 0%;
+        }
+
+        100% {
+            width: 0;
+        }
+    }
+
+    @keyframes heartRateOut {
+        0% {
+            left: -120%;
+        }
+
+        30% {
+            left: -120%;
+        }
+
+        100% {
+            left: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: $laptop_screen) {
+    .heartRate {
+        margin-top: 10px;
+        max-width: 100px;
+    }
+}

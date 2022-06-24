@@ -1,0 +1,32 @@
+export const antivirus = [
+  {
+    name: "Adaware",
+    ce: true,
+    version: "3.2.5",
+    lastUpdate: "2022/5/17",
+    licenseTime: 20,
+    heuristic: false,
+    extractDepth: true,
+    delayTime: 30,
+  },
+  {
+    name: "Avast",
+    ce: true,
+    version: "4.1.0",
+    lastUpdate: "2022/5/17",
+    licenseTime: 25,
+    heuristic: true,
+    extractDepth: true,
+    delayTime: 35,
+  },
+  {
+    name: "ClamAV",
+    ce: false,
+    version: "6.0.0",
+    lastUpdate: "2021/9/16",
+    licenseTime: 25,
+    heuristic: false,
+    extractDepth: false,
+    delayTime: 20,
+  },
+];

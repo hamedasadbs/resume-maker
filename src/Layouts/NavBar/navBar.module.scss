@@ -1,0 +1,103 @@
+@import '../../index.module.scss';
+
+.navContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: $mainBrightBox;
+    box-shadow: $brightBoxShadow1;
+    width: 230px;
+    height: 100%;
+    margin: auto 0 auto 40px;
+    padding: 20px 0;
+    border-radius: 5px;
+
+    .navBar {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-radius: 0;
+        margin: auto;
+        margin-top: 0;
+        width: 100%;
+
+        .link {
+            width: 95%;
+            display: flex;
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+            color: $mainBrightText;
+            justify-content: flex-end;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.5s;
+            margin: 5px auto;
+            border-radius: 5px;
+
+            span {
+                font-size: $fontSize2;
+                font-family: titleFont;
+            }
+
+            i {
+                margin: auto 0 auto 5px;
+                font-size: $fontSize3;
+            }
+
+            .icon {
+                margin: auto 0 auto 5px;
+                font-size: $fontSize3;
+            }
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+
+        .activeLink {
+            color: $mainBlueColor2;
+            background-color: rgba($mainRedColor1, 0.6);
+        }
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .navContainer {
+        width: 70px;
+
+        .navFooter {
+            display: none;
+        }
+
+        .navBar {
+            .navTitle {
+                padding: 5px 10px;
+
+                img {
+                    width: 40px;
+                    margin: auto;
+                }
+            }
+
+            .link {
+                margin: 5px auto;
+
+                span {
+                    display: none;
+                }
+
+                i {
+                    margin: auto;
+                    font-size: $fontSize4;
+                }
+
+                .icon {
+                    margin: auto;
+                    font-size: $fontSize4;
+                }
+            }
+        }
+    }
+}
