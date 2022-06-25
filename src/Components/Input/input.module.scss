@@ -59,28 +59,6 @@
     color: $mainRedColor1;
 }
 
-.inputContainer_dark {
-    background-color: $mainDarkBox;
-
-    .input {
-        color: $mainDarkText;
-
-        &::placeholder {
-            color: gray;
-        }
-    }
-
-    .label {
-        color: $mainDarkText;
-        background-color: $mainDarkBox;
-    }
-
-    .activeLabel {
-        background-color: $mainDarkBox;
-        color: $mainDarkText;
-    }
-}
-
 @media only screen and (max-width: $tablet_screen) {
     .inputContainer {
         margin: 10px auto;

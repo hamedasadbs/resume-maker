@@ -1,4 +1,5 @@
 /*css*/
+import { useState, useEffect } from "react";
 import style from "./header.module.scss";
 import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
@@ -12,6 +13,7 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 export const Header = (props) => {
+  const [subTitle, setSubTitle] = useState(null);
   const logoutHandler = () => {
     cookie.setCookie("login", "", -100);
     cookie.setCookie("username", "", -100);
@@ -19,6 +21,25 @@ export const Header = (props) => {
     cookie.setCookie("role", "", -100);
     window.location.href = "/login";
   };
+
+  useEffect(() => {
+    switch (props.subTitle) {
+      case 0:
+        setSubTitle("تکنولوژی های کاری");
+        break;
+      case 1:
+        setSubTitle("علایق پژوهشی");
+        break;
+      case 2:
+        setSubTitle("مهارت ها و توانمندی ها");
+        break;
+      case 3:
+        setSubTitle("توانایی های عمومی");
+        break;
+      default:
+        break;
+    }
+  }, [props.subTitle]);
 
   /*render component*/
   return (
@@ -50,7 +71,10 @@ export const Header = (props) => {
         <Pulse title="end" />
       </div>
       <div id="dashboard" className={style.titleContainer}>
-        <h1 className={style.title}>{props.title}</h1>
+        <h1 className={style.title}>
+          {props.title}
+          {subTitle && " / " + subTitle}
+        </h1>
       </div>
     </header>
   );

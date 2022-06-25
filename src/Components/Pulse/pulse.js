@@ -2,14 +2,8 @@
 import { useEffect } from "react";
 /*css*/
 import style from "./pulse.module.scss";
-/*library*/
-import * as dark from "../../Middleware/Library/darkMode";
 
 export const Pulse = (props) => {
-  /*dark mode*/
-  useEffect(() => {
-    dark.darkMode(style.heartRate, style.heartRate_dark, props.darkMode);
-  }, [props.darkMode]);
   /*render component*/
   return (
     <div className={style.heartRate}>

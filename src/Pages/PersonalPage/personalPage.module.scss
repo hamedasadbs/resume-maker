@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: $backgroundColor;
+    background-color: white;
     min-height: 100vh;
     margin: 10px auto;
 
@@ -47,7 +47,8 @@
                 .button {
                     margin: auto 5px;
                     display: flex;
-                    background-color: $mainBlueColor2;
+                    background-color: $primaryColor2;
+                    background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
 
                     span {
                         font-size: $fontSize2;
@@ -72,8 +73,7 @@
                     margin: auto;
                     margin-left: 0;
                     display: flex;
-                    background-color: $mainRedColor1;
-                    color: $mainBlueColor2;
+                    background-color: $secondaryColor1;
                     padding: 5px 25px;
 
                     span {

@@ -7,7 +7,7 @@
     margin-bottom: 0;
     width: 100%;
     padding: 0 40px;
-    background-color: $backgroundColor;
+    background-color: whitesmoke;
     z-index: 5;
     box-shadow: $brightBoxShadow1;
 
@@ -20,7 +20,7 @@
         width: 35%;
 
         .title {
-            color: rgb(75, 75, 75);
+            color: $mainBrightText;
             margin: auto;
             font-size: $fontSize3;
             font-weight: bold;
@@ -74,16 +74,20 @@
         }
 
         .fill {
-            background-color: $mainBlueColor2;
+            background-color: $primaryColor1;
         }
 
         .outlined {
-            border: 1px solid $mainBlueColor2;
-            color: $mainBlueColor2;
+            border: 1px solid $primaryColor1;
+            color: $primaryColor1;
         }
 
         .texted {
-            color: $mainBlueColor2;
+            color: $primaryColor1;
+
+            .icon {
+                transform: scaleX(-1);
+            }
         }
     }
 }

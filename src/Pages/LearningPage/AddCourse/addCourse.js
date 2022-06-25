@@ -55,7 +55,7 @@ export const AddCourse = (props) => {
   /*render component*/
   return (
     <div className={style.addCourse}>
-      <div className={style.addServer}>
+      <div className={style.addCourseForm}>
         <Input
           type="username"
           align="right"

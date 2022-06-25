@@ -13,7 +13,7 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color: $mainBlueColor1;
+        background-color: $primaryColor1;
         top: 0;
         right: 0;
         margin-right: -10px;
@@ -27,12 +27,12 @@
         top: 0;
         left: -120%;
         animation: heartRateOut 4s linear infinite;
-        background: $mainBlueColor1;
-        background: -moz-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
-        background: -webkit-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
-        background: -o-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
-        background: -ms-linear-gradient(left, $mainBlueColor1 0%, $mainBlueColor1 50%, rgba(255, 255, 255, 0) 100%);
-        background: linear-gradient(to right, $mainBlueColor1 0%, $mainBlueColor1 80%, rgba(255, 255, 255, 0) 100%);
+        background: $primaryColor1;
+        background: -moz-linear-gradient(left, $primaryColor1 0%, $primaryColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -webkit-linear-gradient(left, $primaryColor1 0%, $primaryColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -o-linear-gradient(left, $primaryColor1 0%, $primaryColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: -ms-linear-gradient(left, $primaryColor1 0%, $primaryColor1 50%, rgba(255, 255, 255, 0) 100%);
+        background: linear-gradient(to right, $primaryColor1 0%, $primaryColor1 80%, rgba(255, 255, 255, 0) 100%);
     }
 
     .delay {

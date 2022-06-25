@@ -3,7 +3,7 @@ import style from "./general.module.scss";
 /*inner components*/
 import { useState } from "react";
 /*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
+import { general } from "../../../Middleware/Data/generalData";
 import { Input } from "../../../Components/Input/input";
 /*MUI*/
 import Typography from "@mui/material/Typography";
@@ -55,13 +55,21 @@ export const General = (props) => {
   /*render component*/
   return (
     <div className={style.general}>
-      <div className={style.addServer}>
+      <div className={style.addLang}>
         <Input
           type="username"
           align="right"
           direction="rtl"
           id={0}
-          label="نام دوره آموزشی"
+          label="نام زبان"
+          width="25%"
+        />
+        <Input
+          type="username"
+          align="right"
+          direction="rtl"
+          id={1}
+          label="میزان تسلط به زبان"
           width="25%"
         />
         <Input
@@ -69,19 +77,7 @@ export const General = (props) => {
           align="left"
           direction="ltr"
           id={1}
-          label="وبسایت دوره"
-          width="25%"
-        />
-        <Input
-          onchange={(e, newValue) => {
-            setTime(newValue);
-          }}
-          type="number"
-          align="center"
-          direction="ltr"
-          id={2}
-          value={time}
-          label="مدت زمان دوره"
+          label="کد مدرک زبان"
           width="25%"
         />
         <Button
@@ -89,7 +85,7 @@ export const General = (props) => {
           variant="contained"
           endIcon={<AddIcon />}
         >
-          افزودن دوره
+          افزودن زبان
         </Button>
       </div>
       <div className={style.table}>
@@ -102,13 +98,13 @@ export const General = (props) => {
                     انتخاب
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={100}>
-                    مدت زمان دوره
+                    کد مدرک زبان
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={100}>
-                    وبسایت دوره
+                    میزان تسلط
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={200}>
-                    نام دوره آموزشی
+                    نام زبان
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>
                     #
@@ -116,19 +112,19 @@ export const General = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {courses.map((course, index) => (
+                {general.lang.map((lang, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox {...label} />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
+                      <h1>{lang.certificateCode}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
+                      <h1>{lang.ability}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
+                      <h1>{lang.langName}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -145,7 +141,7 @@ export const General = (props) => {
             <SaveOutlinedIcon className={style.icon} />
           </Button>
           <Button className={style.remove} variant="contained">
-            <span>حذف دوره</span>
+            <span>حذف زبان</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
         </div>

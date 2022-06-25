@@ -12,7 +12,7 @@
         width: 50%;
         padding: 50px;
         height: 100vh;
-        background-color: $mainBrightBox;
+        background-color: whitesmoke;
 
         .loginForm {
             display: flex;
@@ -24,7 +24,7 @@
                 margin: auto;
                 margin-bottom: 0;
                 font-size: $fontSize11;
-                color: $mainRedColor1;
+                color: $secondaryColor1;
             }
 
             h1 {
@@ -47,8 +47,7 @@
                 padding: 10px;
                 font-size: $fontSize3;
                 font-family: titleFont;
-                background-color: $mainRedColor1;
-                color: $mainBlueColor3;
+                background-color: $secondaryColor1;
 
                 &:hover {
                     background-color: $mainRedColor2;
@@ -58,6 +57,7 @@
             .forgetPass {
                 font-size: $fontSize2;
                 width: fit-content;
+                color: $primaryColor2;
 
                 &:hover {
                     cursor: pointer;
@@ -72,7 +72,7 @@
         margin: auto;
         width: 50%;
         height: 100vh;
-        background-color: $mainBlueColor1;
+        background-color: $primaryColor1;
 
         .logo {
             display: flex;
@@ -126,7 +126,7 @@
 
                 span {
                     margin-right: 20px;
-                    color: $mainRedColor1;
+                    color: $secondaryColor1;
                     font-size: $fontSize2;
                     margin: auto;
                     font-weight: bold;

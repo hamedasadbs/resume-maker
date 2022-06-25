@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 export const SkillsPage = (props) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(3);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -58,7 +58,11 @@ export const SkillsPage = (props) => {
   /*render component*/
   return (
     <article className={style.skillsPage}>
-      <Header title={props.title} setDashboard={props.setDashboard} />
+      <Header
+        title={props.title}
+        subTitle={value}
+        setDashboard={props.setDashboard}
+      />
       <h1 className={style.title}>داشبورد/{props.title}</h1>
       <main>
         <div className={style.information}>
@@ -70,32 +74,31 @@ export const SkillsPage = (props) => {
           >
             <Tab
               className={style.tab}
-              label="توانایی های عمومی"
-              {...a11yProps(0)}
+              label="تکنولوژی های کاری"
+              {...a11yProps(3)}
             />
+            <Tab className={style.tab} label="علایق پژوهشی" {...a11yProps(2)} />
             <Tab
               className={style.tab}
               label="مهارت ها و توانمندی ها"
               {...a11yProps(1)}
             />
-            <Tab className={style.tab} label="علایق پژوهشی" {...a11yProps(2)} />
-
             <Tab
               className={style.tab}
-              label="تکنولوژی های کاری"
-              {...a11yProps(3)}
+              label="توانایی های عمومی"
+              {...a11yProps(0)}
             />
           </Tabs>
-          <TabPanel className={style.tabContent} value={value} index={0}>
+          <TabPanel className={style.tabContent} value={value} index={3}>
             <General />
           </TabPanel>
-          <TabPanel className={style.tabContent} value={value} index={1}>
+          <TabPanel className={style.tabContent} value={value} index={2}>
             <Skills />
           </TabPanel>
-          <TabPanel className={style.tabContent} value={value} index={2}>
+          <TabPanel className={style.tabContent} value={value} index={1}>
             <Technology />
           </TabPanel>
-          <TabPanel className={style.tabContent} value={value} index={3}>
+          <TabPanel className={style.tabContent} value={value} index={0}>
             <Interests />
           </TabPanel>
         </div>
