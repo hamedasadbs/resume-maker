@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import style from "./header.module.scss";
 import { Pulse } from "../../Components/Pulse/pulse";
+import { Link } from "react-router-dom";
 /*image*/
 import logo from "../../Assets/Images/dade-baan.png";
 /*library*/
@@ -11,6 +12,7 @@ import Button from "@mui/material/Button";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 export const Header = (props) => {
   const [subTitle, setSubTitle] = useState(null);
@@ -49,13 +51,28 @@ export const Header = (props) => {
           <span>دریافت فایل رزومه</span>
           <CloudDownloadOutlinedIcon className={style.icon} />
         </Button>
-        <Button
-          className={`${style.button} ${style.outlined}`}
-          variant="outlined"
-        >
-          <span>مشاهده رزومه</span>
-          <RemoveRedEyeOutlinedIcon className={style.icon} />
-        </Button>
+        {window.location.href === "http://localhost:3000/preview" ? (
+          <Link to="/personal_info" className={style.link}>
+            <Button
+              className={`${style.button} ${style.outlined}`}
+              variant="outlined"
+            >
+              <span>صفحه اصلی</span>
+              <HomeOutlinedIcon className={style.icon} />
+            </Button>
+          </Link>
+        ) : (
+          <Link to="/preview" className={style.link}>
+            <Button
+              className={`${style.button} ${style.outlined}`}
+              variant="outlined"
+            >
+              <span>مشاهده رزومه</span>
+              <RemoveRedEyeOutlinedIcon className={style.icon} />
+            </Button>
+          </Link>
+        )}
+
         <Button
           onClick={logoutHandler}
           className={`${style.button} ${style.texted}`}

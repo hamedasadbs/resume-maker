@@ -13,6 +13,7 @@ import { EducationPage } from "./Pages/EducationPage/educationPage";
 import { SkillsPage } from "./Pages/SkillsPage/skillsPage";
 import { LoginPage } from "./Pages/LoginPage/loginPage";
 import { LoadingPage } from "./Pages/LoadingPage/loadingPage";
+import { PreviewPage } from "./Pages/PreviewPage/previewPage";
 /*css*/
 import style from "./app.module.scss";
 /*library*/
@@ -57,6 +58,9 @@ export const App = () => {
                 </Route>
                 <Route path="/skills">
                   <SkillsPage setDashboard={setDashboard} title={dashboard} />
+                </Route>
+                <Route path="/preview">
+                  <PreviewPage setDashboard={setDashboard} title={dashboard} />
                 </Route>
                 <Route path="/">
                   <Redirect to="/personal_info" />
