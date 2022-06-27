@@ -11,13 +11,13 @@ import { Input } from "../../Components/Input/input";
 import Button from "@mui/material/Button";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
+import { education } from "../../Middleware/Data/educationData";
+
 export const EducationPage = (props) => {
-  const [university, setUniversity] = useState("دانشگاه محقق اردبیلی");
-  const [grade, setGrade] = useState("کارشناس مهندسی نرم افزار");
-  const [subject, setSubject] = useState(
-    "طراحی و پیاده¬سازی داشبورد مدیریتی سازگار با گذرگاه سرویس سازمانی (ESB) تحت استاندارد IEC61968"
-  );
-  const [date, setDate] = useState("1396-1400");
+  const [university, setUniversity] = useState(education[0].university);
+  const [grade, setGrade] = useState(education[0].lastGrade);
+  const [subject, setSubject] = useState(education[0].thesis);
+  const [date, setDate] = useState(education[0].year);
   /*render component*/
   return (
     <article className={style.educationPage}>

@@ -3,7 +3,7 @@ import style from "./skills.module.scss";
 /*inner components*/
 import { useState } from "react";
 /*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
+import { skills } from "../../../Middleware/Data/skillsData";
 import { Input } from "../../../Components/Input/input";
 /*MUI*/
 import Typography from "@mui/material/Typography";
@@ -22,7 +22,7 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const Skills = (props) => {
-  const [time, setTime] = useState(0);
+  const [skill, setSkill] = useState(null);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -57,32 +57,16 @@ export const Skills = (props) => {
     <div className={style.skills}>
       <div className={style.addServer}>
         <Input
+          onchange={(e, newValue) => {
+            setSkill(newValue);
+          }}
           type="username"
           align="right"
           direction="rtl"
           id={0}
-          label="نام دوره آموزشی"
-          width="25%"
-        />
-        <Input
-          type="username"
-          align="left"
-          direction="ltr"
-          id={1}
-          label="وبسایت دوره"
-          width="25%"
-        />
-        <Input
-          onchange={(e, newValue) => {
-            setTime(newValue);
-          }}
-          type="number"
-          align="center"
-          direction="ltr"
-          id={2}
-          value={time}
-          label="مدت زمان دوره"
-          width="25%"
+          value={skill}
+          label="مهارت"
+          width="100%"
         />
         <Button
           className={style.save}
@@ -101,14 +85,8 @@ export const Skills = (props) => {
                   <StyledTableCell className={style.tbl} width={100}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
-                    مدت زمان دوره
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
-                    وبسایت دوره
-                  </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={200}>
-                    نام دوره آموزشی
+                    توضیحات
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>
                     #
@@ -116,19 +94,13 @@ export const Skills = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {courses.map((course, index) => (
+                {skills.map((skill, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox {...label} />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
+                      <h1>{skill}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -145,7 +117,7 @@ export const Skills = (props) => {
             <SaveOutlinedIcon className={style.icon} />
           </Button>
           <Button className={style.remove} variant="contained">
-            <span>حذف دوره</span>
+            <span>حذف مهارت</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
         </div>

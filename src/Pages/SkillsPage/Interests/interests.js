@@ -3,7 +3,7 @@ import style from "./interests.module.scss";
 /*inner components*/
 import { useState } from "react";
 /*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
+import { interests } from "../../../Middleware/Data/interestData";
 import { Input } from "../../../Components/Input/input";
 /*MUI*/
 import Typography from "@mui/material/Typography";
@@ -61,28 +61,8 @@ export const Interests = (props) => {
           align="right"
           direction="rtl"
           id={0}
-          label="نام دوره آموزشی"
-          width="25%"
-        />
-        <Input
-          type="username"
-          align="left"
-          direction="ltr"
-          id={1}
-          label="وبسایت دوره"
-          width="25%"
-        />
-        <Input
-          onchange={(e, newValue) => {
-            setTime(newValue);
-          }}
-          type="number"
-          align="center"
-          direction="ltr"
-          id={2}
-          value={time}
-          label="مدت زمان دوره"
-          width="25%"
+          label="علاقه پژوهشی"
+          width="100%"
         />
         <Button
           className={style.save}
@@ -101,14 +81,8 @@ export const Interests = (props) => {
                   <StyledTableCell className={style.tbl} width={100}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
-                    مدت زمان دوره
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
-                    وبسایت دوره
-                  </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={200}>
-                    نام دوره آموزشی
+                    علایق پژوهشی
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>
                     #
@@ -116,19 +90,13 @@ export const Interests = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {courses.map((course, index) => (
+                {interests.map((interest, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox {...label} />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
+                      <h1>{interest}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -145,7 +113,7 @@ export const Interests = (props) => {
             <SaveOutlinedIcon className={style.icon} />
           </Button>
           <Button className={style.remove} variant="contained">
-            <span>حذف دوره</span>
+            <span>حذف علایق پژوهشی</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
         </div>

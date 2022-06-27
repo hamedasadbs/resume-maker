@@ -1,12 +1,34 @@
 export const users = [
   {
-    fname: "علی",
-    lname: "علیپور",
+    fname: "حامد",
+    lname: "اسداللهی",
     username: "admin",
-    email: "alialipour1975@yahoo.com",
+    city: "اردبیل",
+    state: "اردبیل",
+    mobile: "09338599015",
+    email: "h_asadollahi@uma.ac.ir",
+    website: "www.multiav.cert.ir",
     password: "admin",
+    contacts: [
+      {
+        label: "موبایل",
+        value: "09338599015",
+      },
+      {
+        label: "ایمیل",
+        value: "h_asadollahi@uma.ac.ir",
+      },
+      {
+        label: "محل سکونت",
+        value: "استان اردبیل/شهر اربیل",
+      },
+      {
+        label: "آدرس وبسایت",
+        value: "www.multiav.cert.ir",
+      },
+    ],
     desc: "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.",
-    role: "admin",
+    role: "کارشناس توسعه دهنده فرانت اند",
   },
   {
     fname: "رضا",

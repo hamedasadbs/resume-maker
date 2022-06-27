@@ -5,9 +5,9 @@
   "dependencies": {
     "@devexpress/dx-react-chart-bootstrap4": "^3.0.0",
     "@devexpress/dx-react-chart-material-ui": "^3.0.0",
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.4.0",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.8.5",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

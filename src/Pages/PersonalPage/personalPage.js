@@ -14,15 +14,17 @@ import Button from "@mui/material/Button";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 
+import { users } from "../../Middleware/Data/profileData";
+
 export const PersonalPage = (props) => {
-  const [fname, setFname] = useState("حامد");
-  const [lname, setLname] = useState("اسداللهی");
-  const [title, setTitle] = useState("کارشناس توسعه دهنده فرانت اند");
-  const [city, setCity] = useState("اردبیل");
-  const [state, setState] = useState("اردبیل");
-  const [mobile, setMobile] = useState("09338599015");
-  const [email, setEmail] = useState("h_asadollahi@uma.ac.ir");
-  const [website, setWebsite] = useState("www.multiav.cert.ir");
+  const [fname, setFname] = useState(users[0].fname);
+  const [lname, setLname] = useState(users[0].lname);
+  const [title, setTitle] = useState(users[0].role);
+  const [city, setCity] = useState(users[0].city);
+  const [state, setState] = useState(users[0].state);
+  const [mobile, setMobile] = useState(users[0].mobile);
+  const [email, setEmail] = useState(users[0].email);
+  const [website, setWebsite] = useState(users[0].website);
   /*render component*/
   return (
     <article className={style.personalPage}>

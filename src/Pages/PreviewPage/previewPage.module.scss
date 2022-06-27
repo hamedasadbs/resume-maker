@@ -7,18 +7,270 @@
     justify-content: flex-start;
     background-color: whitesmoke;
     min-height: 100vh;
-    margin: 10px auto;
+    margin: 0px auto;
 
     main {
         width: 800px;
-        height: 1200px;
-        margin: 20px auto;
+        margin: 40px auto;
         background-color: white;
         box-shadow: $brightBoxShadow1;
         border-radius: 5px;
         display: flex;
         flex-direction: row-reverse;
         flex-wrap: wrap;
-        padding: 30px 0;
+
+        .topPage {
+            display: flex;
+            flex-direction: row-reverse;
+
+            aside {
+                width: 30%;
+                background-color: lightgray;
+                display: flex;
+                flex-direction: column;
+
+                img {
+                    width: 180px;
+                    border-radius: 50%;
+                    margin: 30px auto;
+                }
+
+                .profile {
+                    margin: auto;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                    }
+
+                    p {
+                        font-size: 12px;
+                        direction: rtl;
+                        text-align: right;
+                        width: 100%;
+                        padding: 0 10px;
+                    }
+                }
+
+                .contactInfo {
+                    margin: 40px auto;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                    }
+
+                    span {
+                        display: flex;
+                        margin: 5px auto;
+                        width: 100%;
+                        padding: 0 10px;
+
+                        .icon {
+                            font-size: 30px;
+                            margin: auto;
+                        }
+
+                        .contact {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            padding-right: 20px;
+
+                            label,
+                            h1 {
+                                font-size: 15px;
+                                direction: rtl;
+                                text-align: right;
+                                width: 100%;
+                                font-family: titleFont;
+                            }
+                        }
+                    }
+                }
+
+                .interests {
+                    margin: 40px auto;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                    }
+
+                    span {
+                        margin: 5px auto;
+                        direction: rtl;
+                        text-align: right;
+                        font-family: titleFont;
+                        width: 100%;
+                        font-size: 15px;
+                        padding: 0 10px;
+                    }
+                }
+
+                .lang {
+                    margin: 40px auto;
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                    }
+
+                    label,
+                    h1 {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: right;
+                        width: 100%;
+                        font-family: titleFont;
+                    }
+
+                    h1 {
+                        direction: ltr;
+                        text-align: left;
+                    }
+                }
+            }
+
+            article {
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+
+                .name {
+                    width: 100%;
+                    display: flex;
+                    background-color: lightgray;
+                    padding: 20px 0;
+
+                    h1 {
+                        margin: auto;
+                        text-align: center;
+                        font-family: titleFont;
+                        font-size: 20px;
+                    }
+                }
+
+                .education {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 20px auto;
+                    margin-top: 40px;
+                    width: 80%;
+                    border: 1px solid lightgray;
+                    padding: 5px;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                        margin: auto;
+                    }
+
+                    span {
+                        width: 100%;
+                        font-size: 15px;
+                        margin: 5px auto;
+                        text-align: right;
+                        direction: rtl;
+                        font-family: titleFont;
+                    }
+                }
+
+                .courses {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 20px auto;
+                    width: 80%;
+                    border: 1px solid lightgray;
+                    padding: 5px;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                        margin: auto;
+                    }
+
+                    span {
+                        width: 100%;
+                        font-size: 15px;
+                        margin: 5px auto;
+                        text-align: right;
+                        direction: rtl;
+                        font-family: titleFont;
+                    }
+                }
+
+                .skills {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 20px auto;
+                    width: 80%;
+                    border: 1px solid lightgray;
+                    padding: 5px;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                        margin: auto;
+                    }
+
+                    span {
+                        width: 100%;
+                        font-size: 15px;
+                        margin: 5px auto;
+                        text-align: right;
+                        direction: rtl;
+                        font-family: titleFont;
+                    }
+                }
+            }
+        }
     }
 }
