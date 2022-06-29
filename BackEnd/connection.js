@@ -29,4 +29,8 @@ app.get("/", function (req, res) {
   res.send({ username: username, password: password });
 });
 
+app.get("/profile", function (req, res) {
+  res.send("testing profile");
+});
+
 app.listen(8080);

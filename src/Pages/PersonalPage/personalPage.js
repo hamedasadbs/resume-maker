@@ -1,5 +1,6 @@
 /*inner components*/
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 /*css*/
 import style from "./personalPage.module.scss";
 /*child components*/
@@ -25,6 +26,13 @@ export const PersonalPage = (props) => {
   const [mobile, setMobile] = useState(users[0].mobile);
   const [email, setEmail] = useState(users[0].email);
   const [website, setWebsite] = useState(users[0].website);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/profile").then((res) => {
+      alert(res.data);
+    });
+  }, []);
+
   /*render component*/
   return (
     <article className={style.personalPage}>
