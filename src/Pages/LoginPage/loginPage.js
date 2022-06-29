@@ -21,6 +21,7 @@ import logo from "../../Assets/Images/dade-baan-dark.png";
 
 export const LoginPage = () => {
   let loggedIn = false;
+  let formData = new FormData();
   const [user, setUser] = useState(
     localStorage.getItem("username") ? localStorage.getItem("username") : ""
   );
@@ -31,34 +32,43 @@ export const LoginPage = () => {
 
   const [userErr, setUserErr] = useState(false);
   const [passErr, setPassErr] = useState(false);
+
   /*login*/
   const loginHandler = () => {
-    axios
-      .get("http://localhost:8080")
-      .then((res) => {
-        if (user === "") setUserErr(true);
-        if (pass === "") setPassErr(true);
+    formData.append("username", user);
+    formData.append("password", pass);
 
-        if (user !== "" && pass !== "") {
-          setUserErr(false);
-          setPassErr(false);
-          for (let i = 0; i < users.length; i++) {
-            if (user === res.data.username && pass === res.data.password) {
-              loggedIn = true;
-              if (rmCheck) {
-                localStorage.setItem("username", res.data.username);
-                localStorage.setItem("password", res.data.password);
-              }
-              cookie.setCookie("login", true, 300);
-              cookie.setCookie("username", res.data.username, 300);
-              cookie.setCookie("password", res.data.password, 300);
-              window.location.href = "/";
-            }
-          }
-          if (!loggedIn) {
-            alert("نام کاربری یا رمز وارد شده اشتباه است");
-          }
-        }
+    axios({
+      method: "POST",
+      url: "http://localhost:8080/",
+      data: { name: "hamed", age: 23 },
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+      .then((res) => {
+        console.log(res);
+        // if (user === "") setUserErr(true);
+        // if (pass === "") setPassErr(true);
+
+        // if (user !== "" && pass !== "") {
+        //   setUserErr(false);
+        //   setPassErr(false);
+        //   for (let i = 0; i < users.length; i++) {
+        //     if (user === res.data.username && pass === res.data.password) {
+        //       loggedIn = true;
+        //       if (rmCheck) {
+        //         localStorage.setItem("username", res.data.username);
+        //         localStorage.setItem("password", res.data.password);
+        //       }
+        //       cookie.setCookie("login", true, 300);
+        //       cookie.setCookie("username", res.data.username, 300);
+        //       cookie.setCookie("password", res.data.password, 300);
+        //       window.location.href = "/";
+        //     }
+        //   }
+        //   if (!loggedIn) {
+        //     alert("نام کاربری یا رمز وارد شده اشتباه است");
+        //   }
+        // }
       })
       .catch((err) => {
         throw err;

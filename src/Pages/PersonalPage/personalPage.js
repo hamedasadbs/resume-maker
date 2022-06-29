@@ -18,18 +18,26 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import { users } from "../../Middleware/Data/profileData";
 
 export const PersonalPage = (props) => {
-  const [fname, setFname] = useState(users[0].fname);
-  const [lname, setLname] = useState(users[0].lname);
-  const [title, setTitle] = useState(users[0].role);
-  const [city, setCity] = useState(users[0].city);
-  const [state, setState] = useState(users[0].state);
-  const [mobile, setMobile] = useState(users[0].mobile);
-  const [email, setEmail] = useState(users[0].email);
-  const [website, setWebsite] = useState(users[0].website);
+  const [fname, setFname] = useState(null);
+  const [lname, setLname] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [city, setCity] = useState(null);
+  const [state, setState] = useState(null);
+  const [mobile, setMobile] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [website, setWebsite] = useState(null);
 
   useEffect(() => {
     axios.get("http://localhost:8080/profile").then((res) => {
-      alert(res.data);
+      console.log(res.data);
+      setFname(res.data.fname);
+      setLname(res.data.lname);
+      setTitle(res.data.title);
+      setCity(res.data.city);
+      setState(res.data.state);
+      setMobile(res.data.mobile);
+      setEmail(res.data.email);
+      setWebsite(res.data.website);
     });
   }, []);
 
