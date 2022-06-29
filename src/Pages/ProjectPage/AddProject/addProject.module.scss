@@ -1,6 +1,6 @@
 @import '../../../index.module.scss';
 
-.general {
+.addProject {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -9,7 +9,7 @@
     border-radius: 5px;
     padding: 25px;
 
-    .addLang {
+    .addProjectForm {
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
@@ -17,7 +17,7 @@
 
         .save {
             margin: auto;
-            width: 160px;
+            width: 140px;
             padding: 10px 0;
             font-size: $fontSize2;
             font-family: titleFont;
@@ -83,7 +83,7 @@
             margin: auto;
             margin-left: 10px;
             display: flex;
-            background-color: $mainRedColor3;
+            background-color: $secondaryColor2;
             padding: 5px 25px;
 
             span {
@@ -101,7 +101,7 @@
         }
     }
 
-    .addLang {
+    .addProjectForm {
         display: flex;
         width: 100%;
         margin: 10px auto;
@@ -113,10 +113,10 @@
 }
 
 @media only screen and (max-width: $tablet_screen) {
-    .general {
+    .addProject {
         margin-top: 20px;
 
-        .addLang {
+        .addProjectForm {
             flex-wrap: wrap;
 
             select {

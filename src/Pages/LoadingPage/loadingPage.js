@@ -9,7 +9,7 @@ export const LoadingPage = (props) => {
     <div className={style.loading}>
       <ReactLoading
         className={style.loadBar}
-        type="bars"
+        type="spinningBubbles"
         color={props.darkMode ? "#EEEEEE" : "rgb(99, 99, 99)"}
       />
       <h1 className={style.loadTitle}>...در حال بارگذاری</h1>

@@ -1,9 +1,9 @@
 /*css*/
-import style from "./technology.module.scss";
+import style from "./addProject.module.scss";
 /*inner components*/
 import { useState } from "react";
 /*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
+import { projects } from "../../../Middleware/Data/projectData";
 import { Input } from "../../../Components/Input/input";
 /*MUI*/
 import Typography from "@mui/material/Typography";
@@ -21,8 +21,11 @@ import Checkbox from "@mui/material/Checkbox";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-export const Technology = (props) => {
-  const [time, setTime] = useState(0);
+export const AddProject = (props) => {
+  const [title, setTitle] = useState(null);
+  const [date, setDate] = useState(null);
+  const [role, setRole] = useState(null);
+  const [desc, setDesc] = useState(null);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -54,42 +57,62 @@ export const Technology = (props) => {
   }));
   /*render component*/
   return (
-    <div className={style.technology}>
-      <div className={style.addTechnology}>
+    <div className={style.addProject}>
+      <div className={style.addProjectForm}>
         <Input
-          type="username"
+          onchange={(e, newValue) => {
+            setTitle(newValue);
+          }}
+          type="text"
           align="right"
           direction="rtl"
           id={0}
-          label="نام دوره آموزشی"
-          width="25%"
-        />
-        <Input
-          type="username"
-          align="left"
-          direction="ltr"
-          id={1}
-          label="وبسایت دوره"
-          width="25%"
+          value={title}
+          label="عنوان پروژه"
+          width="20%"
         />
         <Input
           onchange={(e, newValue) => {
-            setTime(newValue);
+            setDate(newValue);
           }}
-          type="number"
+          type="text"
+          align="left"
+          direction="ltr"
+          id={1}
+          value={date}
+          label="تاریخ انجام پروژه"
+          width="20%"
+        />
+        <Input
+          onchange={(e, newValue) => {
+            setRole(newValue);
+          }}
+          type="text"
           align="center"
           direction="ltr"
           id={2}
-          value={time}
-          label="مدت زمان دوره"
-          width="25%"
+          value={role}
+          label="نقش در پروژه"
+          width="20%"
+        />
+        <Input
+          onchange={(e, newValue) => {
+            setDesc(newValue);
+          }}
+          type="text"
+          align="right"
+          direction="rtl"
+          id={3}
+          value={desc}
+          label="توضیحات پروژه"
+          width="20%"
         />
         <Button
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
         >
-          افزودن تکنولوژی
+          افزودن پروژه
         </Button>
       </div>
       <div className={style.table}>
@@ -101,14 +124,17 @@ export const Technology = (props) => {
                   <StyledTableCell className={style.tbl} width={10}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={150}>
-                    مدت زمان دوره
+                  <StyledTableCell className={style.tbl} width={300}>
+                    توضیحات پروژه
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={150}>
-                    وبسایت دوره
+                    نقش در پروژه
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={200}>
-                    نام دوره آموزشی
+                    بازه زمانی انجام پروژه
+                  </StyledTableCell>
+                  <StyledTableCell className={style.tbl} width={150}>
+                    عنوان پروژه
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>
                     #
@@ -116,19 +142,22 @@ export const Technology = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {courses.map((course, index) => (
+                {projects.map((project, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox {...label} />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
+                      <h1>{project.desc}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
+                      <h1>{project.role}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
+                      <h1 style={{ direction: "ltr" }}>{project.date}</h1>
+                    </StyledTableCell>
+                    <StyledTableCell className={style.tbl}>
+                      <h1>{project.title}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -145,7 +174,7 @@ export const Technology = (props) => {
             <SaveOutlinedIcon className={style.icon} />
           </Button>
           <Button className={style.remove} variant="contained">
-            <span>حذف تکنولوژی</span>
+            <span>حذف پروژه</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
         </div>

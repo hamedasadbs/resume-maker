@@ -55,7 +55,7 @@ export const Skills = (props) => {
   /*render component*/
   return (
     <div className={style.skills}>
-      <div className={style.addServer}>
+      <div className={style.addSkill}>
         <Input
           onchange={(e, newValue) => {
             setSkill(newValue);
@@ -73,7 +73,7 @@ export const Skills = (props) => {
           variant="contained"
           endIcon={<AddIcon />}
         >
-          افزودن دوره
+          افزودن مهارت
         </Button>
       </div>
       <div className={style.table}>
@@ -82,10 +82,10 @@ export const Skills = (props) => {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={10}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={200}>
+                  <StyledTableCell className={style.tbl}>
                     توضیحات
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>

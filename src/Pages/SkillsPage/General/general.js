@@ -1,7 +1,6 @@
 /*css*/
 import style from "./general.module.scss";
 /*inner components*/
-import { useState } from "react";
 /*library*/
 import { general } from "../../../Middleware/Data/generalData";
 import { Input } from "../../../Components/Input/input";
@@ -22,7 +21,6 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const General = (props) => {
-  const [time, setTime] = useState(0);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -94,16 +92,16 @@ export const General = (props) => {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={10}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={200}>
                     کد مدرک زبان
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={150}>
                     میزان تسلط
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={200}>
+                  <StyledTableCell className={style.tbl} width={150}>
                     نام زبان
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>

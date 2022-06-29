@@ -98,16 +98,16 @@ export const AddCourse = (props) => {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={10}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={150}>
                     مدت زمان دوره
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={100}>
+                  <StyledTableCell className={style.tbl} width={300}>
                     وبسایت دوره
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={200}>
+                  <StyledTableCell className={style.tbl} width={300}>
                     نام دوره آموزشی
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={10}>

@@ -9,7 +9,7 @@
     border-radius: 5px;
     padding: 25px;
 
-    .addServer {
+    .addInterest {
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
@@ -17,10 +17,12 @@
 
         .save {
             margin: auto;
-            width: 160px;
+            padding: 10px 10px;
+            margin-right: 10px;
+            width: 250px;
             font-size: $fontSize2;
             font-family: titleFont;
-            background-color: $mainBlueColor2;
+            background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
         }
 
         .addField {
@@ -49,12 +51,6 @@
             }
         }
 
-        .icon {
-            color: $mainBlueColor2;
-            font-size: $fontSize4;
-            transition: all 0.5s;
-        }
-
         .UserLogo {
             width: 30px;
         }
@@ -68,20 +64,13 @@
         .save {
             margin: auto 0;
             display: flex;
-            background-color: $mainRedColor1;
-            color: $mainBlueColor2;
+            background-color: $secondaryColor1;
             padding: 5px 25px;
 
             span {
                 font-size: $fontSize2;
                 font-family: titleFont;
                 margin: auto;
-            }
-
-            .icon {
-                margin: auto;
-                margin-left: 5px;
-                font-size: $fontSize3;
             }
         }
 
@@ -107,7 +96,7 @@
         }
     }
 
-    .addServer {
+    .addInterest {
         display: flex;
         width: 100%;
         margin: 10px auto;
@@ -122,7 +111,7 @@
     .interests {
         margin-top: 20px;
 
-        .addServer {
+        .addInterest {
             flex-wrap: wrap;
 
             select {

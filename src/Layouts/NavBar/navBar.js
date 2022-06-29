@@ -11,14 +11,16 @@ import LocalLibraryOutlinedIcon from "@mui/icons-material/LocalLibraryOutlined";
 import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
 
 import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
+
 import AttachmentOutlinedIcon from "@mui/icons-material/AttachmentOutlined";
 import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
 
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import PersonIcon from "@mui/icons-material/Person";
 
-import IntegrationInstructionsOutlinedIcon from "@mui/icons-material/IntegrationInstructionsOutlined";
-import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
+import HandymanOutlinedIcon from "@mui/icons-material/HandymanOutlined";
+import HandymanIcon from "@mui/icons-material/Handyman";
 
 export const NavBar = (props) => {
   /*variables*/
@@ -124,9 +126,9 @@ export const NavBar = (props) => {
         >
           <span>مهارت ها</span>
           {location.pathname === "/skills" ? (
-            <IntegrationInstructionsIcon className={style.icon} />
+            <HandymanIcon className={style.icon} />
           ) : (
-            <IntegrationInstructionsOutlinedIcon className={style.icon} />
+            <HandymanOutlinedIcon className={style.icon} />
           )}
         </Link>
         <Link
@@ -136,7 +138,11 @@ export const NavBar = (props) => {
           to="/projects"
         >
           <span>پروژه ها</span>
-          <AccountTreeOutlinedIcon className={style.icon} />
+          {location.pathname === "/projects" ? (
+            <AccountTreeIcon className={style.icon} />
+          ) : (
+            <AccountTreeOutlinedIcon className={style.icon} />
+          )}
         </Link>
         <Link
           id="لینک ها"

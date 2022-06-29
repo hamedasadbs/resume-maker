@@ -44,7 +44,7 @@ export const Input = (props) => {
     inputContainer.current.style.width = props.width;
     input.current.style.textAlign = props.align;
     input.current.style.direction = props.direction;
-  }, []);
+  }, [props]);
 
   useOutsideAlerter(input.current);
   /*render component*/

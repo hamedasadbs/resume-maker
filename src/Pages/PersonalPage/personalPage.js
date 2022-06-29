@@ -29,7 +29,6 @@ export const PersonalPage = (props) => {
   return (
     <article className={style.personalPage}>
       <Header title={props.title} setDashboard={props.setDashboard} />
-      <h1 className={style.title}>داشبورد/{props.title}</h1>
       <main>
         <div className={style.information}>
           <div className={style.profileImage}>

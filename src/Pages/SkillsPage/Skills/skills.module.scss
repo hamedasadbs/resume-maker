@@ -8,7 +8,7 @@
     border-radius: 5px;
     padding: 25px;
 
-    .addServer {
+    .addSkill {
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
@@ -16,10 +16,12 @@
 
         .save {
             margin: auto;
+            padding: 10px 0;
+            margin-right: 10px;
             width: 160px;
             font-size: $fontSize2;
             font-family: titleFont;
-            background-color: $mainBlueColor2;
+            background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
         }
 
         .addField {
@@ -48,12 +50,6 @@
             }
         }
 
-        .icon {
-            color: $mainBlueColor2;
-            font-size: $fontSize4;
-            transition: all 0.5s;
-        }
-
         .UserLogo {
             width: 30px;
         }
@@ -67,8 +63,7 @@
         .save {
             margin: auto 0;
             display: flex;
-            background-color: $mainRedColor1;
-            color: $mainBlueColor2;
+            background-color: $secondaryColor1;
             padding: 5px 25px;
 
             span {
@@ -106,7 +101,7 @@
         }
     }
 
-    .addServer {
+    .addSkill {
         display: flex;
         width: 100%;
         margin: 10px auto;
@@ -121,7 +116,7 @@
     .skills {
         margin-top: 20px;
 
-        .addServer {
+        .addSkill {
             flex-wrap: wrap;
 
             select {

@@ -8,20 +8,17 @@
     background-color: whitesmoke;
     min-height: 100vh;
     margin: 10px auto;
-
-    .title {
-        display: none;
-    }
+    padding-bottom: 20px;
 
     main {
-        width: 70%;
+        width: 80%;
         display: flex;
         margin: auto;
         margin-top: 50px;
 
         .information {
             width: 100%;
-            background-color: $mainBrightBox;
+            background-color: white;
             box-shadow: $brightBoxShadow1;
             border-radius: 5px;
             display: flex;
@@ -47,7 +44,6 @@
                 .button {
                     margin: auto 5px;
                     display: flex;
-                    background-color: $primaryColor2;
                     background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
 
                     span {
@@ -96,16 +92,5 @@
 @media only screen and (max-width: 1060px) {
     .personalPage {
         padding-right: 70px;
-    }
-}
-
-@media only screen and (max-width: $tablet_screen) {
-    .personalPage {
-        .title {
-            display: block;
-            margin: 20px auto;
-            margin-right: 20px;
-            font-size: $fontSize2_5;
-        }
     }
 }

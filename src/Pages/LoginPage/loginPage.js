@@ -5,6 +5,7 @@ import { Pulse } from "./Pulse/pulse";
 import { users } from "../../Middleware/Data/profileData";
 /*inner components*/
 import { useState } from "react";
+import axios from "axios";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
 /*MUI*/
@@ -32,30 +33,36 @@ export const LoginPage = () => {
   const [passErr, setPassErr] = useState(false);
   /*login*/
   const loginHandler = () => {
-    if (user === "") setUserErr(true);
-    if (pass === "") setPassErr(true);
+    axios
+      .get("http://localhost:8080")
+      .then((res) => {
+        if (user === "") setUserErr(true);
+        if (pass === "") setPassErr(true);
 
-    if (user !== "" && pass !== "") {
-      setUserErr(false);
-      setPassErr(false);
-      for (let i = 0; i < users.length; i++) {
-        if (user === users[i].username && pass === users[i].password) {
-          loggedIn = true;
-          if (rmCheck) {
-            localStorage.setItem("username", users[i].username);
-            localStorage.setItem("password", users[i].password);
+        if (user !== "" && pass !== "") {
+          setUserErr(false);
+          setPassErr(false);
+          for (let i = 0; i < users.length; i++) {
+            if (user === res.data.username && pass === res.data.password) {
+              loggedIn = true;
+              if (rmCheck) {
+                localStorage.setItem("username", res.data.username);
+                localStorage.setItem("password", res.data.password);
+              }
+              cookie.setCookie("login", true, 300);
+              cookie.setCookie("username", res.data.username, 300);
+              cookie.setCookie("password", res.data.password, 300);
+              window.location.href = "/";
+            }
           }
-          cookie.setCookie("login", true, 300);
-          cookie.setCookie("username", users[i].username, 300);
-          cookie.setCookie("password", users[i].password, 300);
-          cookie.setCookie("role", users[i].role, 300);
-          window.location.href = "/";
+          if (!loggedIn) {
+            alert("نام کاربری یا رمز وارد شده اشتباه است");
+          }
         }
-      }
-      if (!loggedIn) {
-        alert("نام کاربری یا رمز وارد شده اشتباه است");
-      }
-    }
+      })
+      .catch((err) => {
+        throw err;
+      });
   };
 
   const userHandler = (e) => {

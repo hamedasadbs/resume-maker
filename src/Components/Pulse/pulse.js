@@ -1,5 +1,3 @@
-/*inner components*/
-import { useEffect } from "react";
 /*css*/
 import style from "./pulse.module.scss";
 
