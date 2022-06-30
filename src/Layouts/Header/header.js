@@ -19,8 +19,6 @@ export const Header = (props) => {
   const logoutHandler = () => {
     cookie.setCookie("login", "", -100);
     cookie.setCookie("username", "", -100);
-    cookie.setCookie("password", "", -100);
-    cookie.setCookie("role", "", -100);
     window.location.href = "/login";
   };
 

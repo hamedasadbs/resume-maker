@@ -3,24 +3,26 @@ var mysql = require("mysql");
 var express = require("express");
 var app = express();
 var cors = require("cors");
-const bp = require("body-parser");
-//use cors lib for disable cors error
-app.use(cors());
 
-app.use(bp.json());
-app.use(bp.urlencoded({ extended: true }));
-//declare login variables
-var username = "";
-var password = "";
-//declare profile variables
-var fname = "";
-var lname = "";
-var title = "";
-var city = "";
-var state = "";
-var mobile = "";
-var email = "";
-var website = "";
+var auth = require("./auth");
+
+var personalInfo = require("./personalInfo");
+
+var learningInfo = require("./learningInfo");
+
+var educationInfo = require("./educationInfo");
+
+var generalSkills = require("./generalSkills");
+//use cors lib for disable cors error
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+//for parse body of request
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 //connect to database
 var con = mysql.createConnection({
   host: "localhost",
@@ -28,41 +30,30 @@ var con = mysql.createConnection({
   password: "",
   database: "resume_maker",
 });
-con.connect(function (err) {
+//check connection
+con.connect((err) => {
   if (err) throw err;
-  console.log("Connected!");
-  //query to get user info
-  con.query("SELECT * FROM user", function (err, result, fields) {
-    if (err) throw err;
-    username = result[0].username;
-    password = result[0].password;
-    //query to get personal info
-    con.query(
-      `SELECT * FROM profile where username='${result[0].username}'`,
-      function (err, result, fields) {
-        if (err) throw err;
-        fname = result[0].fname;
-        lname = result[0].lname;
-        title = result[0].title;
-        city = result[0].city;
-        state = result[0].state;
-        mobile = result[0].mobile;
-        email = result[0].email;
-        website = result[0].website;
-      }
-    );
-  });
+  console.log("Connected to MySQL Server!");
 });
-
 //send data for authentication
-app.post("/", function (req, res) {
-  console.log("Got body:", req.body);
-  res.sendStatus(200);
-  // res.send({ username, password });
-});
+auth(app, con);
 //send data to personal_info page
-app.get("/profile", function (req, res) {
-  res.send({ fname, lname, title, city, state, mobile, email, website });
-});
+personalInfo.getData(app, con);
+//update personal info
+personalInfo.updateData(app, con);
+//send data to leaning info page
+learningInfo.getData(app, con);
+//add data to leaning_info page
+learningInfo.addData(app, con);
+//remove data to leaning info page
+learningInfo.removeData(app, con);
+//send data to education info page
+educationInfo.getData(app, con);
+//update education info
+educationInfo.updateData(app, con);
+//send data to general skills page
+generalSkills.getData(app, con);
+//add data to leaning_info page
+generalSkills.addData(app, con);
 //listen to port 8080 where database is in
 app.listen(8080);

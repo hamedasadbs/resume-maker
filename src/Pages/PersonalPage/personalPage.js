@@ -14,32 +14,56 @@ import userPhoto from "../../Assets/Images/no_photo.png";
 import Button from "@mui/material/Button";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-
-import { users } from "../../Middleware/Data/profileData";
+/*library*/
+import * as cookie from "../../Middleware/Library/cookie";
 
 export const PersonalPage = (props) => {
-  const [fname, setFname] = useState(null);
-  const [lname, setLname] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [city, setCity] = useState(null);
-  const [state, setState] = useState(null);
-  const [mobile, setMobile] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [website, setWebsite] = useState(null);
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
+  const [title, setTitle] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080/profile").then((res) => {
-      console.log(res.data);
-      setFname(res.data.fname);
-      setLname(res.data.lname);
-      setTitle(res.data.title);
-      setCity(res.data.city);
-      setState(res.data.state);
-      setMobile(res.data.mobile);
-      setEmail(res.data.email);
-      setWebsite(res.data.website);
-    });
+    axios
+      .get(
+        `http://localhost:8080/profile?username=${cookie.getCookie("username")}`
+      )
+      .then((res) => {
+        setFname(res.data.fname);
+        setLname(res.data.lname);
+        setTitle(res.data.title);
+        setCity(res.data.city);
+        setState(res.data.state);
+        setMobile(res.data.mobile);
+        setEmail(res.data.email);
+        setWebsite(res.data.website);
+      });
   }, []);
+
+  const saveChangesHandler = () => {
+    axios
+      .post(`http://localhost:8080/profile`, {
+        username: cookie.getCookie("username"),
+        fname,
+        lname,
+        title,
+        city,
+        state,
+        mobile,
+        email,
+        website,
+      })
+      .then(() => {
+        alert("اطلاعات شما با موفقیت ذخیره شد");
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در ذخیره اطلاعات به وجود آمد");
+      });
+  };
 
   /*render component*/
   return (
@@ -55,8 +79,8 @@ export const PersonalPage = (props) => {
             <img src={userPhoto} alt="profile" />
           </div>
           <Input
-            onchange={(e, newValue) => {
-              setFname(newValue);
+            onchange={(e) => {
+              setFname(e.target.value);
             }}
             type="username"
             value={fname}
@@ -66,8 +90,8 @@ export const PersonalPage = (props) => {
             id={0}
           />
           <Input
-            onchange={(e, newValue) => {
-              setLname(newValue);
+            onchange={(e) => {
+              setLname(e.target.value);
             }}
             type="username"
             value={lname}
@@ -77,8 +101,8 @@ export const PersonalPage = (props) => {
             id={1}
           />
           <Input
-            onchange={(e, newValue) => {
-              setTitle(newValue);
+            onchange={(e) => {
+              setTitle(e.target.value);
             }}
             type="username"
             value={title}
@@ -88,8 +112,8 @@ export const PersonalPage = (props) => {
             id={2}
           />
           <Input
-            onchange={(e, newValue) => {
-              setCity(newValue);
+            onchange={(e) => {
+              setCity(e.target.value);
             }}
             type="username"
             value={city}
@@ -99,8 +123,8 @@ export const PersonalPage = (props) => {
             id={3}
           />
           <Input
-            onchange={(e, newValue) => {
-              setState(newValue);
+            onchange={(e) => {
+              setState(e.target.value);
             }}
             type="username"
             value={state}
@@ -110,8 +134,8 @@ export const PersonalPage = (props) => {
             id={4}
           />
           <Input
-            onchange={(e, newValue) => {
-              setMobile(newValue);
+            onchange={(e) => {
+              setMobile(e.target.value);
             }}
             type="username"
             value={mobile}
@@ -121,8 +145,8 @@ export const PersonalPage = (props) => {
             id={5}
           />
           <Input
-            onchange={(e, newValue) => {
-              setEmail(newValue);
+            onchange={(e) => {
+              setEmail(e.target.value);
             }}
             type="username"
             value={email}
@@ -132,8 +156,8 @@ export const PersonalPage = (props) => {
             id={6}
           />
           <Input
-            onchange={(e, newValue) => {
-              setWebsite(newValue);
+            onchange={(e) => {
+              setWebsite(e.target.value);
             }}
             type="username"
             value={website}
@@ -143,7 +167,11 @@ export const PersonalPage = (props) => {
             id={7}
           />
           <div className={style.saveBtnContainer}>
-            <Button className={style.save} variant="contained">
+            <Button
+              onClick={saveChangesHandler}
+              className={style.save}
+              variant="contained"
+            >
               <span>ذخیره تغییرات</span>
               <SaveOutlinedIcon className={style.icon} />
             </Button>

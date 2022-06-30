@@ -1,9 +1,12 @@
 /*css*/
 import style from "./general.module.scss";
 /*inner components*/
+import axios from "axios";
+import { useState, useEffect } from "react";
 /*library*/
 import { general } from "../../../Middleware/Data/generalData";
 import { Input } from "../../../Components/Input/input";
+import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
@@ -21,6 +24,11 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const General = (props) => {
+  const [langName, setLangName] = useState("");
+  const [ability, setAbility] = useState("");
+  const [certificateCode, setCertificateCode] = useState("");
+
+  const [dataset, setDataset] = useState([]);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,11 +58,51 @@ export const General = (props) => {
       border: 0,
     },
   }));
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/general?username=${cookie.getCookie("username")}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  const addLanguageHandler = () => {
+    if (langName === "" || ability === "" || certificateCode === "")
+      alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      axios
+        .post("http://localhost:8080/general", {
+          langName,
+          ability,
+          certificateCode,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          getDataHandler();
+        })
+        .catch(() => {
+          alert("زبان مورد نظر اضافه نشد");
+        });
+    }
+  };
   /*render component*/
   return (
     <div className={style.general}>
       <div className={style.addLang}>
         <Input
+          onchange={(e) => {
+            setLangName(e.target.value);
+          }}
           type="username"
           align="right"
           direction="rtl"
@@ -63,6 +111,9 @@ export const General = (props) => {
           width="25%"
         />
         <Input
+          onchange={(e) => {
+            setAbility(e.target.value);
+          }}
           type="username"
           align="right"
           direction="rtl"
@@ -71,14 +122,18 @@ export const General = (props) => {
           width="25%"
         />
         <Input
+          onchange={(e) => {
+            setCertificateCode(e.target.value);
+          }}
           type="username"
           align="left"
           direction="ltr"
-          id={1}
+          id={2}
           label="کد مدرک زبان"
           width="25%"
         />
         <Button
+          onClick={addLanguageHandler}
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
@@ -110,7 +165,7 @@ export const General = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {general.lang.map((lang, index) => (
+                {dataset.map((lang, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox {...label} />

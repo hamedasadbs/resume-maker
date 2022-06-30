@@ -1,10 +1,11 @@
 /*css*/
 import style from "./addCourse.module.scss";
 /*inner components*/
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 /*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
 import { Input } from "../../../Components/Input/input";
+import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
@@ -22,7 +23,14 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const AddCourse = (props) => {
+  const [name, setName] = useState("");
+  const [website, setWebsite] = useState("");
   const [time, setTime] = useState(0);
+
+  const [dataset, setDataset] = useState([]);
+
+  let checkbox = [];
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -52,11 +60,84 @@ export const AddCourse = (props) => {
       border: 0,
     },
   }));
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/learning?username=${cookie.getCookie(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  const addCourseHandler = () => {
+    if (name === "" || website === "" || time == 0 || time === "")
+      alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      axios
+        .post("http://localhost:8080/learning", {
+          name,
+          website,
+          time,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          getDataHandler();
+        })
+        .catch(() => {
+          alert("دوره مورد نظر اضافه نشد");
+        });
+    }
+  };
+
+  const checkHandler = (e) => {
+    if (e.target.checked) {
+      checkbox.push(e.target.id);
+    } else {
+      const index = checkbox.indexOf(e.target.id);
+      if (index > -1) {
+        checkbox.splice(index, 1);
+      }
+    }
+  };
+
+  const removeCourseHandler = () => {
+    if (checkbox.length) {
+      for (let i = 0; i < checkbox.length; i++) {
+        axios
+          .delete(
+            `http://localhost:8080/learning?username=${cookie.getCookie(
+              "username"
+            )}&item=${checkbox[i]}`
+          )
+          .then(() => {
+            getDataHandler();
+          })
+          .catch(() => {
+            alert("دوره مورد نظر اضافه نشد");
+          });
+      }
+    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
+  };
+
   /*render component*/
   return (
     <div className={style.addCourse}>
       <div className={style.addCourseForm}>
         <Input
+          onchange={(e) => {
+            setName(e.target.value);
+          }}
           type="username"
           align="right"
           direction="rtl"
@@ -65,6 +146,9 @@ export const AddCourse = (props) => {
           width="25%"
         />
         <Input
+          onchange={(e) => {
+            setWebsite(e.target.value);
+          }}
           type="username"
           align="left"
           direction="ltr"
@@ -73,8 +157,8 @@ export const AddCourse = (props) => {
           width="25%"
         />
         <Input
-          onchange={(e, newValue) => {
-            setTime(newValue);
+          onchange={(e) => {
+            setTime(e.target.value);
           }}
           type="number"
           align="center"
@@ -88,6 +172,7 @@ export const AddCourse = (props) => {
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
+          onClick={addCourseHandler}
         >
           افزودن دوره
         </Button>
@@ -116,19 +201,23 @@ export const AddCourse = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {courses.map((course, index) => (
+                {dataset.map((data, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
+                      <Checkbox
+                        id={data.name}
+                        onChange={checkHandler}
+                        {...label}
+                      />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
+                      <h1>{data.time} ساعت</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
+                      <h1>{data.website}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
+                      <h1>{data.name}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -140,11 +229,11 @@ export const AddCourse = (props) => {
           </TableContainer>
         </Typography>
         <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="contained">
+          <Button
+            onClick={removeCourseHandler}
+            className={style.remove}
+            variant="contained"
+          >
             <span>حذف دوره</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>

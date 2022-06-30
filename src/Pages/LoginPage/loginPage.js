@@ -2,7 +2,6 @@
 import style from "./loginPage.module.scss";
 /*child components*/
 import { Pulse } from "./Pulse/pulse";
-import { users } from "../../Middleware/Data/profileData";
 /*inner components*/
 import { useState } from "react";
 import axios from "axios";
@@ -20,8 +19,6 @@ import { Input } from "./Input/input";
 import logo from "../../Assets/Images/dade-baan-dark.png";
 
 export const LoginPage = () => {
-  let loggedIn = false;
-  let formData = new FormData();
   const [user, setUser] = useState(
     localStorage.getItem("username") ? localStorage.getItem("username") : ""
   );
@@ -35,44 +32,29 @@ export const LoginPage = () => {
 
   /*login*/
   const loginHandler = () => {
-    formData.append("username", user);
-    formData.append("password", pass);
+    if (user === "") setUserErr(true);
+    else setUserErr(false);
+    if (pass === "") setPassErr(true);
+    else setPassErr(false);
 
-    axios({
-      method: "POST",
-      url: "http://localhost:8080/",
-      data: { name: "hamed", age: 23 },
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((res) => {
-        console.log(res);
-        // if (user === "") setUserErr(true);
-        // if (pass === "") setPassErr(true);
-
-        // if (user !== "" && pass !== "") {
-        //   setUserErr(false);
-        //   setPassErr(false);
-        //   for (let i = 0; i < users.length; i++) {
-        //     if (user === res.data.username && pass === res.data.password) {
-        //       loggedIn = true;
-        //       if (rmCheck) {
-        //         localStorage.setItem("username", res.data.username);
-        //         localStorage.setItem("password", res.data.password);
-        //       }
-        //       cookie.setCookie("login", true, 300);
-        //       cookie.setCookie("username", res.data.username, 300);
-        //       cookie.setCookie("password", res.data.password, 300);
-        //       window.location.href = "/";
-        //     }
-        //   }
-        //   if (!loggedIn) {
-        //     alert("نام کاربری یا رمز وارد شده اشتباه است");
-        //   }
-        // }
-      })
-      .catch((err) => {
-        throw err;
-      });
+    if (user !== "" && pass !== "") {
+      setUserErr(false);
+      setPassErr(false);
+      axios
+        .post("http://localhost:8080/", { username: user, password: pass })
+        .then(() => {
+          if (rmCheck) {
+            localStorage.setItem("username", user);
+            localStorage.setItem("password", pass);
+          }
+          cookie.setCookie("login", true, 60);
+          cookie.setCookie("username", user, 60);
+          window.location.href = "/";
+        })
+        .catch(() => {
+          alert("نام کاربری یا رمز وارد شده اشتباه است");
+        });
+    }
   };
 
   const userHandler = (e) => {
