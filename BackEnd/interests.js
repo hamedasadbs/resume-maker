@@ -1,8 +1,8 @@
 module.exports = {
   getData: (app, con) => {
-    app.get("/general", (req, res) => {
+    app.get("/interests", (req, res) => {
       con.query(
-        `SELECT * FROM general WHERE username='${req.query.username}'`,
+        `SELECT * FROM interests WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
           if (result.length) {
@@ -19,9 +19,9 @@ module.exports = {
     });
   },
   addData: (app, con) => {
-    app.post("/general", (req, res) => {
+    app.post("/interests", (req, res) => {
       con.query(
-        `INSERT INTO general (langName,ability,certificateCode,username) VALUES ('${req.body.langName}','${req.body.ability}','${req.body.certificateCode}','${req.body.username}')`,
+        `INSERT INTO interests (interest,username) VALUES ('${req.body.interest}','${req.body.username}')`,
         (err) => {
           if (err) throw err;
           if (err) {
@@ -34,9 +34,9 @@ module.exports = {
     });
   },
   removeData: (app, con) => {
-    app.delete("/general", (req, res) => {
+    app.delete("/interests", (req, res) => {
       con.query(
-        `DELETE FROM general WHERE langName='${req.query.item}' AND username='${req.query.username}'`,
+        `DELETE FROM interests WHERE interest='${req.query.item}' AND username='${req.query.username}'`,
         (err) => {
           if (err) throw err;
           if (err) {

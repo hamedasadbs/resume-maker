@@ -29,6 +29,9 @@ export const General = (props) => {
   const [certificateCode, setCertificateCode] = useState("");
 
   const [dataset, setDataset] = useState([]);
+
+  let checkbox = [];
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -94,6 +97,36 @@ export const General = (props) => {
           alert("زبان مورد نظر اضافه نشد");
         });
     }
+  };
+
+  const checkHandler = (e) => {
+    if (e.target.checked) {
+      checkbox.push(e.target.id);
+    } else {
+      const index = checkbox.indexOf(e.target.id);
+      if (index > -1) {
+        checkbox.splice(index, 1);
+      }
+    }
+  };
+
+  const removeLanguageHandler = () => {
+    if (checkbox.length) {
+      for (let i = 0; i < checkbox.length; i++) {
+        axios
+          .delete(
+            `http://localhost:8080/general?username=${cookie.getCookie(
+              "username"
+            )}&item=${checkbox[i]}`
+          )
+          .then(() => {
+            getDataHandler();
+          })
+          .catch(() => {
+            alert("دوره مورد نظر اضافه نشد");
+          });
+      }
+    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
   };
   /*render component*/
   return (
@@ -168,7 +201,11 @@ export const General = (props) => {
                 {dataset.map((lang, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
+                      <Checkbox
+                        id={lang.langName}
+                        onChange={checkHandler}
+                        {...label}
+                      />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       <h1>{lang.certificateCode}</h1>
@@ -189,11 +226,11 @@ export const General = (props) => {
           </TableContainer>
         </Typography>
         <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="contained">
+          <Button
+            onClick={removeLanguageHandler}
+            className={style.remove}
+            variant="contained"
+          >
             <span>حذف زبان</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>

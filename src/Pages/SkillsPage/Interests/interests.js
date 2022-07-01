@@ -1,9 +1,12 @@
 /*css*/
 import style from "./interests.module.scss";
 /*inner components*/
+import { useState, useEffect } from "react";
+import axios from "axios";
 /*library*/
 import { interests } from "../../../Middleware/Data/interestData";
 import { Input } from "../../../Components/Input/input";
+import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
@@ -21,6 +24,12 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const Interests = (props) => {
+  const [interest, setInterest] = useState("");
+
+  const [dataset, setDataset] = useState([]);
+
+  let checkbox = [];
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -50,6 +59,72 @@ export const Interests = (props) => {
       border: 0,
     },
   }));
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/interests?username=${cookie.getCookie(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  const addInterestHandler = () => {
+    if (interest === "") alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      axios
+        .post("http://localhost:8080/interests", {
+          interest,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          getDataHandler();
+        })
+        .catch(() => {
+          alert("مهارت مورد نظر اضافه نشد");
+        });
+    }
+  };
+
+  const checkHandler = (e) => {
+    if (e.target.checked) {
+      checkbox.push(e.target.id);
+    } else {
+      const index = checkbox.indexOf(e.target.id);
+      if (index > -1) {
+        checkbox.splice(index, 1);
+      }
+    }
+  };
+
+  const removeInterestHandler = () => {
+    if (checkbox.length) {
+      for (let i = 0; i < checkbox.length; i++) {
+        axios
+          .delete(
+            `http://localhost:8080/interests?username=${cookie.getCookie(
+              "username"
+            )}&item=${checkbox[i]}`
+          )
+          .then(() => {
+            getDataHandler();
+          })
+          .catch(() => {
+            alert("مهارت مورد نظر حذف نشد");
+          });
+      }
+    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
+  };
   /*render component*/
   return (
     <div className={style.interests}>
@@ -61,11 +136,16 @@ export const Interests = (props) => {
           id={0}
           label="علاقه پژوهشی"
           width="100%"
+          onchange={(e) => {
+            setInterest(e.target.value);
+          }}
+          value={interest}
         />
         <Button
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
+          onClick={addInterestHandler}
         >
           افزودن علایق پژوهشی
         </Button>
@@ -88,13 +168,17 @@ export const Interests = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {interests.map((interest, index) => (
+                {dataset.map((interest, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
+                      <Checkbox
+                        {...label}
+                        id={interest.interest}
+                        onChange={checkHandler}
+                      />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{interest}</h1>
+                      <h1>{interest.interest}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -106,11 +190,11 @@ export const Interests = (props) => {
           </TableContainer>
         </Typography>
         <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="contained">
+          <Button
+            onClick={removeInterestHandler}
+            className={style.remove}
+            variant="contained"
+          >
             <span>حذف علایق پژوهشی</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>

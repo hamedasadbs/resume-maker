@@ -13,6 +13,10 @@ var learningInfo = require("./learningInfo");
 var educationInfo = require("./educationInfo");
 
 var generalSkills = require("./generalSkills");
+
+var skills = require("./skills");
+
+var interests = require("./interests");
 //use cors lib for disable cors error
 app.use(
   cors({
@@ -45,7 +49,7 @@ personalInfo.updateData(app, con);
 learningInfo.getData(app, con);
 //add data to leaning_info page
 learningInfo.addData(app, con);
-//remove data to leaning info page
+//remove data from leaning info page
 learningInfo.removeData(app, con);
 //send data to education info page
 educationInfo.getData(app, con);
@@ -53,7 +57,21 @@ educationInfo.getData(app, con);
 educationInfo.updateData(app, con);
 //send data to general skills page
 generalSkills.getData(app, con);
-//add data to leaning_info page
+//add data to general skills page
 generalSkills.addData(app, con);
+//remove data from general skills page
+generalSkills.removeData(app, con);
+//send data to skills page
+skills.getData(app, con);
+//add data to skills page
+skills.addData(app, con);
+//remove data from skills page
+skills.removeData(app, con);
+//send data to interests page
+interests.getData(app, con);
+//add data to interests page
+interests.addData(app, con);
+//remove data from interests page
+interests.removeData(app, con);
 //listen to port 8080 where database is in
 app.listen(8080);

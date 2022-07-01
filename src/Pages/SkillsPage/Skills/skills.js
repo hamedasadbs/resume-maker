@@ -1,10 +1,12 @@
 /*css*/
 import style from "./skills.module.scss";
 /*inner components*/
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 /*library*/
 import { skills } from "../../../Middleware/Data/skillsData";
 import { Input } from "../../../Components/Input/input";
+import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
@@ -22,7 +24,11 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const Skills = (props) => {
-  const [skill, setSkill] = useState(null);
+  const [skill, setSkill] = useState("");
+
+  const [dataset, setDataset] = useState([]);
+
+  let checkbox = [];
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -52,13 +58,77 @@ export const Skills = (props) => {
       border: 0,
     },
   }));
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/skills?username=${cookie.getCookie("username")}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  const addSkillHandler = () => {
+    if (skill === "") alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      axios
+        .post("http://localhost:8080/skills", {
+          skill,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          getDataHandler();
+        })
+        .catch(() => {
+          alert("مهارت مورد نظر اضافه نشد");
+        });
+    }
+  };
+
+  const checkHandler = (e) => {
+    if (e.target.checked) {
+      checkbox.push(e.target.id);
+    } else {
+      const index = checkbox.indexOf(e.target.id);
+      if (index > -1) {
+        checkbox.splice(index, 1);
+      }
+    }
+  };
+
+  const removeSkillHandler = () => {
+    if (checkbox.length) {
+      for (let i = 0; i < checkbox.length; i++) {
+        axios
+          .delete(
+            `http://localhost:8080/skills?username=${cookie.getCookie(
+              "username"
+            )}&item=${checkbox[i]}`
+          )
+          .then(() => {
+            getDataHandler();
+          })
+          .catch(() => {
+            alert("مهارت مورد نظر حذف نشد");
+          });
+      }
+    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
+  };
   /*render component*/
   return (
     <div className={style.skills}>
       <div className={style.addSkill}>
         <Input
-          onchange={(e, newValue) => {
-            setSkill(newValue);
+          onchange={(e) => {
+            setSkill(e.target.value);
           }}
           type="username"
           align="right"
@@ -72,6 +142,7 @@ export const Skills = (props) => {
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
+          onClick={addSkillHandler}
         >
           افزودن مهارت
         </Button>
@@ -94,13 +165,17 @@ export const Skills = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {skills.map((skill, index) => (
+                {dataset.map((skill, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
+                      <Checkbox
+                        {...label}
+                        id={skill.skill}
+                        onChange={checkHandler}
+                      />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{skill}</h1>
+                      <h1>{skill.skill}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -112,11 +187,11 @@ export const Skills = (props) => {
           </TableContainer>
         </Typography>
         <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="contained">
+          <Button
+            onClick={removeSkillHandler}
+            className={style.remove}
+            variant="contained"
+          >
             <span>حذف مهارت</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
