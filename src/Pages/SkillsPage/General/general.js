@@ -4,7 +4,6 @@ import style from "./general.module.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 /*library*/
-import { general } from "../../../Middleware/Data/generalData";
 import { Input } from "../../../Components/Input/input";
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
@@ -20,13 +19,13 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+/*child components*/
+import { Point } from "../../../Components/Point/point";
 
 export const General = (props) => {
   const [langName, setLangName] = useState("");
-  const [ability, setAbility] = useState("");
-  const [certificateCode, setCertificateCode] = useState("");
+  const [ability, setAbility] = useState(0);
 
   const [dataset, setDataset] = useState([]);
 
@@ -36,14 +35,14 @@ export const General = (props) => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: props.darkMode ? "gray" : "rgb(26, 55, 130)",
-      color: theme.palette.common.white,
+      backgroundColor: "rgb(26, 55, 130)",
+      color: "white",
       fontSize: 16,
       textAlign: "center",
     },
     [`&.${tableCellClasses.body}`]: {
-      color: props.darkMode && "white",
-      backgroundColor: !props.darkMode && "rgb(230, 230, 230)",
+      color: "black",
+      backgroundColor: "whitesmoke",
       fontSize: 14,
       textAlign: "center",
     },
@@ -51,10 +50,7 @@ export const General = (props) => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
-      backgroundColor: props.darkMode ? "#202124" : theme.palette.action.hover,
-    },
-    "&:nth-of-type(even)": {
-      backgroundColor: props.darkMode && "rgb(25, 25, 25)",
+      backgroundColor: "red",
     },
     // hide last border
     "&:last-child td, &:last-child th": {
@@ -80,14 +76,15 @@ export const General = (props) => {
   }, []);
 
   const addLanguageHandler = () => {
-    if (langName === "" || ability === "" || certificateCode === "")
+    if (langName === "" || ability === 0)
       alert("لطفا تمام بخش های مورد نیاز را پر کنید");
     else {
+      setLangName("");
+      setAbility("");
       axios
         .post("http://localhost:8080/general", {
           langName,
           ability,
-          certificateCode,
           username: cookie.getCookie("username"),
         })
         .then(() => {
@@ -141,30 +138,10 @@ export const General = (props) => {
           direction="rtl"
           id={0}
           label="نام زبان"
-          width="25%"
+          width="40%"
+          value={langName}
         />
-        <Input
-          onchange={(e) => {
-            setAbility(e.target.value);
-          }}
-          type="username"
-          align="right"
-          direction="rtl"
-          id={1}
-          label="میزان تسلط به زبان"
-          width="25%"
-        />
-        <Input
-          onchange={(e) => {
-            setCertificateCode(e.target.value);
-          }}
-          type="username"
-          align="left"
-          direction="ltr"
-          id={2}
-          label="کد مدرک زبان"
-          width="25%"
-        />
+        <Point label="میزان تسلط" ability={ability} setAbility={setAbility} />
         <Button
           onClick={addLanguageHandler}
           className={style.save}
@@ -182,9 +159,6 @@ export const General = (props) => {
                 <TableRow>
                   <StyledTableCell className={style.tbl} width={10}>
                     انتخاب
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={200}>
-                    کد مدرک زبان
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl} width={150}>
                     میزان تسلط
@@ -208,10 +182,11 @@ export const General = (props) => {
                       />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{lang.certificateCode}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{lang.ability}</h1>
+                      {lang.ability === 1 && <h1>بسیار کم</h1>}
+                      {lang.ability === 2 && <h1>کم</h1>}
+                      {lang.ability === 3 && <h1>متوسط</h1>}
+                      {lang.ability === 4 && <h1>خوب</h1>}
+                      {lang.ability === 5 && <h1>مسلط</h1>}
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       <h1>{lang.langName}</h1>

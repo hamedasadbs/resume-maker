@@ -1,0 +1,59 @@
+@import '../../index.module.scss';
+
+.pointContainer {
+    background-color: $mainBrightBox;
+    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $primaryColor2;
+    border-radius: 5px;
+    transition: all 0.2s;
+    margin: 10px auto;
+    width: 40%;
+    height: 60px;
+
+    .label {
+        margin: auto;
+        margin-right: 5px;
+        position: relative;
+        top: -8px;
+        font-family: titleFont;
+        padding: 0 5px;
+        z-index: 0;
+        font-size: $fontSize1_5;
+        transition: all 0.2s;
+        color: gray;
+        background-color: $mainBrightBox;
+    }
+
+    main {
+        display: flex;
+        margin: auto;
+        margin-top: 0px;
+
+        .point {
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            .icon {
+                font-size: $fontSize4;
+                color: rgb(80, 80, 80);
+            }
+
+            .activeIcon {
+                color: $primaryColor1;
+            }
+
+            p {
+                font-size: $fontSize1;
+                font-family: titleFont;
+                margin: auto;
+            }
+        }
+    }
+}

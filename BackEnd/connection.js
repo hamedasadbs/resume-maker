@@ -17,6 +17,10 @@ var generalSkills = require("./generalSkills");
 var skills = require("./skills");
 
 var interests = require("./interests");
+
+var projects = require("./projects");
+
+var preview = require("./preview");
 //use cors lib for disable cors error
 app.use(
   cors({
@@ -73,5 +77,13 @@ interests.getData(app, con);
 interests.addData(app, con);
 //remove data from interests page
 interests.removeData(app, con);
+//send data to projects page
+projects.getData(app, con);
+//add data to projects page
+projects.addData(app, con);
+//remove data from projects page
+projects.removeData(app, con);
+//send data to preview page
+preview.getData(app, con);
 //listen to port 8080 where database is in
 app.listen(8080);

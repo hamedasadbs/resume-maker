@@ -72,13 +72,12 @@ export const SkillsPage = (props) => {
             onChange={handleChange}
             aria-label="basic tabs example"
           >
-            <Tab className={style.tab} label="علایق پژوهشی" {...a11yProps(3)} />
             <Tab
               className={style.tab}
               label="تکنولوژی های کاری"
-              {...a11yProps(2)}
+              {...a11yProps(3)}
             />
-
+            <Tab className={style.tab} label="علایق پژوهشی" {...a11yProps(2)} />
             <Tab
               className={style.tab}
               label="مهارت ها و توانمندی ها"
@@ -97,10 +96,10 @@ export const SkillsPage = (props) => {
             <Skills />
           </TabPanel>
           <TabPanel className={style.tabContent} value={value} index={1}>
-            <Technology />
+            <Interests />
           </TabPanel>
           <TabPanel className={style.tabContent} value={value} index={0}>
-            <Interests />
+            <Technology />
           </TabPanel>
         </div>
         <NavBar dashboard={props.setDashboard} />

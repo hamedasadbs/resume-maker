@@ -27,14 +27,14 @@ export const Technology = (props) => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: props.darkMode ? "gray" : "rgb(26, 55, 130)",
-      color: theme.palette.common.white,
+      backgroundColor: "rgb(26, 55, 130)",
+      color: "white",
       fontSize: 16,
       textAlign: "center",
     },
     [`&.${tableCellClasses.body}`]: {
-      color: props.darkMode && "white",
-      backgroundColor: !props.darkMode && "rgb(230, 230, 230)",
+      color: "black",
+      backgroundColor: "whitesmoke",
       fontSize: 14,
       textAlign: "center",
     },
@@ -42,10 +42,7 @@ export const Technology = (props) => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
-      backgroundColor: props.darkMode ? "#202124" : theme.palette.action.hover,
-    },
-    "&:nth-of-type(even)": {
-      backgroundColor: props.darkMode && "rgb(25, 25, 25)",
+      backgroundColor: theme.palette.action.hover,
     },
     // hide last border
     "&:last-child td, &:last-child th": {

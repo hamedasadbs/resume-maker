@@ -1,10 +1,12 @@
 /*css*/
 import style from "./addProject.module.scss";
 /*inner components*/
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 /*library*/
 import { projects } from "../../../Middleware/Data/projectData";
 import { Input } from "../../../Components/Input/input";
+import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
 import TableContainer from "@mui/material/TableContainer";
@@ -18,26 +20,29 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 export const AddProject = (props) => {
-  const [title, setTitle] = useState(null);
-  const [date, setDate] = useState(null);
-  const [role, setRole] = useState(null);
-  const [desc, setDesc] = useState(null);
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [role, setRole] = useState("");
+  const [desc, setDesc] = useState("");
+
+  const [dataset, setDataset] = useState([]);
+
+  let checkbox = [];
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: props.darkMode ? "gray" : "rgb(26, 55, 130)",
-      color: theme.palette.common.white,
+      backgroundColor: "rgb(26, 55, 130)",
+      color: "white",
       fontSize: 16,
       textAlign: "center",
     },
     [`&.${tableCellClasses.body}`]: {
-      color: props.darkMode && "white",
-      backgroundColor: !props.darkMode && "rgb(230, 230, 230)",
+      color: "white",
+      backgroundColor: "whitesmoke",
       fontSize: 14,
       textAlign: "center",
     },
@@ -45,23 +50,95 @@ export const AddProject = (props) => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
-      backgroundColor: props.darkMode ? "#202124" : theme.palette.action.hover,
-    },
-    "&:nth-of-type(even)": {
-      backgroundColor: props.darkMode && "rgb(25, 25, 25)",
+      backgroundColor: theme.palette.action.hover,
     },
     // hide last border
     "&:last-child td, &:last-child th": {
       border: 0,
     },
   }));
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/projects?username=${cookie.getCookie(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+  }, []);
+
+  const addProjectHandler = () => {
+    if (title === "" || date === "" || role === "" || desc === "")
+      alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      setTitle("");
+      setDate("");
+      setRole("");
+      setDesc("");
+      axios
+        .post("http://localhost:8080/projects", {
+          title,
+          date,
+          role,
+          desc,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          getDataHandler();
+        })
+        .catch(() => {
+          alert("پروژه مورد نظر اضافه نشد");
+        });
+    }
+  };
+
+  const checkHandler = (e) => {
+    if (e.target.checked) {
+      checkbox.push(e.target.id);
+    } else {
+      const index = checkbox.indexOf(e.target.id);
+      if (index > -1) {
+        checkbox.splice(index, 1);
+      }
+    }
+  };
+
+  const removeProjectHandler = () => {
+    if (checkbox.length) {
+      for (let i = 0; i < checkbox.length; i++) {
+        axios
+          .delete(
+            `http://localhost:8080/projects?username=${cookie.getCookie(
+              "username"
+            )}&item=${checkbox[i]}`
+          )
+          .then(() => {
+            getDataHandler();
+          })
+          .catch(() => {
+            alert("دوره مورد نظر اضافه نشد");
+          });
+      }
+    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
+  };
+
   /*render component*/
   return (
     <div className={style.addProject}>
       <div className={style.addProjectForm}>
         <Input
-          onchange={(e, newValue) => {
-            setTitle(newValue);
+          onchange={(e) => {
+            setTitle(e.target.value);
           }}
           type="text"
           align="right"
@@ -72,8 +149,8 @@ export const AddProject = (props) => {
           width="20%"
         />
         <Input
-          onchange={(e, newValue) => {
-            setDate(newValue);
+          onchange={(e) => {
+            setDate(e.target.value);
           }}
           type="text"
           align="left"
@@ -84,8 +161,8 @@ export const AddProject = (props) => {
           width="20%"
         />
         <Input
-          onchange={(e, newValue) => {
-            setRole(newValue);
+          onchange={(e) => {
+            setRole(e.target.value);
           }}
           type="text"
           align="center"
@@ -96,8 +173,8 @@ export const AddProject = (props) => {
           width="20%"
         />
         <Input
-          onchange={(e, newValue) => {
-            setDesc(newValue);
+          onchange={(e) => {
+            setDesc(e.target.value);
           }}
           type="text"
           align="right"
@@ -111,6 +188,7 @@ export const AddProject = (props) => {
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
+          onClick={addProjectHandler}
         >
           افزودن پروژه
         </Button>
@@ -142,13 +220,17 @@ export const AddProject = (props) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {projects.map((project, index) => (
+                {dataset.map((project, index) => (
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
+                      <Checkbox
+                        id={project.title}
+                        onChange={checkHandler}
+                        {...label}
+                      />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{project.desc}</h1>
+                      <h1>{project.description}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       <h1>{project.role}</h1>
@@ -169,11 +251,11 @@ export const AddProject = (props) => {
           </TableContainer>
         </Typography>
         <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="contained">
+          <Button
+            onClick={removeProjectHandler}
+            className={style.remove}
+            variant="contained"
+          >
             <span>حذف پروژه</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>

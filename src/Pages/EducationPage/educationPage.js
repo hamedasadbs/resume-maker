@@ -11,16 +11,14 @@ import { Input } from "../../Components/Input/input";
 /*MUI*/
 import Button from "@mui/material/Button";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-
-import { education } from "../../Middleware/Data/educationData";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
 
 export const EducationPage = (props) => {
-  const [university, setUniversity] = useState(education[0].university);
-  const [lastGrade, setLastGrade] = useState(education[0].lastGrade);
-  const [thesis, setThesis] = useState(education[0].thesis);
-  const [year, setYear] = useState(education[0].year);
+  const [university, setUniversity] = useState("");
+  const [lastGrade, setLastGrade] = useState("");
+  const [thesis, setThesis] = useState("");
+  const [year, setYear] = useState("");
 
   useEffect(() => {
     axios
