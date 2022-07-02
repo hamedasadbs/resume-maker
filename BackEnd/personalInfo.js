@@ -15,6 +15,7 @@ module.exports = {
               mobile: result[0].mobile,
               email: result[0].email,
               website: result[0].website,
+              image: result[0].image,
             });
           }
         }
@@ -32,7 +33,8 @@ module.exports = {
         state='${req.body.state}',
         mobile='${req.body.mobile}',
         email='${req.body.email}',
-        website='${req.body.website}' 
+        website='${req.body.website}',
+        image='${req.body.image}' 
         WHERE username='${req.body.username}'`,
         (err) => {
           if (err) {

@@ -1,5 +1,5 @@
 /*inner components*/
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 /*css*/
 import style from "./personalPage.module.scss";
@@ -8,14 +8,12 @@ import { Header } from "../../Layouts/Header/header";
 import { NavBar } from "../../Layouts/NavBar/navBar";
 import { Footer } from "../../Layouts/Footer/footer";
 import { Input } from "../../Components/Input/input";
-/*images*/
-import userPhoto from "../../Assets/Images/no_photo.png";
 /*MUI*/
 import Button from "@mui/material/Button";
-import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
+import * as base64Lib from "../../Middleware/Library/base64Lib";
 
 export const PersonalPage = (props) => {
   const [fname, setFname] = useState("");
@@ -26,6 +24,62 @@ export const PersonalPage = (props) => {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+
+  const [image, setImage] = useState("no_photo.png");
+  /*refs*/
+  const inputFile = useRef();
+
+  const fileUploadArea = useRef();
+  /*file handler*/
+  async function fileHandler(x) {
+    const files = x.files;
+    if ("files" in x) {
+      if (files.length === 0) {
+        alert("لطفا یک فایل را انتخاب کنید");
+      } else {
+        if (files[0].size < 10000000) {
+          setImage(files[0].name);
+
+          // let form_data = new FormData();
+          // let base64 = await base64Lib.toBase64(files[0]);
+
+          // let replacedBase64 = base64.replace(
+          //   base64.substring(
+          //     base64.indexOf("data:"),
+          //     base64.indexOf("base64,") + 7
+          //   ),
+          //   ""
+          // );
+
+          // form_data.append("filename", files[0].name);
+          // form_data.append("file", replacedBase64);
+          // console.log(
+          //   "your file base64 size is " +
+          //     replacedBase64.length +
+          //     " bytes so it will send as one base64 file"
+          // );
+
+          // axios({
+          //   method: "post",
+          //   url: "https://multiav.cert.ir/api/web/",
+          //   data: form_data,
+          //   headers: { "Content-Type": "multipart/form-data" },
+          // })
+          //   .then((res) => {
+          //     props.setUUID(res.data.response.UUID);
+          //   })
+          //   .catch((err) => {
+          //     alert("متاسفانه ارتباط با سرور برقرار نشد");
+          //     window.location.href = "/";
+          //   });
+        } else alert("حجم تصویر انتخابی باید کمتر از 10 مگابایت باشد");
+      }
+    }
+  }
+  /*upload handler*/
+  const uploadFileHandler = () => {
+    fileHandler(inputFile.current);
+  };
 
   useEffect(() => {
     axios
@@ -41,6 +95,7 @@ export const PersonalPage = (props) => {
         setMobile(res.data.mobile);
         setEmail(res.data.email);
         setWebsite(res.data.website);
+        setImage(res.data.image ? res.data.image : "no_photo.png");
       });
   }, []);
 
@@ -56,6 +111,7 @@ export const PersonalPage = (props) => {
         mobile,
         email,
         website,
+        image,
       })
       .then(() => {
         alert("اطلاعات شما با موفقیت ذخیره شد");
@@ -72,11 +128,22 @@ export const PersonalPage = (props) => {
       <main>
         <div className={style.information}>
           <div className={style.profileImage}>
-            <Button className={style.button} variant="contained">
-              <span>آپلود تصویر پروفایل</span>
-              <FileUploadOutlinedIcon className={style.icon} />
-            </Button>
-            <img src={userPhoto} alt="profile" />
+            <div ref={fileUploadArea} className={style.fileUploadArea}>
+              <label htmlFor="inputFile" className={style.customUploadInput}>
+                <i className="fa fa-cloud-upload"></i> آپلود تصویر پروفایل
+              </label>
+              <input
+                onChange={uploadFileHandler}
+                className={style.upload}
+                type="file"
+                id="inputFile"
+                ref={inputFile}
+              />
+            </div>
+            <img
+              src={require(`../../Assets/Images/${image}`).default}
+              alt="profile"
+            />
           </div>
           <Input
             onchange={(e) => {

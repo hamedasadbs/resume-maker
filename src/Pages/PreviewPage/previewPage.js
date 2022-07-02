@@ -4,13 +4,6 @@ import axios from "axios";
 /*css*/
 import style from "./previewPage.module.scss";
 import avatar from "../../Assets/Images/profile-avatar.png";
-/*dataset*/
-import { users } from "../../Middleware/Data/profileData";
-import { interests } from "../../Middleware/Data/interestData";
-import { general } from "../../Middleware/Data/generalData";
-import { education } from "../../Middleware/Data/educationData";
-import { courses } from "../../Middleware/Data/coursesData";
-import { skills } from "../../Middleware/Data/skillsData";
 /*MUI*/
 import SettingsCellIcon from "@mui/icons-material/SettingsCell";
 import EmailIcon from "@mui/icons-material/Email";
@@ -59,7 +52,13 @@ export const PreviewPage = (props) => {
         <main>
           <div className={style.topPage}>
             <aside>
-              <img src={avatar} alt="avatar" />
+              <img
+                src={
+                  require(`../../Assets/Images/${dataset.profile[0].image}`)
+                    .default
+                }
+                alt="avatar"
+              />
               <div className={style.profile}>
                 <h1 className={style.title}>پروفایل</h1>
                 <p>{dataset.profile[0].title}</p>

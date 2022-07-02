@@ -4,7 +4,6 @@ import style from "./interests.module.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 /*library*/
-import { interests } from "../../../Middleware/Data/interestData";
 import { Input } from "../../../Components/Input/input";
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/

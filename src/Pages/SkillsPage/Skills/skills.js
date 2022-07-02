@@ -4,7 +4,6 @@ import style from "./skills.module.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 /*library*/
-import { skills } from "../../../Middleware/Data/skillsData";
 import { Input } from "../../../Components/Input/input";
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
