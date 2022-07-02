@@ -4,7 +4,6 @@ import style from "./addProject.module.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
 /*library*/
-import { projects } from "../../../Middleware/Data/projectData";
 import { Input } from "../../../Components/Input/input";
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
@@ -41,7 +40,7 @@ export const AddProject = (props) => {
       textAlign: "center",
     },
     [`&.${tableCellClasses.body}`]: {
-      color: "white",
+      color: "black",
       backgroundColor: "whitesmoke",
       fontSize: 14,
       textAlign: "center",

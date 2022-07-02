@@ -8,8 +8,8 @@ module.exports = {
           if (result) {
             res.send({
               university: result[0].university,
-              lastGrade: result[0].lastGrade,
-              Thesis: result[0].title,
+              lastGrade: result[0].last_grade,
+              thesis: result[0].thesis,
               year: result[0].year,
             });
           }

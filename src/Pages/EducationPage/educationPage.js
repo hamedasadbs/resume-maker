@@ -36,20 +36,24 @@ export const EducationPage = (props) => {
   }, []);
 
   const saveChangesHandler = () => {
-    axios
-      .post(`http://localhost:8080/education`, {
-        username: cookie.getCookie("username"),
-        university,
-        lastGrade,
-        thesis,
-        year,
-      })
-      .then(() => {
-        alert("اطلاعات شما با موفقیت ذخیره شد");
-      })
-      .catch(() => {
-        alert("متاسفانه مشکلی در ذخیره اطلاعات به وجود آمد");
-      });
+    if (university === "" || lastGrade === "" || thesis === "" || year === "")
+      alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      axios
+        .post(`http://localhost:8080/education`, {
+          username: cookie.getCookie("username"),
+          university,
+          lastGrade,
+          thesis,
+          year,
+        })
+        .then(() => {
+          alert("اطلاعات شما با موفقیت ذخیره شد");
+        })
+        .catch(() => {
+          alert("متاسفانه مشکلی در ذخیره اطلاعات به وجود آمد");
+        });
+    }
   };
   /*render component*/
   return (
