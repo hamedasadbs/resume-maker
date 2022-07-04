@@ -186,7 +186,7 @@ export const Skills = (props) => {
           <Button
             onClick={removeSkillHandler}
             className={style.remove}
-            variant="contained"
+            variant="outlined"
           >
             <span>حذف مهارت</span>
             <DeleteOutlineIcon className={style.icon} />

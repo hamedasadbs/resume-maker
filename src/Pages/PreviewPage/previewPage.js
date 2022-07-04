@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 /*css*/
 import style from "./previewPage.module.scss";
-import avatar from "../../Assets/Images/profile-avatar.png";
 /*MUI*/
 import SettingsCellIcon from "@mui/icons-material/SettingsCell";
 import EmailIcon from "@mui/icons-material/Email";

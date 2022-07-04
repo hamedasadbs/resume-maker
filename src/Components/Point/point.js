@@ -40,11 +40,8 @@ export const Point = (props) => {
   };
 
   useEffect(() => {
-    if (props.ability === 0)
-      for (let i = 0; i < checked.length; i++) checked.pop();
-
     points();
-  }, [props.ability]);
+  }, []);
 
   /*render component*/
   return (

@@ -204,7 +204,7 @@ export const General = (props) => {
           <Button
             onClick={removeLanguageHandler}
             className={style.remove}
-            variant="contained"
+            variant="outlined"
           >
             <span>حذف زبان</span>
             <DeleteOutlineIcon className={style.icon} />

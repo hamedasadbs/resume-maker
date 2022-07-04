@@ -65,8 +65,13 @@
             margin: auto;
             margin-left: 0;
             display: flex;
-            background-color: $secondaryColor2;
+            color: $secondaryColor2;
+            border: 1px solid $secondaryColor2;
             padding: 5px 25px;
+
+            &:hover {
+                background-color: rgba($secondaryColor2, 0.1);
+            }
 
             span {
                 font-size: $fontSize2;
@@ -78,7 +83,7 @@
                 margin: auto;
                 margin-left: 5px;
                 font-size: $fontSize3;
-                color: whitesmoke;
+                color: $secondaryColor2;
             }
         }
     }

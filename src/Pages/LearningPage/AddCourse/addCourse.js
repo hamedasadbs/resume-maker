@@ -228,7 +228,7 @@ export const AddCourse = (props) => {
           <Button
             onClick={removeCourseHandler}
             className={style.remove}
-            variant="contained"
+            variant="outlined"
           >
             <span>حذف دوره</span>
             <DeleteOutlineIcon className={style.icon} />

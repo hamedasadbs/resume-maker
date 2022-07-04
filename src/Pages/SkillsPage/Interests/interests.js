@@ -189,7 +189,7 @@ export const Interests = (props) => {
           <Button
             onClick={removeInterestHandler}
             className={style.remove}
-            variant="contained"
+            variant="outlined"
           >
             <span>حذف علایق پژوهشی</span>
             <DeleteOutlineIcon className={style.icon} />

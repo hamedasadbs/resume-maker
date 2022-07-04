@@ -141,7 +141,7 @@ export const Technology = (props) => {
             <span>ذخیره تغییرات</span>
             <SaveOutlinedIcon className={style.icon} />
           </Button>
-          <Button className={style.remove} variant="contained">
+          <Button className={style.remove} variant="outlined">
             <span>حذف تکنولوژی</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
