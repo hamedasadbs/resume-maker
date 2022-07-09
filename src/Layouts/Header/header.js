@@ -14,6 +14,11 @@ import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
+import { PDFFile } from "../../pdf";
+
 export const Header = (props) => {
   const [subTitle, setSubTitle] = useState(null);
   const logoutHandler = () => {
@@ -41,14 +46,36 @@ export const Header = (props) => {
     }
   }, [props.subTitle]);
 
+  useEffect(() => {
+    const input = document.getElementById("divToPrint");
+    input.style.display = "none";
+  }, []);
+
+  const downloadPdfHandler = () => {
+    const input = document.getElementById("divToPrint");
+    input.style.display = "flex";
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "JPEG", 0, 0);
+      pdf.save("download.pdf");
+    });
+    input.style.display = "none";
+  };
+
   /*render component*/
   return (
     <header className={style.header}>
       <div className={style.headerLeftSide}>
-        <Button className={`${style.button} ${style.fill}`} variant="contained">
+        <Button
+          onClick={downloadPdfHandler}
+          className={`${style.button} ${style.fill}`}
+          variant="contained"
+        >
           <span>دریافت فایل رزومه</span>
           <CloudDownloadOutlinedIcon className={style.icon} />
         </Button>
+        <PDFFile />
         {window.location.href === "http://localhost:3000/preview" ? (
           <Link to="/personal_info" className={style.link}>
             <Button

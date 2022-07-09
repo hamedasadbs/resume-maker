@@ -1,0 +1,369 @@
+@import './index.module.scss';
+
+.divToPrint {
+    width: 200%;
+    margin: 40pt auto;
+    background-color: red;
+    box-shadow: $brightBoxShadow1;
+    border-radius: 5pt;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+
+    // width: 210pt;
+    // min-height: 297pt;
+    // margin-left: auto;
+    // margin-right: auto;
+
+    .topPage {
+        display: flex;
+        flex-direction: row-reverse;
+
+        aside {
+            width: 30%;
+            background-color: lightgray;
+            display: flex;
+            flex-direction: column;
+
+            img {
+                width: 20%;
+                height: 20%;
+                object-fit: cover;
+                border-radius: 50%;
+                margin: 30pt auto;
+            }
+
+            .profile {
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                }
+
+                p {
+                    font-size: 12pt;
+                    direction: rtl;
+                    text-align: right;
+                    width: 100%;
+                    padding: 0 10pt;
+                    font-size: $fontSize2;
+                }
+            }
+
+            .contactInfo {
+                margin: 40pt auto;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                }
+
+                span {
+                    display: flex;
+                    margin: 5pt auto;
+                    width: 100%;
+                    padding: 0 10pt;
+
+                    .icon {
+                        font-size: 30pt;
+                        margin: auto;
+                    }
+
+                    .contact {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        padding-right: 20pt;
+
+                        label,
+                        h1 {
+                            font-size: 15pt;
+                            direction: rtl;
+                            text-align: right;
+                            width: 100%;
+                            font-family: titleFont;
+                        }
+                    }
+                }
+            }
+
+            .interests {
+                margin: 40pt auto;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                }
+
+                span {
+                    margin: 5pt auto;
+                    direction: rtl;
+                    text-align: right;
+                    font-family: titleFont;
+                    width: 100%;
+                    font-size: 15pt;
+                    padding: 0 10pt;
+                }
+            }
+
+            .lang {
+                margin: 40pt auto;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                }
+
+                main {
+                    display: flex;
+                    width: 100%;
+                    margin: 5pt auto;
+                    padding: 0 5pt;
+                    background-color: transparent;
+                    box-shadow: none;
+
+                    label {
+                        margin: auto;
+                        font-size: 15pt;
+                        direction: rtl;
+                        text-align: right;
+                        width: 100%;
+                        font-family: titleFont;
+                    }
+
+                    span {
+                        margin: auto;
+                        margin-left: 0;
+
+                        .icon {
+                            font-size: $fontSize3;
+                        }
+                    }
+                }
+            }
+        }
+
+        article {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+
+            .name {
+                width: 100%;
+                display: flex;
+                background-color: lightgray;
+                padding: 20pt 0;
+
+                h1 {
+                    margin: auto;
+                    text-align: center;
+                    font-family: titleFont;
+                    font-size: 20pt;
+                }
+            }
+
+            .education {
+                display: flex;
+                flex-direction: column;
+                margin: 20pt auto;
+                margin-top: 40pt;
+                width: 80%;
+                border: 1pt solid lightgray;
+                padding: 5pt;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                    margin: auto;
+                }
+
+                span {
+                    width: 100%;
+                    font-size: 15pt;
+                    margin: 5pt auto;
+                    text-align: right;
+                    direction: rtl;
+                    font-family: titleFont;
+                }
+            }
+
+            .courses {
+                display: flex;
+                flex-direction: column;
+                margin: 20pt auto;
+                width: 80%;
+                border: 1pt solid lightgray;
+                padding: 5pt;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                    margin: auto;
+                }
+
+                span {
+                    width: 100%;
+                    font-size: 15pt;
+                    margin: 5pt auto;
+                    text-align: right;
+                    direction: rtl;
+                    font-family: titleFont;
+                }
+            }
+
+            .skills {
+                display: flex;
+                flex-direction: column;
+                margin: 20pt auto;
+                width: 80%;
+                border: 1pt solid lightgray;
+                padding: 5pt;
+
+                .title {
+                    font-size: 15pt;
+                    direction: rtl;
+                    text-align: center;
+                    width: 100%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10pt 0;
+                    margin: auto;
+                }
+
+                span {
+                    width: 100%;
+                    font-size: 15pt;
+                    margin: 5pt auto;
+                    text-align: right;
+                    direction: rtl;
+                    font-family: titleFont;
+                }
+            }
+        }
+    }
+
+    .bottomPage {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+
+        aside {
+            width: 30%;
+            background-color: lightgray;
+            display: flex;
+            flex-direction: row-reverse;
+
+            .title {
+                font-size: 15pt;
+                direction: rtl;
+                text-align: center;
+                width: 60%;
+                background-color: rgb(31, 31, 31);
+                color: white;
+                padding: 10pt 0;
+                margin: auto;
+                margin-right: 0pt;
+            }
+        }
+
+        article {
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+
+            .projects {
+                display: flex;
+                flex-direction: column;
+                margin: 50pt auto;
+                width: 80%;
+                border: 3pt solid rgb(65, 65, 65);
+                padding: 5pt;
+                background-color: lightgray;
+
+                .projectContainer {
+                    display: flex;
+
+                    span {
+                        width: 100%;
+                        font-size: 15pt;
+                        margin: 8pt auto;
+                        margin-right: 20pt;
+                        text-align: right;
+                        direction: rtl;
+                        font-family: titleFont;
+                    }
+
+                    .projectTitle {
+                        margin: auto;
+                        margin-right: 0pt;
+                        background-color: rgb(31, 31, 31);
+                        color: whitesmoke;
+                        padding: 10pt 5pt;
+                        width: 120pt;
+
+                        h1 {
+                            margin: auto;
+                            text-align: center;
+                            font-size: $fontSize2;
+                        }
+                    }
+
+                    .projectDate {
+                        margin: auto;
+                        margin-right: -140pt;
+                        width: 80pt;
+
+                        h1 {
+                            margin: auto;
+                            text-align: center;
+                            font-size: $fontSize1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -6,6 +6,7 @@ module.exports = {
     var general = [];
     var interests = [];
     var skills = [];
+    var projects = [];
     app.get("/preview", async (req, res) => {
       con.query(
         `SELECT * FROM profile WHERE username='${req.query.username}'`,
@@ -63,6 +64,15 @@ module.exports = {
           }
         }
       );
+      con.query(
+        `SELECT * FROM projects WHERE username='${req.query.username}'`,
+        (err, result) => {
+          if (err) throw err;
+          if (result.length) {
+            projects = result;
+          }
+        }
+      );
       var dataset = {
         profile,
         learning,
@@ -70,6 +80,7 @@ module.exports = {
         general,
         skills,
         interests,
+        projects,
       };
       await res.send({ dataset });
     });

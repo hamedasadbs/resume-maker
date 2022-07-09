@@ -14,7 +14,7 @@ export const Point = (props) => {
     let points = [];
     for (let i = 0; i < 5; i++) {
       points.push(
-        <span id={i} onClick={pointHandler} className={style.point}>
+        <span key={i} id={i} onClick={pointHandler} className={style.point}>
           {checked.includes(i) ? (
             <RadioButtonCheckedIcon
               className={`${style.icon} ${style.activeIcon}`}
@@ -41,6 +41,10 @@ export const Point = (props) => {
 
   useEffect(() => {
     points();
+
+    return () => {
+      setPointTags([]);
+    };
   }, []);
 
   /*render component*/

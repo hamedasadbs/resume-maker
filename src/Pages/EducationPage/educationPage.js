@@ -33,6 +33,13 @@ export const EducationPage = (props) => {
         setThesis(res.data.thesis);
         setYear(res.data.year);
       });
+
+    return () => {
+      setUniversity("");
+      setLastGrade("");
+      setThesis("");
+      setYear("");
+    };
   }, []);
 
   const saveChangesHandler = () => {

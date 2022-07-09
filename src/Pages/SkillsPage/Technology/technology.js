@@ -90,7 +90,7 @@ export const Technology = (props) => {
         </Button>
       </div>
       <div className={style.table}>
-        <Typography marginBottom={0}>
+        <Typography component={"span"} marginBottom={0}>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>

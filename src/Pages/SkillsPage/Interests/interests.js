@@ -72,6 +72,10 @@ export const Interests = (props) => {
 
   useEffect(() => {
     getDataHandler();
+
+    return () => {
+      setDataset([]);
+    };
   }, []);
 
   const addInterestHandler = () => {
@@ -147,7 +151,7 @@ export const Interests = (props) => {
         </Button>
       </div>
       <div className={style.table}>
-        <Typography marginBottom={0}>
+        <Typography component={"span"} marginBottom={0}>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>

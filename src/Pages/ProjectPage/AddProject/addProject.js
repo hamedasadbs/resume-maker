@@ -193,7 +193,7 @@ export const AddProject = (props) => {
         </Button>
       </div>
       <div className={style.table}>
-        <Typography marginBottom={0}>
+        <Typography component={"span"} marginBottom={0}>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
@@ -253,7 +253,7 @@ export const AddProject = (props) => {
           <Button
             onClick={removeProjectHandler}
             className={style.remove}
-            variant="contained"
+            variant="outlined"
           >
             <span>حذف پروژه</span>
             <DeleteOutlineIcon className={style.icon} />

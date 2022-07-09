@@ -19,6 +19,12 @@
         flex-direction: row-reverse;
         flex-wrap: wrap;
 
+        // width: 210mm;
+        // min-height: 297mm;
+        // margin-left: auto;
+        // margin-right: auto;
+        // display: none;
+
         .topPage {
             display: flex;
             flex-direction: row-reverse;
@@ -284,6 +290,88 @@
                         text-align: right;
                         direction: rtl;
                         font-family: titleFont;
+                    }
+                }
+            }
+        }
+
+        .bottomPage {
+            display: flex;
+            flex-direction: row-reverse;
+            width: 100%;
+
+            aside {
+                width: 30%;
+                background-color: lightgray;
+                display: flex;
+                flex-direction: row-reverse;
+
+                .title {
+                    font-size: 15px;
+                    direction: rtl;
+                    text-align: center;
+                    width: 60%;
+                    background-color: rgb(31, 31, 31);
+                    color: white;
+                    padding: 10px 0;
+                    margin: auto;
+                    margin-right: 0px;
+                }
+            }
+
+            article {
+                width: 70%;
+                display: flex;
+                flex-direction: column;
+
+                .projects {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 50px auto;
+                    width: 80%;
+                    border: 3px solid rgb(65, 65, 65);
+                    padding: 5px;
+                    background-color: lightgray;
+
+                    .projectContainer {
+                        display: flex;
+
+                        span {
+                            width: 100%;
+                            font-size: 15px;
+                            margin: 8px auto;
+                            margin-right: 20px;
+                            text-align: right;
+                            direction: rtl;
+                            font-family: titleFont;
+                        }
+
+                        .projectTitle {
+                            margin: auto;
+                            margin-right: 0px;
+                            background-color: rgb(31, 31, 31);
+                            color: whitesmoke;
+                            padding: 10px 5px;
+                            width: 120px;
+
+                            h1 {
+                                margin: auto;
+                                text-align: center;
+                                font-size: $fontSize2;
+                            }
+                        }
+
+                        .projectDate {
+                            margin: auto;
+                            margin-right: -140px;
+                            width: 80px;
+
+                            h1 {
+                                margin: auto;
+                                text-align: center;
+                                font-size: $fontSize1;
+                            }
+                        }
                     }
                 }
             }

@@ -1,60 +1,31 @@
-/*inner components*/
-import { useState, useEffect } from "react";
 import axios from "axios";
-/*css*/
-import style from "./previewPage.module.scss";
-/*MUI*/
-import SettingsCellIcon from "@mui/icons-material/SettingsCell";
-import EmailIcon from "@mui/icons-material/Email";
-import MapIcon from "@mui/icons-material/Map";
-import LanguageIcon from "@mui/icons-material/Language";
-import CircleIcon from "@mui/icons-material/Circle";
-/*child components*/
-import { Header } from "../../Layouts/Header/header";
-/*library*/
-import * as cookie from "../../Middleware/Library/cookie";
+import { useEffect, useState } from "react";
+import style from "./pdf.module.scss";
+import * as cookie from "./Middleware/Library/cookie";
 
-export const PreviewPage = (props) => {
+export const PDFFile = () => {
   const [dataset, setDataset] = useState(null);
 
-  const getDataHandler = () => {
+  useEffect(() => {
     axios
       .get(
         `http://localhost:8080/preview?username=${cookie.getCookie("username")}`
       )
       .then((res) => {
         setDataset(res.data.dataset);
-      })
-      .catch(() => {
-        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
       });
-  };
-
-  useEffect(() => {
-    getDataHandler();
-    getDataHandler();
   }, []);
 
-  const langPoints = (num) => {
-    let points = [];
-
-    for (let i = 0; i < num; i++) {
-      points.push(<CircleIcon key={i} className={style.icon} />);
-    }
-    return points;
-  };
   /*render component*/
   return (
-    <div className={style.preview}>
-      <Header title={props.title} setDashboard={props.setDashboard} />
+    <main className={style.divToPrint} id="divToPrint">
       {dataset && (
-        <main id="divToPrint">
+        <>
           <div className={style.topPage}>
             <aside>
               <img
                 src={
-                  require(`../../Assets/Images/${dataset.profile[0].image}`)
-                    .default
+                  require(`./Assets/Images/${dataset.profile[0].image}`).default
                 }
                 alt="avatar"
               />
@@ -69,14 +40,14 @@ export const PreviewPage = (props) => {
                     <label>موبایل</label>
                     <h1>{dataset.profile[0].mobile}</h1>
                   </div>
-                  <SettingsCellIcon className={style.icon} />
+                  {/* <SettingsCellIcon className={style.icon} /> */}
                 </span>
                 <span>
                   <div className={style.contact}>
                     <label>ایمیل</label>
                     <h1>{dataset.profile[0].email}</h1>
                   </div>
-                  <EmailIcon className={style.icon} />
+                  {/* <EmailIcon className={style.icon} /> */}
                 </span>
                 <span>
                   <div className={style.contact}>
@@ -85,14 +56,14 @@ export const PreviewPage = (props) => {
                       {dataset.profile[0].state}/{dataset.profile[0].city}
                     </h1>
                   </div>
-                  <MapIcon className={style.icon} />
+                  {/* <MapIcon className={style.icon} /> */}
                 </span>
                 <span>
                   <div className={style.contact}>
                     <label>آدرس وبسایت</label>
                     <h1>{dataset.profile[0].website}</h1>
                   </div>
-                  <LanguageIcon className={style.icon} />
+                  {/* <LanguageIcon className={style.icon} /> */}
                 </span>
               </div>
               <div className={style.interests}>
@@ -106,7 +77,7 @@ export const PreviewPage = (props) => {
                 {dataset.general.map((lang, index) => (
                   <main key={index}>
                     <label>- {lang.langName}</label>
-                    <span>{langPoints(lang.ability)}</span>
+                    {/* <span>{langPoints(lang.ability)}</span> */}
                   </main>
                 ))}
               </div>
@@ -163,8 +134,8 @@ export const PreviewPage = (props) => {
               </div>
             </article>
           </div>
-        </main>
+        </>
       )}
-    </div>
+    </main>
   );
 };
