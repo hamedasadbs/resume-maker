@@ -21,6 +21,8 @@ var interests = require("./interests");
 var projects = require("./projects");
 
 var preview = require("./preview");
+
+var technology = require("./technology");
 //use cors lib for disable cors error
 app.use(
   cors({
@@ -85,5 +87,9 @@ projects.addData(app, con);
 projects.removeData(app, con);
 //send data to preview page
 preview.getData(app, con);
+//send title to technology page
+technology.getTitle(app, con);
+//send data to technology page
+technology.getTech(app, con);
 //listen to port 8080 where database is in
 app.listen(8080);

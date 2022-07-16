@@ -20,6 +20,9 @@ import style from "./app.module.scss";
 /*library*/
 import * as cookie from "./Middleware/Library/cookie";
 
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import PdfComponent from "./PdfComponent";
+
 export const App = () => {
   /*states*/
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +50,7 @@ export const App = () => {
               <>
                 <Route path="/personal_info">
                   <PersonalPage setDashboard={setDashboard} title={dashboard} />
+                  {/* <PdfComponent /> */}
                 </Route>
                 <Route path="/learning_info">
                   <LearningPage setDashboard={setDashboard} title={dashboard} />

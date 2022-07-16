@@ -1,0 +1,137 @@
+@import '../../../../index.module.scss';
+
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin: auto;
+    margin-top: 50px;
+    border-radius: 5px;
+    box-shadow: $brightBoxShadow1;
+    background-color: yellow;
+    padding: 25px;
+    padding-bottom: 35px;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(230, 230, 230);
+        border: 2px solid $mainBlueColor1;
+        border-radius: 8px 8px 0 0;
+
+        .fileDetails {
+            background-color: $mainBlueColor1;
+            width: 100%;
+            padding: 15px;
+            margin: auto;
+            margin-left: -0.5px;
+            margin-top: 0;
+            color: whitesmoke;
+            font-family: titleFont;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .accordion {
+            flex-direction: column;
+            width: 100%;
+            margin: 10px auto;
+            background-color: rgb(230, 230, 230);
+
+            .icon {
+                font-size: $fontSize3;
+            }
+        }
+    }
+
+    .avLogo {
+        width: 30px;
+        object-fit: cover;
+    }
+
+    .tbl {
+        font-family: paragraphFont;
+
+        .clean {
+            color: green;
+            font-weight: bold;
+        }
+
+        .malware {
+            color: $mainRedColor1;
+            font-weight: bold;
+        }
+
+        .notDetected {
+            color: pink;
+            font-weight: bold;
+        }
+
+        .loading {
+            margin: auto
+        }
+    }
+
+    h1 {
+        @include chartTitle();
+
+        .icon {
+            font-size: $fontSize4;
+        }
+    }
+}
+
+.tableContainer_dark {
+    background-color: red;
+    box-shadow: none;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        background-color: transparent;
+        border: 2px solid gray;
+
+        .fileDetails {
+            background-color: gray;
+            width: 100%;
+            padding: 10px;
+            margin: auto;
+            margin-top: 0;
+            color: white;
+            font-family: titleFont;
+        }
+
+        .accordion {
+            flex-direction: column;
+            width: 100%;
+            margin: 10px auto;
+            background-color: pink;
+        }
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .tbl {
+        .clean {
+            color: greenyellow;
+        }
+
+        .malware {
+            color: $mainRedColor1;
+        }
+    }
+}
+
+@media only screen and (max-width: $tablet_screen) {
+    .tableContainer {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: $mobile_screen) {
+    .tableContainer {
+        border-radius: 0;
+    }
+}

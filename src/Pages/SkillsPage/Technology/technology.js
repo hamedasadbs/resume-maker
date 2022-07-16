@@ -21,6 +21,8 @@ import Checkbox from "@mui/material/Checkbox";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
+import { DeviceTable } from "./DeviceTable/deviceTable";
+
 export const Technology = (props) => {
   const [time, setTime] = useState(0);
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -55,87 +57,22 @@ export const Technology = (props) => {
       <div className={style.addTechnology}>
         <Input
           type="username"
-          align="right"
-          direction="rtl"
-          id={0}
-          label="نام دوره آموزشی"
-          width="25%"
-        />
-        <Input
-          type="username"
-          align="left"
-          direction="ltr"
-          id={1}
-          label="وبسایت دوره"
-          width="25%"
-        />
-        <Input
-          onchange={(e, newValue) => {
-            setTime(newValue);
-          }}
-          type="number"
           align="center"
           direction="ltr"
-          id={2}
-          value={time}
-          label="مدت زمان دوره"
-          width="25%"
+          id={0}
+          label="عنوان تکنولوژی"
+          width="70%"
         />
         <Button
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
         >
-          افزودن تکنولوژی
+          افزودن عنوان تکنولوژی
         </Button>
       </div>
       <div className={style.table}>
-        <Typography component={"span"} marginBottom={0}>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell className={style.tbl} width={10}>
-                    انتخاب
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={150}>
-                    مدت زمان دوره
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={150}>
-                    وبسایت دوره
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={200}>
-                    نام دوره آموزشی
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={10}>
-                    #
-                  </StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {courses.map((course, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell className={style.tbl}>
-                      <Checkbox {...label} />
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.time} ساعت</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.website}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{course.courseName}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      {index + 1}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Typography>
+        <DeviceTable />
         <div className={style.btnContainer}>
           <Button className={style.save} variant="contained">
             <span>ذخیره تغییرات</span>
