@@ -98,27 +98,3 @@
         }
     }
 }
-
-@media only screen and (max-width: $tablet_screen) {
-    .addCourse {
-        margin-top: 20px;
-
-        .addCourseForm {
-            flex-wrap: wrap;
-
-            select {
-                width: 45%;
-            }
-
-            .save {
-                width: 95%;
-                margin: 10px auto;
-            }
-
-            .addField {
-                width: 45%;
-                margin: 10px auto;
-            }
-        }
-    }
-}

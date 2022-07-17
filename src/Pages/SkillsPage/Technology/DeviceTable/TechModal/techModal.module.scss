@@ -1,0 +1,181 @@
+@import '../../../../../index.module.scss';
+
+.techModalContainer {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 200%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 500;
+
+    .techModal {
+        position: fixed;
+        left: 50%;
+        margin-left: -300px;
+        margin-top: 200px;
+        width: 600px;
+        background-color: white;
+        z-index: 501;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        transform: scale(0.5);
+        transition: all 0.5s;
+
+        .body {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px auto;
+
+            .add {
+                margin: auto;
+                padding: 10px 0;
+                margin-right: 10px;
+                width: 45%;
+                font-size: $fontSize2;
+                font-family: titleFont;
+                background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
+            }
+        }
+
+        .title {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            padding: 5px 0;
+            border-bottom: 1px solid lightgray;
+
+            .icon {
+                margin: auto 0;
+                font-size: $fontSize4;
+                color: $mainBlueColor1;
+            }
+
+            button {
+                background-color: transparent;
+
+                &:hover {
+                    cursor: pointer;
+
+                    .closeIcon {
+                        color: $secondaryColor2;
+                    }
+                }
+
+                .closeIcon {
+                    margin: auto 0;
+                    font-size: $fontSize5;
+                    color: rgb(55, 55, 55);
+                }
+            }
+
+            h1 {
+                font-family: titleFont;
+                font-size: $fontSize3;
+                margin: auto;
+                margin-right: 5px;
+                color: $mainBlueColor1;
+            }
+        }
+
+        .text {
+            width: 90%;
+            margin-top: 20px;
+
+            p {
+                font-family: titleFont;
+                direction: rtl;
+                text-align: justify;
+                font-size: $fontSize3;
+            }
+
+            &:nth-child(4) {
+                margin-top: 30px;
+            }
+        }
+
+        .avLogos {
+            width: 90%;
+            margin: auto;
+            display: flex;
+
+            .logoContainer {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+
+                .logo {
+                    width: 25px;
+                    margin: auto;
+                }
+
+                &:hover {
+                    p {
+                        font-size: $fontSize2;
+                        visibility: visible;
+                        margin-top: -50px;
+                    }
+                }
+            }
+        }
+
+        .close {
+            width: 90%;
+            margin: 10px auto;
+            display: flex;
+
+            .understood {
+                width: 100px;
+                padding: 5px;
+                font-family: titleFont;
+                font-size: $fontSize2;
+                margin: auto;
+                margin-left: 0;
+                background-color: $mainBlueColor2;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .growTechModal {
+        transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: $tablet_screen) {
+    .techModalContainer {
+        .techModal {
+            margin: auto;
+            width: 90%;
+            position: relative;
+            left: 0;
+
+            .avLogos {
+                width: 90%;
+                margin: auto;
+                display: flex;
+                flex-wrap: wrap;
+
+                .logoContainer {
+                    display: flex;
+                    width: 25px;
+
+                    .logo {
+                        width: 25px;
+                        margin: auto;
+                    }
+
+                    &:hover {
+                        p {
+                            font-size: $fontSize2;
+                            visibility: visible;
+                            margin-top: -50px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

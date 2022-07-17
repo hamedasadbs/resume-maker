@@ -91,5 +91,13 @@ preview.getData(app, con);
 technology.getTitle(app, con);
 //send data to technology page
 technology.getTech(app, con);
+//add tech title
+technology.addTechTitle(app, con);
+//remove tech title
+technology.removeTechTitle(app, con);
+//add tech
+technology.addTechnology(app, con);
+//remove tech
+technology.removeTechnology(app, con);
 //listen to port 8080 where database is in
 app.listen(8080);

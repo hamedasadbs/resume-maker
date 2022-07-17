@@ -1,8 +1,10 @@
 /*css*/
-import { useState, useEffect } from "react";
 import style from "./header.module.scss";
-import { Pulse } from "../../Components/Pulse/pulse";
+/*inner components*/
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+/*child components*/
+import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
 import logo from "../../Assets/Images/dade-baan.png";
 /*library*/

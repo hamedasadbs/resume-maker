@@ -13,7 +13,6 @@ import Button from "@mui/material/Button";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
-import * as base64Lib from "../../Middleware/Library/base64Lib";
 
 export const PersonalPage = (props) => {
   const [fname, setFname] = useState("");

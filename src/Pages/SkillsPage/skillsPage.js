@@ -99,7 +99,7 @@ export const SkillsPage = (props) => {
             <Interests />
           </TabPanel>
           <TabPanel className={style.tabContent} value={value} index={0}>
-            <Technology />
+            <Technology setIsModalOpen={props.setIsModalOpen} />
           </TabPanel>
         </div>
         <NavBar dashboard={props.setDashboard} />

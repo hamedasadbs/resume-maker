@@ -15,18 +15,21 @@ import { ProjectPage } from "./Pages/ProjectPage/projectPage";
 import { LoginPage } from "./Pages/LoginPage/loginPage";
 import { LoadingPage } from "./Pages/LoadingPage/loadingPage";
 import { PreviewPage } from "./Pages/PreviewPage/previewPage";
+import { TechModal } from "./Pages/SkillsPage/Technology/DeviceTable/TechModal/techModal";
 /*css*/
 import style from "./app.module.scss";
 /*library*/
 import * as cookie from "./Middleware/Library/cookie";
 
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import PdfComponent from "./PdfComponent";
+// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import PdfComponent from "./PdfComponent";
 
 export const App = () => {
   /*states*/
   const [loaded, setLoaded] = useState(false);
   const [dashboard, setDashboard] = useState("صفحه اصلی");
+
+  const [isModalOpen, setIsModalOpen] = useState({ bool: false, title: "" });
   /*loading screen*/
   useEffect(() => {
     setTimeout(() => {
@@ -43,6 +46,15 @@ export const App = () => {
   /*render component*/
   return (
     <div className={style.app}>
+      {isModalOpen.bool && (
+        <style jsx global>
+          {`
+            body {
+              overflow: hidden;
+            }
+          `}
+        </style>
+      )}
       <Router>
         <Switch>
           {cookie.getCookie("login") ? (
@@ -62,7 +74,17 @@ export const App = () => {
                   />
                 </Route>
                 <Route path="/skills">
-                  <SkillsPage setDashboard={setDashboard} title={dashboard} />
+                  <SkillsPage
+                    setIsModalOpen={setIsModalOpen}
+                    setDashboard={setDashboard}
+                    title={dashboard}
+                  />
+                  {isModalOpen.bool && (
+                    <TechModal
+                      title={isModalOpen.title}
+                      setIsModalOpen={setIsModalOpen}
+                    />
+                  )}
                 </Route>
                 <Route path="/projects">
                   <ProjectPage setDashboard={setDashboard} title={dashboard} />

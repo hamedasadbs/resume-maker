@@ -4,45 +4,70 @@
 .tableContainer {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     margin: auto;
-    margin-top: 50px;
     border-radius: 5px;
     box-shadow: $brightBoxShadow1;
-    background-color: yellow;
-    padding: 25px;
-    padding-bottom: 35px;
+    background-color: rgb(230, 230, 230);
+    border: 2px solid $mainBlueColor1;
 
-    main {
-        display: flex;
+    .fileDetails {
+        background-color: $mainBlueColor1;
+        width: 100%;
+        padding: 15px;
+        margin: auto;
+        color: whitesmoke;
+        font-family: titleFont;
+        border-radius: 2px 2px 0 0;
+    }
+
+    .accordion {
         flex-direction: column;
+        width: 100%;
+        margin: 10px auto;
         background-color: rgb(230, 230, 230);
-        border: 2px solid $mainBlueColor1;
-        border-radius: 8px 8px 0 0;
 
-        .fileDetails {
-            background-color: $mainBlueColor1;
-            width: 100%;
-            padding: 15px;
-            margin: auto;
-            margin-left: -0.5px;
-            margin-top: 0;
-            color: whitesmoke;
-            font-family: titleFont;
-            border-radius: 5px 5px 0 0;
-        }
-
-        .accordion {
-            flex-direction: column;
+        .noData {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid green;
             width: 100%;
             margin: 10px auto;
-            background-color: rgb(230, 230, 230);
 
-            .icon {
-                font-size: $fontSize3;
+            h1 {
+                margin: auto;
+                font-size: $fontSize2;
+                color: green;
+            }
+        }
+
+        .typography {
+            display: flex;
+
+            .remove {
+                margin: auto 10px;
+                display: flex;
+                color: $secondaryColor2;
+                border: 1px solid $secondaryColor2;
+                padding: 10px;
+                z-index: 50;
+            }
+        }
+
+        .removeContainer {
+            .remove {
+                margin: auto;
+                display: flex;
+                color: $secondaryColor2;
+                padding: 10px;
+
+                .removeIcon {
+                    font-size: $fontSize3;
+                }
             }
         }
     }
+
 
     .avLogo {
         width: 30px;
@@ -78,60 +103,5 @@
         .icon {
             font-size: $fontSize4;
         }
-    }
-}
-
-.tableContainer_dark {
-    background-color: red;
-    box-shadow: none;
-
-    main {
-        display: flex;
-        flex-direction: column;
-        background-color: transparent;
-        border: 2px solid gray;
-
-        .fileDetails {
-            background-color: gray;
-            width: 100%;
-            padding: 10px;
-            margin: auto;
-            margin-top: 0;
-            color: white;
-            font-family: titleFont;
-        }
-
-        .accordion {
-            flex-direction: column;
-            width: 100%;
-            margin: 10px auto;
-            background-color: pink;
-        }
-    }
-
-    h1 {
-        color: black;
-    }
-
-    .tbl {
-        .clean {
-            color: greenyellow;
-        }
-
-        .malware {
-            color: $mainRedColor1;
-        }
-    }
-}
-
-@media only screen and (max-width: $tablet_screen) {
-    .tableContainer {
-        margin-top: 10px;
-    }
-}
-
-@media only screen and (max-width: $mobile_screen) {
-    .tableContainer {
-        border-radius: 0;
     }
 }

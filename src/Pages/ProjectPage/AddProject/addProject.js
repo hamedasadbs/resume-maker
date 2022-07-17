@@ -3,8 +3,9 @@ import style from "./addProject.module.scss";
 /*inner components*/
 import { useState, useEffect } from "react";
 import axios from "axios";
-/*library*/
+/*child components*/
 import { Input } from "../../../Components/Input/input";
+/*library*/
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";

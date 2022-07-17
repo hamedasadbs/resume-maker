@@ -56,57 +56,6 @@
         }
     }
 
-    .btnContainer {
-        display: flex;
-        width: 100%;
-        margin: 40px auto;
-
-        .save {
-            margin: auto 0;
-            display: flex;
-            background-color: $secondaryColor1;
-            padding: 5px 25px;
-
-            span {
-                font-size: $fontSize2;
-                font-family: titleFont;
-                margin: auto;
-            }
-
-            .icon {
-                margin: auto;
-                margin-left: 5px;
-                font-size: $fontSize3;
-            }
-        }
-
-        .remove {
-            margin: auto;
-            margin-left: 0;
-            display: flex;
-            color: $secondaryColor2;
-            border: 1px solid $secondaryColor2;
-            padding: 5px 25px;
-
-            &:hover {
-                background-color: rgba($secondaryColor2, 0.1);
-            }
-
-            span {
-                font-size: $fontSize2;
-                font-family: titleFont;
-                margin: auto;
-            }
-
-            .icon {
-                margin: auto;
-                margin-left: 5px;
-                font-size: $fontSize3;
-                color: $secondaryColor2;
-            }
-        }
-    }
-
     .addTechnology {
         display: flex;
         width: 100%;

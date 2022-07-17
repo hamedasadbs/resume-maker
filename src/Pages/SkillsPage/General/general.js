@@ -3,8 +3,10 @@ import style from "./general.module.scss";
 /*inner components*/
 import axios from "axios";
 import { useState, useEffect } from "react";
-/*library*/
+/*child components*/
 import { Input } from "../../../Components/Input/input";
+import { Point } from "../../../Components/Point/point";
+/*library*/
 import * as cookie from "../../../Middleware/Library/cookie";
 /*MUI*/
 import Typography from "@mui/material/Typography";
@@ -20,8 +22,6 @@ import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-/*child components*/
-import { Point } from "../../../Components/Point/point";
 
 export const General = (props) => {
   const [langName, setLangName] = useState("");

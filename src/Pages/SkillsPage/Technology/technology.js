@@ -1,56 +1,115 @@
 /*css*/
 import style from "./technology.module.scss";
 /*inner components*/
-import { useState } from "react";
-/*library*/
-import { courses } from "../../../Middleware/Data/coursesData";
+import { useEffect, useState } from "react";
+import axios from "axios";
+/*inner components*/
+import { DeviceTable } from "./DeviceTable/deviceTable";
 import { Input } from "../../../Components/Input/input";
 /*MUI*/
-import Typography from "@mui/material/Typography";
-import TableContainer from "@mui/material/TableContainer";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import Checkbox from "@mui/material/Checkbox";
-import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
-import { DeviceTable } from "./DeviceTable/deviceTable";
+/*library*/
+import * as cookie from "../../../Middleware/Library/cookie";
 
 export const Technology = (props) => {
-  const [time, setTime] = useState(0);
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [title, setTitle] = useState("");
+  const [techTitle, setTechTitle] = useState([]);
+  const [technology, setTechnology] = useState([]);
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
-    [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "rgb(26, 55, 130)",
-      color: "white",
-      fontSize: 16,
-      textAlign: "center",
-    },
-    [`&.${tableCellClasses.body}`]: {
-      color: "black",
-      backgroundColor: "whitesmoke",
-      fontSize: 14,
-      textAlign: "center",
-    },
-  }));
+  const addTechTitleHandler = () => {
+    if (title === "") alert("لطفا تمام بخش های مورد نیاز را پر کنید");
+    else {
+      console.log("title is:" + title);
+      console.log("username is:" + cookie.getCookie("username"));
+      axios
+        .post("http://localhost:8080/techTitle", {
+          title,
+          username: cookie.getCookie("username"),
+        })
+        .then(() => {
+          setTitle("");
+          getTechTitleHandler();
+          getTechnologyHandler();
+        })
+        .catch(() => {
+          alert("عنوان تکنولوژی اضافه نشد");
+        });
+    }
+  };
 
-  const StyledTableRow = styled(TableRow)(({ theme }) => ({
-    "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
-    },
-    // hide last border
-    "&:last-child td, &:last-child th": {
-      border: 0,
-    },
-  }));
+  const getTechTitleHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/techTitle?username=${cookie.getCookie(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setTechTitle(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات عنوان به وجود آمد");
+      });
+  };
+
+  const getTechnologyHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/technology?username=${cookie.getCookie(
+          "username"
+        )}`
+      )
+      .then((res) => {
+        setTechnology(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات تکنولوژی به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getTechTitleHandler();
+    getTechnologyHandler();
+
+    return () => {
+      setTechTitle([]);
+      setTechnology([]);
+    };
+  }, []);
+
+  const removeTechTitleHandler = (item) => {
+    axios
+      .delete(
+        `http://localhost:8080/techTitle?username=${cookie.getCookie(
+          "username"
+        )}&item=${item}`
+      )
+      .then(() => {
+        getTechTitleHandler();
+        getTechnologyHandler();
+      })
+      .catch(() => {
+        alert("عنوان مورد نظر حذف نشد");
+      });
+  };
+
+  const removeTechnologyHandler = (item) => {
+    axios
+      .delete(
+        `http://localhost:8080/technology?username=${cookie.getCookie(
+          "username"
+        )}&item=${item}`
+      )
+      .then(() => {
+        getTechTitleHandler();
+        getTechnologyHandler();
+      })
+      .catch(() => {
+        alert("تکنولوژی مورد نظر حذف نشد");
+      });
+  };
+
   /*render component*/
   return (
     <div className={style.technology}>
@@ -62,27 +121,28 @@ export const Technology = (props) => {
           id={0}
           label="عنوان تکنولوژی"
           width="70%"
+          value={title}
+          onchange={(e) => {
+            setTitle(e.target.value);
+          }}
         />
         <Button
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
+          onClick={addTechTitleHandler}
         >
           افزودن عنوان تکنولوژی
         </Button>
       </div>
       <div className={style.table}>
-        <DeviceTable />
-        <div className={style.btnContainer}>
-          <Button className={style.save} variant="contained">
-            <span>ذخیره تغییرات</span>
-            <SaveOutlinedIcon className={style.icon} />
-          </Button>
-          <Button className={style.remove} variant="outlined">
-            <span>حذف تکنولوژی</span>
-            <DeleteOutlineIcon className={style.icon} />
-          </Button>
-        </div>
+        <DeviceTable
+          techTitle={techTitle}
+          technology={technology}
+          removeTechTitleHandler={removeTechTitleHandler}
+          removeTechnologyHandler={removeTechnologyHandler}
+          setIsModalOpen={props.setIsModalOpen}
+        />
       </div>
     </div>
   );
