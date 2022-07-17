@@ -7,6 +7,8 @@ module.exports = {
     var interests = [];
     var skills = [];
     var projects = [];
+    var techTitle = [];
+    var technology = [];
     app.get("/preview", async (req, res) => {
       con.query(
         `SELECT * FROM profile WHERE username='${req.query.username}'`,
@@ -73,6 +75,24 @@ module.exports = {
           }
         }
       );
+      con.query(
+        `SELECT * FROM technology_title WHERE username='${req.query.username}'`,
+        (err, result) => {
+          if (err) throw err;
+          if (result.length) {
+            techTitle = result;
+          }
+        }
+      );
+      con.query(
+        `SELECT * FROM technology WHERE username='${req.query.username}'`,
+        (err, result) => {
+          if (err) throw err;
+          if (result.length) {
+            technology = result;
+          }
+        }
+      );
       var dataset = {
         profile,
         learning,
@@ -81,6 +101,8 @@ module.exports = {
         skills,
         interests,
         projects,
+        techTitle,
+        technology,
       };
       await res.send({ dataset });
     });

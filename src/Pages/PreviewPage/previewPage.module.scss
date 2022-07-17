@@ -292,6 +292,41 @@
                         font-family: titleFont;
                     }
                 }
+
+                .technology {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 20px auto;
+                    margin-top: 40px;
+                    width: 80%;
+                    border: 1px solid lightgray;
+                    padding: 5px;
+
+                    .title {
+                        font-size: 15px;
+                        direction: rtl;
+                        text-align: center;
+                        width: 100%;
+                        background-color: rgb(31, 31, 31);
+                        color: white;
+                        padding: 10px 0;
+                        margin: auto;
+                    }
+
+                    ul {
+                        h1 {
+                            font-size: $fontSize3;
+                            margin-top: 10px;
+                            font-weight: bold;
+                        }
+
+                        li {
+                            font-size: $fontSize2;
+                            margin-top: 5px;
+                            margin-left: 30px;
+                        }
+                    }
+                }
             }
         }
 

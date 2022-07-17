@@ -139,6 +139,22 @@ export const PreviewPage = (props) => {
                   <span key={index}>- {skill.skill}</span>
                 ))}
               </div>
+              <div className={style.technology}>
+                <h1 className={style.title}>تکنولوژی های کاری</h1>
+                {dataset.techTitle.map((title) => (
+                  <ul>
+                    <h1>{title.name}:</h1>
+                    {dataset.technology.map((tech) => {
+                      if (tech.title == title.name)
+                        return (
+                          <li>
+                            {tech.name}-{tech.version}-{tech.ability}
+                          </li>
+                        );
+                    })}
+                  </ul>
+                ))}
+              </div>
             </article>
           </div>
           <div className={style.bottomPage}>
