@@ -120,7 +120,7 @@ export const Technology = (props) => {
           direction="ltr"
           id={0}
           label="عنوان تکنولوژی"
-          width="70%"
+          width="68%"
           value={title}
           onchange={(e) => {
             setTitle(e.target.value);

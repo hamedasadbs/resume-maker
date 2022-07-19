@@ -7,21 +7,24 @@
     margin: auto;
     border-radius: 5px;
     padding: 25px;
+    padding-top: 0;
 
     .addSkill {
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
         margin: auto;
+        border: 1px solid whitesmoke;
+        padding: 20px 5px;
+        border-radius: 5px;
 
         .save {
             margin: auto;
             padding: 10px 0;
-            margin-right: 10px;
-            width: 160px;
+            width: 20%;
             font-size: $fontSize2;
             font-family: titleFont;
-            background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
+            background-color: $primaryColor2;
         }
 
         .addField {

@@ -136,7 +136,7 @@ export const Interests = (props) => {
           direction="rtl"
           id={0}
           label="علاقه پژوهشی"
-          width="90%"
+          width="68%"
           onchange={(e) => {
             setInterest(e.target.value);
           }}

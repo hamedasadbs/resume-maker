@@ -93,16 +93,21 @@
                         width: 100%;
                         padding: 0 10px;
 
-                        .icon {
-                            font-size: 30px;
-                            margin: auto;
+                        .iconContainer {
+                            display: flex;
+                            width: 50px;
+
+                            .icon {
+                                font-size: 30px;
+                                margin: auto;
+                            }
                         }
 
                         .contact {
                             display: flex;
                             flex-direction: column;
                             width: 100%;
-                            padding-right: 20px;
+                            padding-right: 5px;
 
                             label,
                             h1 {

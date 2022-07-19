@@ -1,5 +1,5 @@
 /*inner components*/
-import { useState, useEffect, createRef } from "react";
+import { useState, useEffect } from "react";
 import {
   Switch,
   Route,
@@ -22,14 +22,12 @@ import style from "./app.module.scss";
 import * as cookie from "./Middleware/Library/cookie";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { Pdf } from "./pdf";
+// import { Pdf } from "./pdf";
 
 export const App = () => {
   /*states*/
   const [loaded, setLoaded] = useState(false);
   const [dashboard, setDashboard] = useState("صفحه اصلی");
-
-  const [ref, setRef] = useState(null);
 
   const [isModalOpen, setIsModalOpen] = useState({ bool: false, title: "" });
   /*loading screen*/
@@ -63,12 +61,8 @@ export const App = () => {
             loaded ? (
               <>
                 <Route path="/personal_info">
-                  <PersonalPage
-                    ref={ref}
-                    setDashboard={setDashboard}
-                    title={dashboard}
-                  />
-                  <Pdf setRef={setRef} />
+                  <PersonalPage setDashboard={setDashboard} title={dashboard} />
+                  {/* <Pdf setRef={setRef} /> */}
                 </Route>
                 <Route path="/learning_info">
                   <LearningPage setDashboard={setDashboard} title={dashboard} />

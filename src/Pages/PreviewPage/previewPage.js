@@ -3,16 +3,12 @@ import { useState, useEffect, createRef } from "react";
 import axios from "axios";
 /*css*/
 import style from "./previewPage.module.scss";
-/*MUI*/
-import SettingsCellIcon from "@mui/icons-material/SettingsCell";
-import EmailIcon from "@mui/icons-material/Email";
-import MapIcon from "@mui/icons-material/Map";
-import LanguageIcon from "@mui/icons-material/Language";
-import CircleIcon from "@mui/icons-material/Circle";
 /*child components*/
 import { Header } from "../../Layouts/Header/header";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
+
+import "font-awesome/css/font-awesome.min.css";
 
 export const PreviewPage = (props) => {
   const [dataset, setDataset] = useState(null);
@@ -39,7 +35,7 @@ export const PreviewPage = (props) => {
     let points = [];
 
     for (let i = 0; i < num; i++) {
-      points.push(<CircleIcon key={i} className={style.icon} />);
+      points.push(<i key={i} className={`${style.icon} fa fa-circle`}></i>);
     }
     return points;
   };
@@ -71,14 +67,18 @@ export const PreviewPage = (props) => {
                     <label>موبایل</label>
                     <h1>{dataset.profile[0].mobile}</h1>
                   </div>
-                  <SettingsCellIcon className={style.icon} />
+                  <div className={style.iconContainer}>
+                    <i className={`${style.icon} fa fa-mobile`}></i>
+                  </div>
                 </span>
                 <span>
                   <div className={style.contact}>
                     <label>ایمیل</label>
                     <h1>{dataset.profile[0].email}</h1>
                   </div>
-                  <EmailIcon className={style.icon} />
+                  <div className={style.iconContainer}>
+                    <i className={`${style.icon} fa fa-envelope-o`}></i>
+                  </div>
                 </span>
                 <span>
                   <div className={style.contact}>
@@ -87,14 +87,18 @@ export const PreviewPage = (props) => {
                       {dataset.profile[0].state}/{dataset.profile[0].city}
                     </h1>
                   </div>
-                  <MapIcon className={style.icon} />
+                  <div className={style.iconContainer}>
+                    <i className={`${style.icon} fa fa-map-marker`}></i>
+                  </div>
                 </span>
                 <span>
                   <div className={style.contact}>
                     <label>آدرس وبسایت</label>
                     <h1>{dataset.profile[0].website}</h1>
                   </div>
-                  <LanguageIcon className={style.icon} />
+                  <div className={style.iconContainer}>
+                    <i className={`${style.icon} fa fa-globe`}></i>
+                  </div>
                 </span>
               </div>
               <div className={style.interests}>

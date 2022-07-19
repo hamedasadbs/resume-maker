@@ -137,7 +137,7 @@ export const Skills = (props) => {
           id={0}
           value={skill}
           label="مهارت"
-          width="90%"
+          width="78%"
         />
         <Button
           className={style.save}

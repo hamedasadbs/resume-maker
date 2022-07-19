@@ -8,21 +8,25 @@
     margin-top: 10px;
     border-radius: 5px;
     padding: 25px;
+    padding-top: 0;
 
     .addTechnology {
         display: flex;
         flex-direction: row-reverse;
         width: 100%;
         margin: auto;
+        border: 1px solid whitesmoke;
+        padding: 20px 5px;
+        border-radius: 5px;
 
         .save {
             margin: auto;
             margin-left: 0;
-            width: 200px;
+            width: 30%;
             padding: 10px 0;
             font-size: $fontSize2;
             font-family: titleFont;
-            background: linear-gradient(135deg, $primaryColor1, $primaryColor2);
+            background-color: $primaryColor2;
         }
 
         .addField {
