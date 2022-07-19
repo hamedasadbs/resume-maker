@@ -44,17 +44,18 @@
                 }
 
                 .profile {
-                    margin: auto;
+                    margin: 0 auto;
                     display: flex;
                     flex-direction: column;
                     width: 100%;
 
                     .title {
+                        border-radius: 3px;
                         font-size: 15px;
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                     }
@@ -76,11 +77,12 @@
                     width: 100%;
 
                     .title {
+                        border-radius: 3px;
                         font-size: 15px;
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                     }
@@ -121,11 +123,12 @@
                     width: 100%;
 
                     .title {
+                        border-radius: 3px;
                         font-size: 15px;
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                     }
@@ -148,11 +151,12 @@
                     width: 100%;
 
                     .title {
+                        border-radius: 3px;
                         font-size: 15px;
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                     }
@@ -177,6 +181,7 @@
                         span {
                             margin: auto;
                             margin-left: 0;
+                            color: $previewDarkColor;
 
                             .icon {
                                 font-size: $fontSize3;
@@ -219,7 +224,7 @@
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                         margin: auto;
@@ -248,7 +253,7 @@
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                         margin: auto;
@@ -277,7 +282,7 @@
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                         margin: auto;
@@ -307,7 +312,7 @@
                         direction: rtl;
                         text-align: center;
                         width: 100%;
-                        background-color: rgb(31, 31, 31);
+                        background-color: $previewDarkColor;
                         color: white;
                         padding: 10px 0;
                         margin: auto;
@@ -315,7 +320,7 @@
 
                     ul {
                         h1 {
-                            font-size: $fontSize3;
+                            font-size: $fontSize2;
                             margin-top: 10px;
                             font-weight: bold;
                         }
@@ -324,6 +329,10 @@
                             font-size: $fontSize2;
                             margin-top: 5px;
                             margin-left: 30px;
+
+                            span {
+                                color: lightgray;
+                            }
                         }
                     }
                 }
@@ -346,7 +355,7 @@
                     direction: rtl;
                     text-align: center;
                     width: 60%;
-                    background-color: rgb(31, 31, 31);
+                    background-color: $previewDarkColor;
                     color: white;
                     padding: 10px 0;
                     margin: auto;
@@ -382,9 +391,9 @@
                         }
 
                         .projectTitle {
-                            margin: auto;
+                            margin: 2px auto;
                             margin-right: 0px;
-                            background-color: rgb(31, 31, 31);
+                            background-color: $previewDarkColor;
                             color: whitesmoke;
                             padding: 10px 5px;
                             width: 120px;

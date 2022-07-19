@@ -77,20 +77,3 @@
         }
     }
 }
-
-@media only screen and (max-width: 1060px) {
-    .skillsPage {
-        padding-right: 70px;
-    }
-}
-
-@media only screen and (max-width: $tablet_screen) {
-    .skillsPage {
-        .title {
-            display: block;
-            margin: 20px auto;
-            margin-right: 20px;
-            font-size: $fontSize2_5;
-        }
-    }
-}

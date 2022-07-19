@@ -150,31 +150,3 @@
         }
     }
 }
-
-@media only screen and (max-width: $laptop_screen) {
-    .loginContainer {
-        .loginDesign {
-            .logo {
-                img {
-                    width: 80px;
-                }
-            }
-
-            .title {
-                margin-top: 50px;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: $tablet_screen) {
-    .loginContainer {
-        .loginDesign {
-            display: none;
-        }
-
-        .loginFormContainer {
-            width: 100%;
-        }
-    }
-}

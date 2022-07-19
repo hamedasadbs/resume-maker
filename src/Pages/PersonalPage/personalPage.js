@@ -123,7 +123,11 @@ export const PersonalPage = (props) => {
   /*render component*/
   return (
     <article className={style.personalPage}>
-      <Header title={props.title} setDashboard={props.setDashboard} />
+      <Header
+        ref={props.ref}
+        title={props.title}
+        setDashboard={props.setDashboard}
+      />
       <main>
         <div className={style.information}>
           <div className={style.profileImage}>

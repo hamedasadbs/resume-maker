@@ -94,20 +94,3 @@
         }
     }
 }
-
-@media only screen and (max-width: 1060px) {
-    .learningPage {
-        padding-right: 70px;
-    }
-}
-
-@media only screen and (max-width: $tablet_screen) {
-    .learningPage {
-        .title {
-            display: block;
-            margin: 20px auto;
-            margin-right: 20px;
-            font-size: $fontSize2_5;
-        }
-    }
-}

@@ -26,6 +26,16 @@ export const NavBar = (props) => {
   /*variables*/
   let location = useLocation();
 
+  const navigation = [
+    "اطلاعات فردی",
+    "اطلاعات آموزشی",
+    "سوابق تحصیلی",
+    "مهارت ها",
+    "پروژه ها",
+    "لینک ها",
+    "دستاورد ها",
+  ];
+
   const nav = useRef();
   /*initialize slide nav links*/
   useEffect(() => {
@@ -46,25 +56,25 @@ export const NavBar = (props) => {
 
     switch (location.pathname) {
       case "/personal_info":
-        hrefNavHandler("اطلاعات فردی");
+        hrefNavHandler(navigation[0]);
         break;
       case "/learning_info":
-        hrefNavHandler("اطلاعات آموزشی");
+        hrefNavHandler(navigation[1]);
         break;
       case "/education_history":
-        hrefNavHandler("سوابق تحصیلی");
+        hrefNavHandler(navigation[2]);
         break;
       case "/skills":
-        hrefNavHandler("مهارت ها");
+        hrefNavHandler(navigation[3]);
         break;
       case "/projects":
-        hrefNavHandler("پروژه ها");
+        hrefNavHandler(navigation[4]);
         break;
       case "/links":
-        hrefNavHandler("لینک ها");
+        hrefNavHandler(navigation[5]);
         break;
       case "/awards":
-        hrefNavHandler("دستاورد ها");
+        hrefNavHandler(navigation[6]);
         break;
       default:
         break;
@@ -80,87 +90,94 @@ export const NavBar = (props) => {
       <nav className={style.navBar}>
         <Link
           ref={nav}
-          id="اطلاعات فردی"
+          id={navigation[0]}
           onClick={navHandler}
           className={style.link}
           to="/personal_info"
         >
-          <span>اطلاعات فردی</span>
+          <span>{navigation[0]}</span>
           {location.pathname === "/personal_info" ? (
             <PersonIcon className={style.icon} />
           ) : (
             <PersonOutlineIcon className={style.icon} />
           )}
+          <div className={style.tooltip}>{navigation[0]}</div>
         </Link>
         <Link
-          id="اطلاعات آموزشی"
+          id={navigation[1]}
           onClick={navHandler}
           className={style.link}
           to="/learning_info"
         >
-          <span>اطلاعات آموزشی</span>
+          <span>{navigation[1]}</span>
           {location.pathname === "/learning_info" ? (
             <LocalLibraryIcon className={style.icon} />
           ) : (
             <LocalLibraryOutlinedIcon className={style.icon} />
           )}
+          <div className={style.tooltip}>{navigation[1]}</div>
         </Link>
         <Link
-          id="سوابق تحصیلی"
+          id={navigation[2]}
           onClick={navHandler}
           className={style.link}
           to="/education_history"
         >
-          <span>سوابق تحصیلی</span>
+          <span>{navigation[2]}</span>
           {location.pathname === "/education_history" ? (
             <SchoolIcon className={style.icon} />
           ) : (
             <SchoolOutlinedIcon className={style.icon} />
           )}
+          <div className={style.tooltip}>{navigation[2]}</div>
         </Link>
         <Link
-          id="مهارت ها"
+          id={navigation[3]}
           onClick={navHandler}
           className={style.link}
           to="/skills"
         >
-          <span>مهارت ها</span>
+          <span>{navigation[3]}</span>
           {location.pathname === "/skills" ? (
             <HandymanIcon className={style.icon} />
           ) : (
             <HandymanOutlinedIcon className={style.icon} />
           )}
+          <div className={style.tooltip}>{navigation[3]}</div>
         </Link>
         <Link
-          id="پروژه ها"
+          id={navigation[4]}
           onClick={navHandler}
           className={style.link}
           to="/projects"
         >
-          <span>پروژه ها</span>
+          <span>{navigation[4]}</span>
           {location.pathname === "/projects" ? (
             <AccountTreeIcon className={style.icon} />
           ) : (
             <AccountTreeOutlinedIcon className={style.icon} />
           )}
+          <div className={style.tooltip}>{navigation[4]}</div>
         </Link>
         <Link
-          id="لینک ها"
+          id={navigation[5]}
           onClick={navHandler}
           className={style.link}
           to="/links"
         >
-          <span>لینک ها</span>
+          <span>{navigation[5]}</span>
           <AttachmentOutlinedIcon className={style.icon} />
+          <div className={style.tooltip}>{navigation[5]}</div>
         </Link>
         <Link
-          id="دستاورد ها"
+          id={navigation[6]}
           onClick={navHandler}
           className={style.link}
           to="/awards"
         >
-          <span>دستاوردها</span>
+          <span>{navigation[6]}</span>
           <EmojiEventsOutlinedIcon className={style.icon} />
+          <div className={style.tooltip}>{navigation[6]}</div>
         </Link>
       </nav>
     </div>

@@ -1,5 +1,5 @@
 /*inner components*/
-import { useState, useEffect } from "react";
+import { useState, useEffect, createRef } from "react";
 import axios from "axios";
 /*css*/
 import style from "./previewPage.module.scss";
@@ -43,12 +43,14 @@ export const PreviewPage = (props) => {
     }
     return points;
   };
+
+  const ref = createRef();
   /*render component*/
   return (
     <div className={style.preview}>
       <Header title={props.title} setDashboard={props.setDashboard} />
       {dataset && (
-        <main id="divToPrint">
+        <main ref={ref} id="divToPrint">
           <div className={style.topPage}>
             <aside>
               <img
@@ -141,17 +143,28 @@ export const PreviewPage = (props) => {
               </div>
               <div className={style.technology}>
                 <h1 className={style.title}>تکنولوژی های کاری</h1>
-                {dataset.techTitle.map((title) => (
-                  <ul>
+                {dataset.techTitle.map((title, index) => (
+                  <ul key={index}>
                     <h1>{title.name}:</h1>
-                    {dataset.technology.map((tech) => {
-                      if (tech.title == title.name)
-                        return (
-                          <li>
-                            {tech.name}-{tech.version}-{tech.ability}
+                    {dataset.technology.map(
+                      (tech, i) =>
+                        tech.title === title.name && (
+                          <li key={i}>
+                            {tech.name} [v{tech.version}]{" "}
+                            <span className={style.techAbility}>
+                              {tech.ability == 1
+                                ? "Starter"
+                                : tech.ability == 2
+                                ? "Basic"
+                                : tech.ability == 3
+                                ? "Average"
+                                : tech.ability == 4
+                                ? "Master"
+                                : "Professor"}
+                            </span>
                           </li>
-                        );
-                    })}
+                        )
+                    )}
                   </ul>
                 ))}
               </div>

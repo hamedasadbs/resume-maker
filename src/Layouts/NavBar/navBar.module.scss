@@ -37,6 +37,31 @@
             margin: 5px auto;
             border-radius: 5px;
 
+            .tooltip {
+                display: none;
+                position: absolute;
+                margin-right: 50px;
+                margin-top: -5px;
+                background-color: $previewDarkColor;
+                color: white;
+                padding: 5px 10px;
+                font-size: $fontSize2;
+                direction: rtl;
+                text-align: right;
+                font-family: titleFont;
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 50%;
+                    left: 100%;
+                    margin-top: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent transparent transparent $previewDarkColor;
+                }
+            }
+
             span {
                 font-size: $fontSize2;
                 font-family: titleFont;
@@ -67,37 +92,23 @@
 
 @media only screen and (max-width: 1060px) {
     .navContainer {
-        width: 70px;
-
-        .navFooter {
-            display: none;
-        }
+        min-width: 60px;
+        width: 60px;
 
         .navBar {
-            .navTitle {
-                padding: 5px 10px;
-
-                img {
-                    width: 40px;
-                    margin: auto;
-                }
-            }
-
             .link {
-                margin: 5px auto;
-
                 span {
                     display: none;
                 }
 
-                i {
-                    margin: auto;
-                    font-size: $fontSize4;
-                }
-
                 .icon {
                     margin: auto;
-                    font-size: $fontSize4;
+                }
+
+                &:hover {
+                    .tooltip {
+                        display: flex;
+                    }
                 }
             }
         }

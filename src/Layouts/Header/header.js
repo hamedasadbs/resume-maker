@@ -1,8 +1,10 @@
 /*css*/
 import style from "./header.module.scss";
+import styles from "../../pdf.module.scss";
 /*inner components*/
-import { useState, useEffect } from "react";
+import { useState, useEffect, createRef } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 /*child components*/
 import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
@@ -15,11 +17,13 @@ import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import SettingsCellIcon from "@mui/icons-material/SettingsCell";
+import EmailIcon from "@mui/icons-material/Email";
+import MapIcon from "@mui/icons-material/Map";
+import LanguageIcon from "@mui/icons-material/Language";
+import CircleIcon from "@mui/icons-material/Circle";
 
-// import html2canvas from "html2canvas";
-// import jsPDF from "jspdf";
-
-// import { PDFFile } from "../../pdf";
+import ReactToPdf from "react-to-pdf";
 
 export const Header = (props) => {
   const [subTitle, setSubTitle] = useState(null);
@@ -48,36 +52,66 @@ export const Header = (props) => {
     }
   }, [props.subTitle]);
 
-  // useEffect(() => {
-  //   const input = document.getElementById("divToPrint");
-  //   input.style.display = "none";
-  // }, []);
+  const ref = createRef();
+  const options = {
+    orientation: "portrait",
+    unit: "in",
+    format: [8.3, 11.7],
+  };
 
-  // const downloadPdfHandler = () => {
-  //   const input = document.getElementById("divToPrint");
-  //   input.style.display = "flex";
-  //   html2canvas(input).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF();
-  //     pdf.addImage(imgData, "JPEG", 0, 0);
-  //     pdf.save("download.pdf");
-  //   });
-  //   input.style.display = "none";
-  // };
+  const [dataset, setDataset] = useState(null);
+
+  const getDataHandler = () => {
+    axios
+      .get(
+        `http://localhost:8080/preview?username=${cookie.getCookie("username")}`
+      )
+      .then((res) => {
+        setDataset(res.data.dataset);
+      })
+      .catch(() => {
+        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
+      });
+  };
+
+  useEffect(() => {
+    getDataHandler();
+    getDataHandler();
+  }, []);
+
+  const langPoints = (num) => {
+    let points = [];
+
+    for (let i = 0; i < num; i++) {
+      points.push(<CircleIcon key={i} className={style.icon} />);
+    }
+    return points;
+  };
 
   /*render component*/
   return (
     <header className={style.header}>
       <div className={style.headerLeftSide}>
-        <Button
-          // onClick={downloadPdfHandler}
-          className={`${style.button} ${style.fill}`}
-          variant="contained"
+        <ReactToPdf
+          targetRef={props.ref}
+          filename={`${cookie.getCookie("username")}_CV.pdf`}
+          options={options}
+          x={0.5}
+          y={0.5}
+          scale={0.8}
         >
-          <span>دریافت فایل رزومه</span>
-          <CloudDownloadOutlinedIcon className={style.icon} />
-        </Button>
-        {/* <PDFFile /> */}
+          {({ toPdf }) => (
+            <Button
+              onClick={toPdf}
+              className={`${style.button} ${style.fill}`}
+              variant="contained"
+            >
+              <span>دریافت فایل رزومه</span>
+              <CloudDownloadOutlinedIcon className={style.icon} />
+            </Button>
+          )}
+        </ReactToPdf>
+
         {window.location.href === "http://localhost:3000/preview" ? (
           <Link to="/personal_info" className={style.link}>
             <Button
