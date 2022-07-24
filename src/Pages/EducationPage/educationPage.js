@@ -112,28 +112,6 @@ export const EducationPage = (props) => {
             direction="ltr"
             id={3}
           />
-          <Input
-            onchange={(e) => {
-              setYear(e.target.value);
-            }}
-            type="username"
-            value={year}
-            label="سال تحصیل"
-            align="left"
-            direction="ltr"
-            id={4}
-          />
-          <Input
-            onchange={(e) => {
-              setYear(e.target.value);
-            }}
-            type="username"
-            value={year}
-            label="سال تحصیل"
-            align="left"
-            direction="ltr"
-            id={5}
-          />
           <div className={style.saveBtnContainer}>
             <Button
               onClick={saveChangesHandler}

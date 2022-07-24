@@ -133,7 +133,7 @@ export const Header = (props) => {
                 <aside>
                   <img
                     src={
-                      require(`../../Assets/Images/${dataset.profile[0].image}`)
+                      require(`../../Assets/Images/${dataset.profile[0].image_name}`)
                         .default
                     }
                     alt="avatar"

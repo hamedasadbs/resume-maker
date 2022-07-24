@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
+import * as base64Lib from "../../Middleware/Library/base64Lib";
 
 export const PersonalPage = (props) => {
   const [fname, setFname] = useState("");
@@ -24,7 +25,8 @@ export const PersonalPage = (props) => {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
 
-  const [image, setImage] = useState("no_photo.png");
+  const [imageName, setImageName] = useState("no_photo.png");
+  const [image, setImage] = useState("");
   /*refs*/
   const inputFile = useRef();
 
@@ -37,7 +39,12 @@ export const PersonalPage = (props) => {
         alert("لطفا یک فایل را انتخاب کنید");
       } else {
         if (files[0].size < 10000000) {
-          setImage(files[0].name);
+          setImageName(files[0].name);
+
+          let base64 = await base64Lib.toBase64(files[0]);
+          setImage(base64);
+
+          // let myFile = await base64Lib.toFile(base64, files[0].name);
 
           // let form_data = new FormData();
           // let base64 = await base64Lib.toBase64(files[0]);
@@ -94,24 +101,38 @@ export const PersonalPage = (props) => {
         setMobile(res.data.mobile);
         setEmail(res.data.email);
         setWebsite(res.data.website);
-        setImage(res.data.image ? res.data.image : "no_photo.png");
+        setImageName(res.data.imageName ? res.data.imageName : "no_photo.png");
+        setImage(res.data.image);
       });
   }, []);
 
   const saveChangesHandler = () => {
+    console.log(image);
     axios
-      .post(`http://localhost:8080/profile`, {
-        username: cookie.getCookie("username"),
-        fname,
-        lname,
-        title,
-        city,
-        state,
-        mobile,
-        email,
-        website,
-        image,
-      })
+      .post(
+        `http://localhost:8080/profile`,
+        {
+          username: cookie.getCookie("username"),
+          // fname,
+          // lname,
+          // title,
+          // city,
+          // state,
+          // mobile,
+          // email,
+          // website,
+          // imageName,
+          image: "this is a test",
+        },
+        {
+          headers: {
+            // 'application/json' is the modern content-type for JSON, but some
+            // older servers may use 'text/json'.
+            // See: http://bit.ly/text-json
+            "content-type": "application/octet-stream",
+          },
+        }
+      )
       .then(() => {
         alert("اطلاعات شما با موفقیت ذخیره شد");
       })
@@ -139,10 +160,7 @@ export const PersonalPage = (props) => {
                 ref={inputFile}
               />
             </div>
-            <img
-              src={require(`../../Assets/Images/${image}`).default}
-              alt="profile"
-            />
+            <img src={image} alt="profile" />
           </div>
           <Input
             onchange={(e) => {

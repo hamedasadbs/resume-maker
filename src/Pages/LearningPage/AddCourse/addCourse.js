@@ -33,7 +33,7 @@ export const AddCourse = (props) => {
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: "rgb(26, 55, 130)",
       color: "white",
@@ -180,21 +180,19 @@ export const AddCourse = (props) => {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell className={style.tbl} width={10}>
+                  <StyledTableCell className={style.tbl}>
                     انتخاب
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={150}>
+                  <StyledTableCell className={style.tbl}>
                     مدت زمان دوره
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={300}>
+                  <StyledTableCell className={style.tbl}>
                     وبسایت دوره
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={300}>
+                  <StyledTableCell className={style.tbl}>
                     نام دوره آموزشی
                   </StyledTableCell>
-                  <StyledTableCell className={style.tbl} width={10}>
-                    #
-                  </StyledTableCell>
+                  <StyledTableCell className={style.tbl}>#</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

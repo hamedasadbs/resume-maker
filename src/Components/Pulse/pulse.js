@@ -23,7 +23,7 @@ export const Pulse = (props) => {
               style={{
                 fill: "none",
                 stroke: "rgb(226, 39, 79)",
-                strokeWidth: 4,
+                strokeWidth: 3,
               }}
             />
           </svg>
@@ -48,7 +48,7 @@ export const Pulse = (props) => {
               style={{
                 fill: "none",
                 stroke: "rgb(226, 39, 79)",
-                strokeWidth: 4,
+                strokeWidth: 3,
                 boxShadow: "box-shadow: 1px 2px 3px red",
               }}
             />

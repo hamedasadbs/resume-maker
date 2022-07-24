@@ -15,7 +15,7 @@ module.exports = {
               mobile: result[0].mobile,
               email: result[0].email,
               website: result[0].website,
-              image: result[0].image,
+              imageName: result[0].image_name,
             });
           }
         }
@@ -26,14 +26,7 @@ module.exports = {
     app.post("/profile", (req, res) => {
       con.query(
         `UPDATE profile SET 
-        fname='${req.body.fname}',
-        lname='${req.body.lname}',
-        title='${req.body.title}',
-        city='${req.body.city}',
-        state='${req.body.state}',
-        mobile='${req.body.mobile}',
-        email='${req.body.email}',
-        website='${req.body.website}',
+        
         image='${req.body.image}' 
         WHERE username='${req.body.username}'`,
         (err) => {

@@ -159,7 +159,7 @@ export const NavBar = (props) => {
           )}
           <div className={style.tooltip}>{navigation[4]}</div>
         </Link>
-        <Link
+        {/* <Link
           id={navigation[5]}
           onClick={navHandler}
           className={style.link}
@@ -168,8 +168,8 @@ export const NavBar = (props) => {
           <span>{navigation[5]}</span>
           <AttachmentOutlinedIcon className={style.icon} />
           <div className={style.tooltip}>{navigation[5]}</div>
-        </Link>
-        <Link
+        </Link> */}
+        {/* <Link
           id={navigation[6]}
           onClick={navHandler}
           className={style.link}
@@ -178,7 +178,7 @@ export const NavBar = (props) => {
           <span>{navigation[6]}</span>
           <EmojiEventsOutlinedIcon className={style.icon} />
           <div className={style.tooltip}>{navigation[6]}</div>
-        </Link>
+        </Link> */}
       </nav>
     </div>
   );
