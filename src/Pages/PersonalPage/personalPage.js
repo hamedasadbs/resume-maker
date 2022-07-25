@@ -14,6 +14,8 @@ import SaveOutlinedIcon from "@mui/icons-material/SaveOutlined";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
 import * as base64Lib from "../../Middleware/Library/base64Lib";
+/*image*/
+import noPhoto from "../../Assets/Images/no_photo.png";
 
 export const PersonalPage = (props) => {
   const [fname, setFname] = useState("");
@@ -24,9 +26,8 @@ export const PersonalPage = (props) => {
   const [mobile, setMobile] = useState("");
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
-
   const [imageName, setImageName] = useState("no_photo.png");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(noPhoto);
   /*refs*/
   const inputFile = useRef();
 
@@ -43,41 +44,6 @@ export const PersonalPage = (props) => {
 
           let base64 = await base64Lib.toBase64(files[0]);
           setImage(base64);
-
-          // let myFile = await base64Lib.toFile(base64, files[0].name);
-
-          // let form_data = new FormData();
-          // let base64 = await base64Lib.toBase64(files[0]);
-
-          // let replacedBase64 = base64.replace(
-          //   base64.substring(
-          //     base64.indexOf("data:"),
-          //     base64.indexOf("base64,") + 7
-          //   ),
-          //   ""
-          // );
-
-          // form_data.append("filename", files[0].name);
-          // form_data.append("file", replacedBase64);
-          // console.log(
-          //   "your file base64 size is " +
-          //     replacedBase64.length +
-          //     " bytes so it will send as one base64 file"
-          // );
-
-          // axios({
-          //   method: "post",
-          //   url: "https://multiav.cert.ir/api/web/",
-          //   data: form_data,
-          //   headers: { "Content-Type": "multipart/form-data" },
-          // })
-          //   .then((res) => {
-          //     props.setUUID(res.data.response.UUID);
-          //   })
-          //   .catch((err) => {
-          //     alert("متاسفانه ارتباط با سرور برقرار نشد");
-          //     window.location.href = "/";
-          //   });
         } else alert("حجم تصویر انتخابی باید کمتر از 10 مگابایت باشد");
       }
     }
@@ -101,38 +67,29 @@ export const PersonalPage = (props) => {
         setMobile(res.data.mobile);
         setEmail(res.data.email);
         setWebsite(res.data.website);
-        setImageName(res.data.imageName ? res.data.imageName : "no_photo.png");
-        setImage(res.data.image);
+        setImageName(res.data.imageName && res.data.imageName);
+        if (res.data.image) {
+          let myImg = base64Lib.toFile(res.data.image, res.data.imageName);
+          setImage(URL.createObjectURL(myImg));
+        }
       });
   }, []);
 
   const saveChangesHandler = () => {
-    console.log(image);
     axios
-      .post(
-        `http://localhost:8080/profile`,
-        {
-          username: cookie.getCookie("username"),
-          // fname,
-          // lname,
-          // title,
-          // city,
-          // state,
-          // mobile,
-          // email,
-          // website,
-          // imageName,
-          image: "this is a test",
-        },
-        {
-          headers: {
-            // 'application/json' is the modern content-type for JSON, but some
-            // older servers may use 'text/json'.
-            // See: http://bit.ly/text-json
-            "content-type": "application/octet-stream",
-          },
-        }
-      )
+      .post(`http://localhost:8080/profile`, {
+        username: cookie.getCookie("username"),
+        fname,
+        lname,
+        title,
+        city,
+        state,
+        mobile,
+        email,
+        website,
+        imageName,
+        image,
+      })
       .then(() => {
         alert("اطلاعات شما با موفقیت ذخیره شد");
       })

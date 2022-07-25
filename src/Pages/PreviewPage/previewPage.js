@@ -20,9 +20,6 @@ export const PreviewPage = (props) => {
       )
       .then((res) => {
         setDataset(res.data.dataset);
-      })
-      .catch(() => {
-        alert("متاسفانه مشکلی در دریافت اطلاعات به وجود آمد");
       });
   };
 

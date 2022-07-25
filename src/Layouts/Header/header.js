@@ -9,19 +9,16 @@ import axios from "axios";
 import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
 import logo from "../../Assets/Images/dade-baan.png";
+import noPhoto from "../../Assets/Images/no_photo.png";
 /*library*/
 import * as cookie from "../../Middleware/Library/cookie";
+import * as base64Lib from "../../Middleware/Library/base64Lib";
 /*MUI*/
 import Button from "@mui/material/Button";
 import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined";
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import SettingsCellIcon from "@mui/icons-material/SettingsCell";
-import EmailIcon from "@mui/icons-material/Email";
-import MapIcon from "@mui/icons-material/Map";
-import LanguageIcon from "@mui/icons-material/Language";
-import CircleIcon from "@mui/icons-material/Circle";
 
 import "font-awesome/css/font-awesome.min.css";
 
@@ -29,6 +26,8 @@ import ReactToPdf from "react-to-pdf";
 
 export const Header = (props) => {
   const [subTitle, setSubTitle] = useState(null);
+  const [image, setImage] = useState(noPhoto);
+
   const logoutHandler = () => {
     cookie.setCookie("login", "", -100);
     cookie.setCookie("username", "", -100);
@@ -69,6 +68,13 @@ export const Header = (props) => {
         `http://localhost:8080/preview?username=${cookie.getCookie("username")}`
       )
       .then((res) => {
+        if (res.data.dataset.profile[0].image) {
+          let myImg = base64Lib.toFile(
+            res.data.dataset.profile[0].image,
+            res.data.dataset.profile[0].image_name
+          );
+          setImage(URL.createObjectURL(myImg));
+        }
         setDataset(res.data.dataset);
       })
       .catch(() => {
@@ -131,13 +137,7 @@ export const Header = (props) => {
             <main className={styles.main} id="divToPrint">
               <div className={styles.topPage}>
                 <aside>
-                  <img
-                    src={
-                      require(`../../Assets/Images/${dataset.profile[0].image_name}`)
-                        .default
-                    }
-                    alt="avatar"
-                  />
+                  <img src={image} alt="avatar" />
                   <div className={styles.profile}>
                     <h1 className={styles.title}>پروفایل</h1>
                     <p>{dataset.profile[0].title}</p>
@@ -207,10 +207,16 @@ export const Header = (props) => {
                   </span>
                   <div className={styles.education}>
                     <h1 className={styles.title}>تحصیلات</h1>
-                    <span>{dataset.education[0].last_grade}</span>
-                    <span>{dataset.education[0].university}</span>
-                    <span>عنوان پایان نامه: {dataset.education[0].thesis}</span>
-                    <span>سال {dataset.education[0].year}</span>
+                    {dataset.education[0] && (
+                      <>
+                        <span>{dataset.education[0].last_grade}</span>
+                        <span>{dataset.education[0].university}</span>
+                        <span>
+                          عنوان پایان نامه: {dataset.education[0].thesis}
+                        </span>
+                        <span>سال {dataset.education[0].year}</span>
+                      </>
+                    )}
                   </div>
                   <div className={styles.courses}>
                     <h1 className={styles.title}>دوره های آموزشی طی شده</h1>

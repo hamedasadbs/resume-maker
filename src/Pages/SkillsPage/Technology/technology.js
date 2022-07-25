@@ -47,9 +47,6 @@ export const Technology = (props) => {
       )
       .then((res) => {
         setTechTitle(res.data.dataset);
-      })
-      .catch(() => {
-        alert("متاسفانه مشکلی در دریافت اطلاعات عنوان به وجود آمد");
       });
   };
 
@@ -62,9 +59,6 @@ export const Technology = (props) => {
       )
       .then((res) => {
         setTechnology(res.data.dataset);
-      })
-      .catch(() => {
-        alert("متاسفانه مشکلی در دریافت اطلاعات تکنولوژی به وجود آمد");
       });
   };
 
