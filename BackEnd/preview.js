@@ -16,8 +16,6 @@ module.exports = {
           if (err) throw err;
           if (result.length) {
             profile = result;
-          } else {
-            console.log("failed");
           }
         }
       );

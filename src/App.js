@@ -7,6 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 /*child components*/
+import { AdminPage } from "./Pages/AdminPage/adminPage";
 import { PersonalPage } from "./Pages/PersonalPage/personalPage";
 import { LearningPage } from "./Pages/LearningPage/learningPage";
 import { EducationPage } from "./Pages/EducationPage/educationPage";
@@ -59,43 +60,65 @@ export const App = () => {
         <Switch>
           {cookie.getCookie("login") ? (
             loaded ? (
-              <>
-                <Route path="/personal_info">
-                  <PersonalPage setDashboard={setDashboard} title={dashboard} />
-                  {/* <Pdf setRef={setRef} /> */}
-                </Route>
-                <Route path="/learning_info">
-                  <LearningPage setDashboard={setDashboard} title={dashboard} />
-                </Route>
-                <Route path="/education_history">
-                  <EducationPage
-                    setDashboard={setDashboard}
-                    title={dashboard}
-                  />
-                </Route>
-                <Route path="/skills">
-                  <SkillsPage
-                    setIsModalOpen={setIsModalOpen}
-                    setDashboard={setDashboard}
-                    title={dashboard}
-                  />
-                  {isModalOpen.bool && (
-                    <TechModal
-                      title={isModalOpen.title}
-                      setIsModalOpen={setIsModalOpen}
+              cookie.getCookie("superUser") == 1 ? (
+                <>
+                  <Route path="/administration">
+                    <AdminPage />
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="/administration" />
+                  </Route>
+                </>
+              ) : (
+                <>
+                  <Route path="/personal_info">
+                    <PersonalPage
+                      setDashboard={setDashboard}
+                      title={dashboard}
                     />
-                  )}
-                </Route>
-                <Route path="/projects">
-                  <ProjectPage setDashboard={setDashboard} title={dashboard} />
-                </Route>
-                <Route path="/preview">
-                  <PreviewPage setDashboard={setDashboard} title={dashboard} />
-                </Route>
-                <Route path="/">
-                  <Redirect to="/personal_info" />
-                </Route>
-              </>
+                  </Route>
+                  <Route path="/learning_info">
+                    <LearningPage
+                      setDashboard={setDashboard}
+                      title={dashboard}
+                    />
+                  </Route>
+                  <Route path="/education_history">
+                    <EducationPage
+                      setDashboard={setDashboard}
+                      title={dashboard}
+                    />
+                  </Route>
+                  <Route path="/skills">
+                    <SkillsPage
+                      setIsModalOpen={setIsModalOpen}
+                      setDashboard={setDashboard}
+                      title={dashboard}
+                    />
+                    {isModalOpen.bool && (
+                      <TechModal
+                        title={isModalOpen.title}
+                        setIsModalOpen={setIsModalOpen}
+                      />
+                    )}
+                  </Route>
+                  <Route path="/projects">
+                    <ProjectPage
+                      setDashboard={setDashboard}
+                      title={dashboard}
+                    />
+                  </Route>
+                  <Route path="/preview">
+                    <PreviewPage
+                      setDashboard={setDashboard}
+                      title={dashboard}
+                    />
+                  </Route>
+                  <Route path="/">
+                    <Redirect to="/personal_info" />
+                  </Route>
+                </>
+              )
             ) : (
               <LoadingPage />
             )

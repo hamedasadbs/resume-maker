@@ -1,0 +1,32 @@
+@import '../../index.module.scss';
+
+.adminPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: whitesmoke;
+    min-height: 100vh;
+    margin: 10px auto;
+
+    .title {
+        display: none;
+    }
+
+    main {
+        width: 80%;
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+
+        .information {
+            width: 100%;
+            background-color: white;
+            box-shadow: $brightBoxShadow1;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row-reverse;
+            padding: 10px 0;
+        }
+    }
+}

@@ -1,5 +1,5 @@
 /*css*/
-import style from "./addCourse.module.scss";
+import style from "./addUser.module.scss";
 /*inner components*/
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -22,10 +22,9 @@ import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-export const AddCourse = (props) => {
-  const [name, setName] = useState("");
-  const [website, setWebsite] = useState("");
-  const [time, setTime] = useState(0);
+export const AddUser = (props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const [dataset, setDataset] = useState([]);
 
@@ -59,37 +58,29 @@ export const AddCourse = (props) => {
   }));
 
   const getDataHandler = () => {
-    axios
-      .get(
-        `http://localhost:8080/learning?username=${cookie.getCookie(
-          "username"
-        )}`
-      )
-      .then((res) => {
-        setDataset(res.data.dataset);
-      });
+    axios.get("http://localhost:8080/users").then((res) => {
+      setDataset(res.data.users);
+    });
   };
 
   useEffect(() => {
     getDataHandler();
   }, []);
 
-  const addCourseHandler = () => {
-    if (name === "" || website === "" || time == 0 || time === "")
+  const addUserHandler = () => {
+    if (username === "" || password === "")
       alert("لطفا تمام بخش های مورد نیاز را پر کنید");
     else {
       axios
-        .post("http://localhost:8080/learning", {
-          name,
-          website,
-          time,
-          username: cookie.getCookie("username"),
+        .post("http://localhost:8080/users", {
+          username,
+          password,
         })
         .then(() => {
           getDataHandler();
         })
         .catch(() => {
-          alert("دوره مورد نظر اضافه نشد");
+          alert("کاربر مورد نظر اضافه نشد");
         });
     }
   };
@@ -105,70 +96,54 @@ export const AddCourse = (props) => {
     }
   };
 
-  const removeCourseHandler = () => {
+  const removeUserHandler = () => {
     if (checkbox.length) {
       for (let i = 0; i < checkbox.length; i++) {
         axios
-          .delete(
-            `http://localhost:8080/learning?username=${cookie.getCookie(
-              "username"
-            )}&item=${checkbox[i]}`
-          )
+          .delete(`http://localhost:8080/users?item=${checkbox[i]}`)
           .then(() => {
             getDataHandler();
           })
           .catch(() => {
-            alert("دوره مورد نظر اضافه نشد");
+            alert("کاربر(ان) مورد نظر حذف نشد");
           });
       }
-    } else alert("لطفا حداقل یک مورد را برای حذف انتخاب کنید");
+    } else alert("لطفا حداقل یک کاربر را برای حذف انتخاب کنید");
   };
 
   /*render component*/
   return (
-    <div className={style.addCourse}>
-      <div className={style.addCourseForm}>
+    <div className={style.addUser}>
+      <div className={style.addUserForm}>
         <Input
           onchange={(e) => {
-            setName(e.target.value);
+            setUsername(e.target.value);
           }}
           type="username"
-          align="right"
-          direction="rtl"
+          align="left"
+          direction="ltr"
           id={0}
-          label="نام دوره آموزشی"
-          width="25%"
+          label="نام کاربری"
+          width="35%"
         />
         <Input
           onchange={(e) => {
-            setWebsite(e.target.value);
+            setPassword(e.target.value);
           }}
           type="username"
           align="left"
           direction="ltr"
           id={1}
-          label="وبسایت دوره"
-          width="25%"
-        />
-        <Input
-          onchange={(e) => {
-            setTime(e.target.value);
-          }}
-          type="number"
-          align="center"
-          direction="ltr"
-          id={2}
-          value={time}
-          label="مدت زمان دوره"
-          width="25%"
+          label="رمز عبور"
+          width="35%"
         />
         <Button
           className={style.save}
           variant="contained"
           endIcon={<AddIcon />}
-          onClick={addCourseHandler}
+          onClick={addUserHandler}
         >
-          افزودن دوره
+          افزودن کاربر
         </Button>
       </div>
       <div className={style.table}>
@@ -181,13 +156,10 @@ export const AddCourse = (props) => {
                     انتخاب
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl}>
-                    مدت زمان دوره
+                    رمز عبور
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl}>
-                    وبسایت دوره
-                  </StyledTableCell>
-                  <StyledTableCell className={style.tbl}>
-                    نام دوره آموزشی
+                    نام کاربری
                   </StyledTableCell>
                   <StyledTableCell className={style.tbl}>#</StyledTableCell>
                 </TableRow>
@@ -197,19 +169,16 @@ export const AddCourse = (props) => {
                   <StyledTableRow key={index}>
                     <StyledTableCell className={style.tbl}>
                       <Checkbox
-                        id={data.name}
+                        id={data.username}
                         onChange={checkHandler}
                         {...label}
                       />
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{data.time} ساعت</h1>
+                      <h1>{data.password}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
-                      <h1>{data.website}</h1>
-                    </StyledTableCell>
-                    <StyledTableCell className={style.tbl}>
-                      <h1>{data.name}</h1>
+                      <h1>{data.username}</h1>
                     </StyledTableCell>
                     <StyledTableCell className={style.tbl}>
                       {index + 1}
@@ -222,11 +191,11 @@ export const AddCourse = (props) => {
         </Typography>
         <div className={style.btnContainer}>
           <Button
-            onClick={removeCourseHandler}
+            onClick={removeUserHandler}
             className={style.remove}
             variant="outlined"
           >
-            <span>حذف دوره</span>
+            <span>حذف کاربر</span>
             <DeleteOutlineIcon className={style.icon} />
           </Button>
         </div>

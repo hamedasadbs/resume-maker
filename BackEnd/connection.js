@@ -4,7 +4,7 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 
-var auth = require("./auth");
+var user = require("./user");
 
 var personalInfo = require("./personalInfo");
 
@@ -48,7 +48,13 @@ con.connect((err) => {
   console.log("Connected to MySQL Server!");
 });
 //send data for authentication
-auth(app, con);
+user.auth(app, con);
+//send data for authentication
+user.getUsers(app, con);
+//send data for authentication
+user.addUser(app, con);
+//send data for authentication
+user.removeUser(app, con);
 //send data to personal_info page
 personalInfo.getData(app, con);
 //update personal info

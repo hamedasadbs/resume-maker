@@ -1,0 +1,99 @@
+@import '../../../index.module.scss';
+
+.addUser {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 25px;
+    padding-top: 0;
+
+    .addUserForm {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 100%;
+        margin: auto;
+        border: 1px solid whitesmoke;
+        padding: 20px 5px;
+        border-radius: 5px;
+
+        .save {
+            margin: auto;
+            padding: 10px 0;
+            width: 23%;
+            font-size: $fontSize2;
+            font-family: titleFont;
+            background-color: $primaryColor2;
+        }
+
+        .addField {
+            width: 23%;
+            margin: auto 5px;
+
+            .addInput {
+                font-size: $fontSize2;
+                width: 100%;
+            }
+        }
+    }
+
+    .table {
+        margin: 20px auto 0 auto;
+        width: 100%;
+
+        .tbl {
+            font-family: titleFont;
+            font-size: $fontSize2;
+            direction: rtl;
+
+            h1 {
+                font-size: $fontSize2;
+                margin: auto;
+            }
+        }
+    }
+
+    .btnContainer {
+        display: flex;
+        width: 100%;
+        margin: 40px auto;
+
+        .remove {
+            margin: auto;
+            margin-left: 0;
+            display: flex;
+            color: $secondaryColor2;
+            border: 1px solid $secondaryColor2;
+            padding: 5px 25px;
+
+            &:hover {
+                background-color: rgba($secondaryColor2, 0.1);
+            }
+
+            span {
+                font-size: $fontSize2;
+                font-family: titleFont;
+                margin: auto;
+            }
+
+            .icon {
+                margin: auto;
+                margin-left: 5px;
+                font-size: $fontSize3;
+                color: $secondaryColor2;
+            }
+        }
+    }
+
+    .addUserForm {
+        display: flex;
+        width: 100%;
+        margin: 10px auto;
+
+        .addInput {
+            width: 20%;
+        }
+    }
+}

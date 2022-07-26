@@ -41,15 +41,17 @@ export const LoginPage = () => {
       setUserErr(false);
       setPassErr(false);
       axios
-        .post("http://localhost:8080/", { username: user, password: pass })
-        .then(() => {
+        .post("http://localhost:8080/auth", { username: user, password: pass })
+        .then((res) => {
           if (rmCheck) {
             localStorage.setItem("username", user);
             localStorage.setItem("password", pass);
           }
           cookie.setCookie("login", true, 60);
           cookie.setCookie("username", user, 60);
-          window.location.href = "/";
+          cookie.setCookie("superUser", res.data.superUser, 60);
+          if (res.data.superUser == 1) window.location.href = "/administration";
+          else window.location.href = "/";
         })
         .catch(() => {
           alert("نام کاربری یا رمز وارد شده اشتباه است");
