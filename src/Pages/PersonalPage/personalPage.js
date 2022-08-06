@@ -39,12 +39,12 @@ export const PersonalPage = (props) => {
       if (files.length === 0) {
         alert("لطفا یک فایل را انتخاب کنید");
       } else {
-        if (files[0].size < 10000000) {
+        if (files[0].size < 100000) {
           setImageName(files[0].name);
 
           let base64 = await base64Lib.toBase64(files[0]);
           setImage(base64);
-        } else alert("حجم تصویر انتخابی باید کمتر از 10 مگابایت باشد");
+        } else alert("حجم تصویر انتخابی باید کمتر از 100 کبلوبایت باشد");
       }
     }
   }

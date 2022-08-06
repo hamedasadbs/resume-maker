@@ -40,7 +40,7 @@ export const App = () => {
   /*when refresh page go to root*/
   window.onbeforeunload = function () {
     window.setTimeout(function () {
-      window.location = "/";
+      window.location.href = "/";
     }, 0);
     window.onbeforeunload = null;
   };

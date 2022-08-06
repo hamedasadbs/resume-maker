@@ -155,7 +155,7 @@ export const General = (props) => {
       <div className={style.table}>
         <Typography component={"span"} marginBottom={0}>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table aria-label="customized table">
               <TableHead>
                 <TableRow>
                   <StyledTableCell className={style.tbl} width={10}>

@@ -4,6 +4,8 @@ var express = require("express");
 var app = express();
 var cors = require("cors");
 
+const bodyParser = require("body-parser");
+
 var user = require("./user");
 
 var personalInfo = require("./personalInfo");
@@ -31,10 +33,8 @@ app.use(
   })
 );
 //for parse body of request
-app.use(express.json());
-app.use(
-  express.urlencoded({ limit: "50mb", parameterLimit: 100000, extended: true })
-);
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: false }));
 //connect to database
 var con = mysql.createConnection({
   host: "localhost",
