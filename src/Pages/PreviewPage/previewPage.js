@@ -65,14 +65,22 @@ export const PreviewPage = (props) => {
               <img src={image} alt="avatar" />
               <div className={style.profile}>
                 <h1 className={style.title}>پروفایل</h1>
-                <p>{dataset.profile[0].title}</p>
+                <p>
+                  {dataset.profile[0].title
+                    ? dataset.profile[0].title
+                    : "عنوان"}
+                </p>
               </div>
               <div className={style.contactInfo}>
                 <h1 className={style.title}>اطلاعات تماس</h1>
                 <span>
                   <div className={style.contact}>
                     <label>موبایل</label>
-                    <h1>{dataset.profile[0].mobile}</h1>
+                    <h1>
+                      {dataset.profile[0].mobile
+                        ? dataset.profile[0].mobile
+                        : "*********09"}
+                    </h1>
                   </div>
                   <div className={style.iconContainer}>
                     <i className={`${style.icon} fa fa-mobile`}></i>
@@ -81,7 +89,11 @@ export const PreviewPage = (props) => {
                 <span>
                   <div className={style.contact}>
                     <label>ایمیل</label>
-                    <h1>{dataset.profile[0].email}</h1>
+                    <h1>
+                      {dataset.profile[0].email
+                        ? dataset.profile[0].email
+                        : "example@yahoo.com"}
+                    </h1>
                   </div>
                   <div className={style.iconContainer}>
                     <i className={`${style.icon} fa fa-envelope-o`}></i>
@@ -91,7 +103,11 @@ export const PreviewPage = (props) => {
                   <div className={style.contact}>
                     <label>محل سکونت</label>
                     <h1>
-                      {dataset.profile[0].state}/{dataset.profile[0].city}
+                      {dataset.profile[0].state ? dataset.profile[0].state : ""}{" "}
+                      /{" "}
+                      {dataset.profile[0].city
+                        ? dataset.profile[0].city
+                        : "استان و شهر"}
                     </h1>
                   </div>
                   <div className={style.iconContainer}>
@@ -101,7 +117,11 @@ export const PreviewPage = (props) => {
                 <span>
                   <div className={style.contact}>
                     <label>آدرس وبسایت</label>
-                    <h1>{dataset.profile[0].website}</h1>
+                    <h1>
+                      {dataset.profile[0].website
+                        ? dataset.profile[0].website
+                        : "www.example.com"}
+                    </h1>
                   </div>
                   <div className={style.iconContainer}>
                     <i className={`${style.icon} fa fa-globe`}></i>
@@ -116,7 +136,7 @@ export const PreviewPage = (props) => {
                     <span key={index}>- {interest.interest}</span>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
 
@@ -130,22 +150,33 @@ export const PreviewPage = (props) => {
                     </main>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
             </aside>
             <article>
               <span className={style.name}>
                 <h1>
-                  {dataset.profile[0].fname} {dataset.profile[0].lname}
+                  {dataset.profile[0].fname
+                    ? dataset.profile[0].fname
+                    : "نام و"}{" "}
+                  {dataset.profile[0].lname
+                    ? dataset.profile[0].lname
+                    : "نام خانوادگی"}
                 </h1>
               </span>
               <div className={style.education}>
                 <h1 className={style.title}>تحصیلات</h1>
-                <span>{dataset.education[0].last_grade}</span>
-                <span>{dataset.education[0].university}</span>
-                <span>عنوان پایان نامه: {dataset.education[0].thesis}</span>
-                <span>سال {dataset.education[0].year}</span>
+                {dataset.education[0].university ? (
+                  <>
+                    <span>{dataset.education[0].last_grade}</span>
+                    <span>{dataset.education[0].university}</span>
+                    <span>عنوان پایان نامه: {dataset.education[0].thesis}</span>
+                    <span>سال {dataset.education[0].year}</span>
+                  </>
+                ) : (
+                  <span></span>
+                )}
               </div>
 
               <div className={style.courses}>
@@ -158,7 +189,7 @@ export const PreviewPage = (props) => {
                     </span>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
               <div className={style.skills}>
@@ -168,7 +199,7 @@ export const PreviewPage = (props) => {
                     <span key={index}>- {skill.skill}</span>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
 
@@ -200,7 +231,7 @@ export const PreviewPage = (props) => {
                     </ul>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
             </article>
@@ -227,7 +258,7 @@ export const PreviewPage = (props) => {
                     </div>
                   ))
                 ) : (
-                  <span>-</span>
+                  <span></span>
                 )}
               </div>
             </article>

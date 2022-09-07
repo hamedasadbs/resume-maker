@@ -23,72 +23,56 @@ module.exports = {
         `SELECT * FROM learning WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            learning = result;
-          }
+          else learning = result;
         }
       );
       con.query(
         `SELECT * FROM education WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            education = result;
-          }
+          else education = result;
         }
       );
       con.query(
         `SELECT * FROM general WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            general = result;
-          }
+          else general = result;
         }
       );
       con.query(
         `SELECT * FROM interests WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            interests = result;
-          }
+          else interests = result;
         }
       );
       con.query(
         `SELECT * FROM skills WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            skills = result;
-          }
+          else skills = result;
         }
       );
       con.query(
         `SELECT * FROM projects WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            projects = result;
-          }
+          else projects = result;
         }
       );
       con.query(
         `SELECT * FROM technology_title WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            techTitle = result;
-          }
+          else techTitle = result;
         }
       );
       con.query(
         `SELECT * FROM technology WHERE username='${req.query.username}'`,
         (err, result) => {
           if (err) throw err;
-          if (result.length) {
-            technology = result;
-          }
+          else technology = result;
         }
       );
       var dataset = {

@@ -39,12 +39,18 @@ export const PersonalPage = (props) => {
       if (files.length === 0) {
         alert("لطفا یک فایل را انتخاب کنید");
       } else {
-        if (files[0].size < 100000) {
-          setImageName(files[0].name);
-
-          let base64 = await base64Lib.toBase64(files[0]);
-          setImage(base64);
-        } else alert("حجم تصویر انتخابی باید کمتر از 100 کبلوبایت باشد");
+        if (
+          files[0].type.split("/")[0] === "image" &&
+          (files[0].type.split("/")[1] === "png" ||
+            files[0].type.split("/")[1] === "jpg" ||
+            files[0].type.split("/")[1] === "jpeg")
+        ) {
+          if (files[0].size < 100000) {
+            setImageName(files[0].name);
+            let base64 = await base64Lib.toBase64(files[0]);
+            setImage(base64);
+          } else alert("حجم تصویر انتخابی باید کمتر از 100 کبلوبایت باشد");
+        } else alert("لطفا تصویری با فرمت png یا jpg انتخاب کنید");
       }
     }
   }

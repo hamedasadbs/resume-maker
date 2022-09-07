@@ -5,6 +5,8 @@ import styles from "../../pdf.module.scss";
 import { useState, useEffect, createRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "font-awesome/css/font-awesome.min.css";
+import ReactToPdf from "react-to-pdf";
 /*child components*/
 import { Pulse } from "../../Components/Pulse/pulse";
 /*image*/
@@ -19,10 +21,6 @@ import CloudDownloadOutlinedIcon from "@mui/icons-material/CloudDownloadOutlined
 import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-
-import "font-awesome/css/font-awesome.min.css";
-
-import ReactToPdf from "react-to-pdf";
 
 export const Header = (props) => {
   const [subTitle, setSubTitle] = useState(null);
@@ -58,7 +56,7 @@ export const Header = (props) => {
   const options = {
     orientation: "portrait",
     unit: "in",
-    format: [8.3, 18],
+    format: [8.3, 20],
   };
 
   const [dataset, setDataset] = useState(null);
@@ -69,7 +67,7 @@ export const Header = (props) => {
         `http://localhost:8080/preview?username=${cookie.getCookie("username")}`
       )
       .then((res) => {
-        if (res.data.dataset.profile[0].image) {
+        if (res.data.dataset.profile[0]) {
           let myImg = base64Lib.toFile(
             res.data.dataset.profile[0].image,
             res.data.dataset.profile[0].image_name
@@ -81,7 +79,6 @@ export const Header = (props) => {
   };
 
   useEffect(() => {
-    getDataHandler();
     getDataHandler();
   }, []);
 
@@ -114,8 +111,8 @@ export const Header = (props) => {
               targetRef={ref}
               filename={`${cookie.getCookie("username")}_CV.pdf`}
               options={options}
-              x={0.1}
-              scale={0.9}
+              x={0}
+              scale={1}
             >
               {({ toPdf }) => (
                 <Button
@@ -140,14 +137,22 @@ export const Header = (props) => {
                       <img src={image} alt="avatar" />
                       <div className={styles.profile}>
                         <h1 className={styles.title}>پروفایل</h1>
-                        <p>{dataset.profile[0].title}</p>
+                        <p>
+                          {dataset.profile[0].title
+                            ? dataset.profile[0].title
+                            : "عنوان"}
+                        </p>
                       </div>
                       <div className={styles.contactInfo}>
                         <h1 className={styles.title}>اطلاعات تماس</h1>
                         <span>
                           <div className={styles.contact}>
                             <label>موبایل</label>
-                            <h1>{dataset.profile[0].mobile}</h1>
+                            <h1>
+                              {dataset.profile[0].mobile
+                                ? dataset.profile[0].mobile
+                                : "09*********"}
+                            </h1>
                           </div>
                           <div className={styles.iconContainer}>
                             <i className={`${styles.icon} fa fa-mobile`}></i>
@@ -156,7 +161,11 @@ export const Header = (props) => {
                         <span>
                           <div className={styles.contact}>
                             <label>ایمیل</label>
-                            <h1>{dataset.profile[0].email}</h1>
+                            <h1>
+                              {dataset.profile[0].email
+                                ? dataset.profile[0].email
+                                : "example@yahoo.com"}
+                            </h1>
                           </div>
                           <div className={styles.iconContainer}>
                             <i
@@ -168,8 +177,13 @@ export const Header = (props) => {
                           <div className={styles.contact}>
                             <label>محل سکونت</label>
                             <h1>
-                              {dataset.profile[0].state}/
-                              {dataset.profile[0].city}
+                              {dataset.profile[0].state
+                                ? dataset.profile[0].state
+                                : "استان"}
+                              /
+                              {dataset.profile[0].city
+                                ? dataset.profile[0].city
+                                : "شهر"}
                             </h1>
                           </div>
                           <div className={styles.iconContainer}>
@@ -181,7 +195,11 @@ export const Header = (props) => {
                         <span>
                           <div className={styles.contact}>
                             <label>آدرس وبسایت</label>
-                            <h1>{dataset.profile[0].website}</h1>
+                            <h1>
+                              {dataset.profile[0].website
+                                ? dataset.profile[0].website
+                                : "www.example.com"}
+                            </h1>
                           </div>
                           <div className={styles.iconContainer}>
                             <i className={`${styles.icon} fa fa-globe`}></i>
@@ -207,12 +225,17 @@ export const Header = (props) => {
                     <article>
                       <span className={styles.name}>
                         <h1>
-                          {dataset.profile[0].fname} {dataset.profile[0].lname}
+                          {dataset.profile[0].fname
+                            ? dataset.profile[0].fname
+                            : "نام و"}{" "}
+                          {dataset.profile[0].lname
+                            ? dataset.profile[0].lname
+                            : "نام خانوادگی"}
                         </h1>
                       </span>
                       <div className={styles.education}>
                         <h1 className={styles.title}>تحصیلات</h1>
-                        {dataset.education[0] && (
+                        {dataset.education[0].university && (
                           <>
                             <span>{dataset.education[0].last_grade}</span>
                             <span>{dataset.education[0].university}</span>
